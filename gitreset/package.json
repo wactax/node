@@ -1,0 +1,26 @@
+{
+  "name": "@w5/gitreset",
+  "version": "0.0.1",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/gitreset",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "debug": "^4.3.4",
+    "simple-git": "^3.17.0"
+  },
+  "bin": {
+    "gitreset": "./lib/bin.js"
+  }
+}

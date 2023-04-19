@@ -1,0 +1,19 @@
+{
+  "name": "wtax",
+  "version": "0.0.2",
+  "type": "module",
+  "license": "Apache‑2.0",
+  "devDependencies": {},
+  "author": "i@wac.tax",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/wtax",
+  "peerDependencies": {},
+  "dependencies": {}
+}

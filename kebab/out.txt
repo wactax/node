@@ -1,0 +1,7 @@
+str_li → str-li
+str2li → str2li
+i18n → i18n
+iI18n → i-i18n
+test-db → test-db
+User → user
+LIB_INDEX → lib-index

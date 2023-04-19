@@ -1,0 +1,17 @@
+{
+  "name": "@w5/blake3",
+  "version": "0.0.6",
+  "main": "_.js",
+  "license": "Apache-2.0",
+  "author": "i@wac.tax",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/blake3",
+  "exports": {
+    ".": "./_.js",
+    "./*": "./*"
+  },
+  "files": [
+    "*.wasm",
+    "*.ts"
+  ]
+}

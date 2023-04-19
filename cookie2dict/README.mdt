@@ -1,0 +1,13 @@
+# @w5/cookie2dict
+
+[test/main.coffee](./test/main.coffee) :
+
+```coffee
+<+ ./test/main.coffee >
+```
+
+output :
+
+```
+<+ ./out.txt >
+```

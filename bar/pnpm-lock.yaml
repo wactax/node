@@ -1,0 +1,30 @@
+lockfileVersion: '6.0'
+
+dependencies:
+  chalk:
+    specifier: ^5.2.0
+    version: 5.2.0
+  progress:
+    specifier: ^2.0.3
+    version: 2.0.3
+
+devDependencies:
+  '@w5/sleep':
+    specifier: ^0.0.1
+    version: 0.0.1
+
+packages:
+
+  /@w5/sleep@0.0.1:
+    resolution: {integrity: sha512-GjLtl9qx0bYhJO9kUIHkkmaApa6Uvqr93sPYg6obAxSR5+OKYtRTqC+fZZ0gMov+TKchNGvZFKSS7slA3BAVPw==}
+    dev: true
+
+  /chalk@5.2.0:
+    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: false
+
+  /progress@2.0.3:
+    resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
+    engines: {node: '>=0.4.0'}
+    dev: false

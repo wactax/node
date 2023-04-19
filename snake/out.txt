@@ -1,0 +1,7 @@
+index.htm → index.htm
+_SUBMIT → _submit
+i18n → i18n
+iI18n → i_i18n
+test-db → test_db
+User → user
+LIB_INDEX → lib_index

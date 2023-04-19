@@ -1,0 +1,22 @@
+{
+  "name": "@w5/sfw",
+  "version": "0.0.0",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/sfw",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.4.0",
+    "nsfwjs": "^2.4.2"
+  }
+}

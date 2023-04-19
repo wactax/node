@@ -1,0 +1,15 @@
+# @w5/node_cls
+
+for [wactax/ru](https://github.com/wactax/ru), bind rust function into nodejs class
+
+[test/main.coffee](./test/main.coffee) :
+
+```coffee
+<+ ./test/main.coffee >
+```
+
+output :
+
+```
+<+ ./out.txt >
+```

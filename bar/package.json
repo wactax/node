@@ -1,0 +1,24 @@
+{
+  "name": "@w5/bar",
+  "version": "0.0.5",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/bar",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "progress": "^2.0.3"
+  },
+  "devDependencies": {
+    "@w5/sleep": "^0.0.1"
+  }
+}

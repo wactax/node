@@ -1,0 +1,22 @@
+{
+  "name": "@w5/taskli",
+  "version": "0.0.7",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/taskli",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "@w5/bar": "^0.0.5",
+    "@w5/sleep": "^0.0.1"
+  }
+}

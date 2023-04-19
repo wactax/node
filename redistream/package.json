@@ -1,0 +1,21 @@
+{
+  "name": "@w5/redistream",
+  "version": "0.0.1",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/redistream",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {
+    "@w5/redis": "^0.0.2"
+  },
+  "scripts": {},
+  "type": "module",
+  "dependencies": {}
+}

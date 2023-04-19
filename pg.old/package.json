@@ -1,0 +1,23 @@
+{
+  "name": "@w5/pg",
+  "version": "0.0.4",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/pg",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "knex": "^2.4.2",
+    "pg": "^8.10.0",
+    "pg-parse-float": "^0.0.1"
+  }
+}

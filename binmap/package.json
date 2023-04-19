@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "@w5/loader": "^0.0.3",
+    "wasm-opt": "^1.4.0"
+  }
+}

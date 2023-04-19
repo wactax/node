@@ -1,0 +1,21 @@
+{
+  "name": "@w5/pg",
+  "version": "0.0.16",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/pg",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "postgres": "^3.3.4",
+    "prexit": "^2.2.0"
+  }
+}

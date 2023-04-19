@@ -1,0 +1,1 @@
+{"name":"@w5/j2f","version":"0.0.1","repository":"https://github.com/wactax/node.git","homepage":"https://github.com/wactax/node/tree/main/j2f","author":"i@wac.tax","license":"Apache-2.0","exports":{".":"./lib/index.js","./*":"./lib/*"},"files":["lib/*"],"scripts":{},"type":"module","dependencies":{"opencc-js":"^1.0.5"}}

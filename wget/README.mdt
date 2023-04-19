@@ -1,0 +1,13 @@
+# @w5/wget
+
+[test/main.coffee](./test/main.coffee) :
+
+```coffee
+<+ ./test/main.coffee >
+```
+
+down to test.out :
+
+```
+<+ ./test.out >
+```

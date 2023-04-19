@@ -1,0 +1,32 @@
+{
+  "name": "@w5/mdt",
+  "version": "0.0.16",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/mdt",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "bin": {
+    "mdt": "./lib/index.js"
+  },
+  "devDependencies": {
+    "@w5/uridir": "^0.0.1",
+    "@w5/mdt": "^0.0.16"
+  },
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "@w5/read": "^0.0.1",
+    "@w5/walk": "^0.0.1",
+    "@w5/write": "^0.0.1",
+    "chalk": "^5.2.0",
+    "pug": "^3.0.2",
+    "yargs": "^17.7.1"
+  }
+}

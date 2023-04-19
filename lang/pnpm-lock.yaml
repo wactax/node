@@ -1,0 +1,86 @@
+lockfileVersion: '6.0'
+
+devDependencies:
+  '@w5/tran':
+    specifier: ^0.0.1
+    version: 0.0.1
+  '@w5/write':
+    specifier: ^0.0.1
+    version: 0.0.1
+
+packages:
+
+  /@tootallnate/once@2.0.0:
+    resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
+    engines: {node: '>= 10'}
+    dev: true
+
+  /@w5/caller_line@0.0.1:
+    resolution: {integrity: sha512-JpKA5fV4NPtyE5pOvG1/z/qLSUOIvONOQhsdaZaBX9LPHQgYmUoteY28XXMpF+HAcIaUZpUFMGxZRU5WXWGJOA==}
+    dev: true
+
+  /@w5/req@0.0.1:
+    resolution: {integrity: sha512-wUkQMMd2V81ntdctVjG1cF7O8fmjHQk89Fv/ivCnfMaYZL9rgLz2tSi/s/PjoqY+zl0ziL2rpncKTDElQlGRQg==}
+    dependencies:
+      '@w5/retry': 0.0.1
+    dev: true
+
+  /@w5/retry@0.0.1:
+    resolution: {integrity: sha512-EO+0hpJ17QZ9JmJLvCInwYHIX15iCyrcuB10nBJ4/8m+CByeuWnTwhiHkChEWQ9c0YRLkw1U8WGYVq48I5KbBg==}
+    dependencies:
+      '@w5/caller_line': 0.0.1
+      '@w5/sleep': 0.0.1
+    dev: true
+
+  /@w5/sleep@0.0.1:
+    resolution: {integrity: sha512-GjLtl9qx0bYhJO9kUIHkkmaApa6Uvqr93sPYg6obAxSR5+OKYtRTqC+fZZ0gMov+TKchNGvZFKSS7slA3BAVPw==}
+    dev: true
+
+  /@w5/tran@0.0.1:
+    resolution: {integrity: sha512-VQpjwsaKqCxgumCOKOmYhWSPRys1WbfTZx76l7Hr7tJa+vh15tM/vmnMye4U3IcVfTmePvTL2wFA3AKa/JjECw==}
+    dependencies:
+      '@w5/req': 0.0.1
+      http-proxy-agent: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@w5/write@0.0.1:
+    resolution: {integrity: sha512-VyQXX2C3yRqfS7D5B+yCcsR1tvzZ1DzPLi5kugBOe/EeL+LOD3ftFamfik7wQr2TG7XQ7VF0snUpqVLaytwfOA==}
+    dev: true
+
+  /agent-base@6.0.2:
+    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
+    engines: {node: '>= 6.0.0'}
+    dependencies:
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /debug@4.3.4:
+    resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: true
+
+  /http-proxy-agent@5.0.0:
+    resolution: {integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==}
+    engines: {node: '>= 6'}
+    dependencies:
+      '@tootallnate/once': 2.0.0
+      agent-base: 6.0.2
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /ms@2.1.2:
+    resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: true

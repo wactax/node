@@ -1,0 +1,8 @@
+index.htm → index.htm
+str_li → strLi
+str2li → str2li
+i18n → i18n
+iI18n → iI18n
+test-db → testDb
+User → User
+LIB_INDEX → LIB_INDEX

@@ -1,0 +1,8 @@
+1 #!/usr/bin/env coffee
+2 
+3 import fsline from '../src/index'
+4 
+5 do =>
+6   n = 0
+7   for await line from fsline(`import.meta.url.slice(7)`)
+8     console.log ++n, line

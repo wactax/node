@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "wasm-opt": "^1.4.0"
+  }
+}
