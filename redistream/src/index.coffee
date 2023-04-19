@@ -31,12 +31,16 @@ run = (func, [id, msg])=>
     console.error id, msg
   return
 
-runLi = (redis, stream, func, li)=>
+runLi = (redis, group, stream, func, li)=>
   if li.length
     xdel = []
     for i from li
       await run(func, i)
-      xdel.push redis.xdel stream, i[0]
+      p = redis.pipeline()
+      [id] = i
+      p.xack stream, group, id
+      p.xdel stream, id
+      xdel.push p.exec()
     await Promise.allSettled xdel
   return
 
@@ -68,22 +72,25 @@ HOSTNAME = hostname()
             timeout
           )
             {length} = li
-            console.log 'get li length',length
             if length
               begin = + new Date
-              await runLi redis, stream, func, li
+              await runLi redis, group, stream, func, li
               cost = (new Date) - begin
               count = Math.max(
-                Math.round( length * timeout / cost )
+                Math.round((9*count + (length*timeout/cost))/10)
                 1
               )
           [
             _
             li
           ] = await redis.xautoclaim(
-            stream, group, HOSTNAME, timeout*3, '0-0'
+            stream
+            group
+            HOSTNAME
+            timeout * 3
+            '0-0'
           )
-          await runLi redis, stream, func, li
+          await runLi redis, group, stream, func, li
           if Math.random() < (timeout/DAY)
             await rmUnused(stream, group)
         return
