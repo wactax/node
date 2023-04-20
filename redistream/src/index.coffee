@@ -24,7 +24,7 @@ xreadgroup = (redis, stream, group, consumer, count, timeout)=>
       throw err
   return []
 
-run = (redis, pool, xdel, func, i)=>
+run = (redis, stream, group, pool, xdel, func, i)=>
   pool =>
     func(...i[1])?.finally =>
       [id] = i
@@ -38,11 +38,11 @@ run = (redis, pool, xdel, func, i)=>
       xdel.add p
       return
 
-runLi = (redis, pool, func, group, stream, li)->
+runLi = (redis, stream, group, pool, func, li)->
   if li.length
     xdel = new Set()
     for i from li
-      await run(redis, pool, xdel, func, i)
+      await run(redis, stream, group, pool, xdel, func, i)
     await Promise.allSettled xdel
   return
 
@@ -83,8 +83,8 @@ HOSTNAME = hostname()
             {length} = li
             if length
               begin = + new Date
-              await runLi redis, pool, func, group, stream, li
-              cost = (new Date) - begin
+              await runLi redis, stream, group, pool, func, li
+              cost = Math.max((new Date) - begin, 1)
               count = Math.max(
                 Math.round((9*count + (length*timeout/cost))/10)
                 1
@@ -99,7 +99,7 @@ HOSTNAME = hostname()
             timeout * 6
             '0-0'
           )
-          await runLi redis, pool, func, group, stream, li
+          await runLi redis, stream, group, pool, func, li
           if Math.random() < (timeout/DAY)
             await rmUnused(stream, group)
         await pool.done
