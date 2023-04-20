@@ -64,12 +64,13 @@ HOSTNAME = hostname()
       (func, conf={})=>
         _loop = conf.loop or 1e3
         timeout = conf.timeout or 3e5
-        pool = Pool Math.max(
+        pool_n = Math.max(
           Math.round(conf.pool or cpus().length*1.5)
           1
         )
+        pool = Pool pool_n
 
-        count = 1
+        count = pool_n
         while _loop--
           for [_, li] from await xreadgroup(
             redis
@@ -87,7 +88,7 @@ HOSTNAME = hostname()
               cost = Math.max((new Date) - begin, 1)
               count = Math.max(
                 Math.round((9*count + (length*timeout/cost))/10)
-                1
+                pool_n
               )
               console.log 'redis → loop', _loop, 'stream', stream, 'group', group, 'consumer', HOSTNAME, 'run', length, 'items', Math.round(cost/length)/1000+'s/item next limit', count
           [
