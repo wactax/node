@@ -1,4 +1,5 @@
-> os > hostname
+> os > hostname cpus
+  @w5/pool > Pool
 
 xreadgroup = (redis, stream, group, consumer, count, timeout)=>
   n = 2
@@ -23,24 +24,25 @@ xreadgroup = (redis, stream, group, consumer, count, timeout)=>
       throw err
   return []
 
-run = (redis, xdel, func, i)=>
-  func(i)?.finally =>
-    [id] = i
-    pipe = redis.pipeline()
-    pipe.xack stream, group, id
-    pipe.xdel stream, id
-    p = do =>
-      await pipe.exec()
-      xdel.delete p
+run = (redis, pool, xdel, func, i)=>
+  pool =>
+    func(i)?.finally =>
+      [id] = i
+      pipe = redis.pipeline()
+      pipe.xack stream, group, id
+      pipe.xdel stream, id
+      p = do =>
+        await pipe.exec()
+        xdel.delete p
+        return
+      xdel.add p
       return
-    xdel.add p
-    return
 
-runLi = (redis, func, group, stream, li)->
+runLi = (redis, pool, func, group, stream, li)->
   if li.length
     xdel = new Set()
     for i from li
-      await run(redis, xdel, func, i)
+      await run(redis, pool, xdel, func, i)
     await Promise.allSettled xdel
   return
 
@@ -59,11 +61,17 @@ HOSTNAME = hostname()
     {}
     get:(_, stream)=>
       group = 'I'
-      (func, max=1e3, timeout=6e5)=>
+      (func, conf={})=>
+        _loop = conf.loop or 1e3
+        timeout = conf.timeout or 3e5
+        pool = Pool Math.max(
+          Math.round(conf.pool or cpus().length*1.5)
+          1
+        )
+
         count = 1
-        console.log {max}
-        while --max
-          console.log 'redis → ', stream, group, HOSTNAME, 'wait limit', count
+        while _loop--
+          console.log 'redis → loop', _loop, 'stream', stream, 'group', group, 'consumer', HOSTNAME, 'wait limit', count
           for [_, li] from await xreadgroup(
             redis
             stream
@@ -75,7 +83,7 @@ HOSTNAME = hostname()
             {length} = li
             if length
               begin = + new Date
-              await runLi redis, func, group, stream, li
+              await runLi redis, pool, func, group, stream, li
               cost = (new Date) - begin
               count = Math.max(
                 Math.round((9*count + (length*timeout/cost))/10)
@@ -88,11 +96,13 @@ HOSTNAME = hostname()
             stream
             group
             HOSTNAME
-            timeout * 3
+            timeout * 6
             '0-0'
           )
-          await runLi redis, func, group, stream, li
+          await runLi redis, pool, func, group, stream, li
           if Math.random() < (timeout/DAY)
             await rmUnused(stream, group)
+        await pool.done
+        console.log '>>>, done'
         return
   )

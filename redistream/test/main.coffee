@@ -14,9 +14,9 @@ do =>
   await xadd('a','b'+new Date())
   console.log await R.xinfo('stream','test')
 
-  redistream(R).test (i)=>
-    console.log '>',i
-    return
+  # await redistream(R).test (i)=>
+  #   console.log '>',i
+  #   return
 
   console.log 'clear', await R.del 'test'
   console.log 'keys', await R.keys '*'
