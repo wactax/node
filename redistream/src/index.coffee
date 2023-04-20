@@ -23,21 +23,13 @@ xreadgroup = (redis, stream, group, consumer, count, timeout)=>
       throw err
   return []
 
-run = (func, [id, msg])=>
-  try
-    await func(id,...msg)
-  catch err
-    console.trace err
-    console.error id, msg
-  return
-
-runLi = (redis, group, stream, func, li)=>
+runLi = (redis, group, stream, li)->
   if li.length
     xdel = []
     for i from li
-      await run(func, i)
-      p = redis.pipeline()
+      yield i
       [id] = i
+      p = redis.pipeline()
       p.xack stream, group, id
       p.xdel stream, id
       xdel.push p.exec()
@@ -59,10 +51,10 @@ HOSTNAME = hostname()
     {}
     get:(_, stream)=>
       group = 'I'
-      (func, timeout=6e5)=>
-        count = 10
+      (timeout=6e5)->
+        count = 1
         loop
-          console.log stream, group, HOSTNAME, 'wait limit', count
+          console.log 'redis → ', stream, group, HOSTNAME, 'wait limit', count
           for [_, li] from await xreadgroup(
             redis
             stream
@@ -74,7 +66,7 @@ HOSTNAME = hostname()
             {length} = li
             if length
               begin = + new Date
-              await runLi redis, group, stream, func, li
+              yield from runLi redis, group, stream, li
               cost = (new Date) - begin
               count = Math.max(
                 Math.round((9*count + (length*timeout/cost))/10)
@@ -90,7 +82,7 @@ HOSTNAME = hostname()
             timeout * 3
             '0-0'
           )
-          await runLi redis, group, stream, func, li
+          yield from await runLi redis, group, stream, li
           if Math.random() < (timeout/DAY)
             await rmUnused(stream, group)
         return

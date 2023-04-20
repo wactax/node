@@ -20,11 +20,12 @@ do =>
   xadd = Xadd(R).test
   await xadd('a','b'+new Date())
   console.log await R.xinfo('stream','test')
-  # await redistream(R).test (id, ...msg)=>
-  #   console.log {id, msg}
-  #   return
-  console.log await R.del 'test'
-  console.log await R.keys '*'
+
+  # for await i from redistream(R).test()
+  #   console.log i
+
+  console.log 'clear', await R.del 'test'
+  console.log 'keys', await R.keys '*'
   process.exit()
   return
 ```
@@ -32,5 +33,5 @@ do =>
 output :
 
 ```
-123
+miss REDIS_URI
 ```
