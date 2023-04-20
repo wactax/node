@@ -71,7 +71,6 @@ HOSTNAME = hostname()
 
         count = 1
         while _loop--
-          console.log 'redis → loop', _loop, 'stream', stream, 'group', group, 'consumer', HOSTNAME, 'wait limit', count
           for [_, li] from await xreadgroup(
             redis
             stream
@@ -90,6 +89,7 @@ HOSTNAME = hostname()
                 Math.round((9*count + (length*timeout/cost))/10)
                 1
               )
+              console.log 'redis → loop', _loop, 'stream', stream, 'group', group, 'consumer', HOSTNAME, 'run', length, 'items', Math.round(cost/length)/1000+'s/item next limit', count
           [
             _
             li
