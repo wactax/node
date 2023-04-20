@@ -84,6 +84,7 @@ HOSTNAME = hostname()
             if length
               begin = + new Date
               await runLi redis, stream, group, pool, func, li
+              await pool.done
               cost = Math.max((new Date) - begin, 1)
               count = Math.max(
                 Math.round((9*count + (length*timeout/cost))/10)
