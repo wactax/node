@@ -48,7 +48,7 @@ runLi = (redis, stream, group, pool, func, li)->
 
 DAY = 864e5
 
-rmUnused = (stream, group)=>
+rmUnused = (redis, stream, group)=>
   for [_,consumer,_,pending,_,idle] from await redis.xinfo('CONSUMERS', stream, group)
     if pending == 0 and idle > DAY
       await redis.xgroup('DELCONSUMER',stream,group,consumer)
@@ -101,8 +101,7 @@ HOSTNAME = hostname()
           )
           await runLi redis, stream, group, pool, func, li
           if Math.random() < (timeout/DAY)
-            await rmUnused(stream, group)
+            await rmUnused(redis, stream, group)
         await pool.done
-        console.log '>>>, done'
         return
   )
