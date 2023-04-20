@@ -1,6 +1,6 @@
 {
   "name": "@w5/redistream",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/redistream",
   "author": "i@wac.tax",
@@ -17,5 +17,7 @@
   },
   "scripts": {},
   "type": "module",
-  "dependencies": { "@w5/pool": "^0.0.1" }
+  "dependencies": {
+    "@w5/pool": "^0.0.1"
+  }
 }
