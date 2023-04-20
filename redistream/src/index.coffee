@@ -26,7 +26,7 @@ xreadgroup = (redis, stream, group, consumer, count, timeout)=>
 
 run = (redis, pool, xdel, func, i)=>
   pool =>
-    func(i)?.finally =>
+    func(...i)?.finally =>
       [id] = i
       pipe = redis.pipeline()
       pipe.xack stream, group, id
