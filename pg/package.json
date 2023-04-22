@@ -1,6 +1,6 @@
 {
   "name": "@w5/pg",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/pg",
   "author": "i@wac.tax",
@@ -15,6 +15,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
+    "@w5/write": "^0.0.1",
     "postgres": "^3.3.4",
     "prexit": "^2.2.0"
   }
