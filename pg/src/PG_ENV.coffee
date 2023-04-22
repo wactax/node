@@ -4,7 +4,7 @@
   path > join
   fs > existsSync
   @w5/write
-  ./conn
+  ./conn.js
 
 {env} = process
 {PG_URI} = env
