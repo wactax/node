@@ -1,0 +1,22 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@w5/uridir': ^0.0.1
+  node-calls-python: ^1.7.6
+
+dependencies:
+  node-calls-python: 1.7.6
+
+devDependencies:
+  '@w5/uridir': 0.0.1
+
+packages:
+
+  /@w5/uridir/0.0.1:
+    resolution: {integrity: sha512-5ZNTzgVhQHvfI1apigB10XTPjTg5KgMRxdRzda3nUrRTVvzOW1b5fVkFBwv6iqDurNJIe2jiGL97Ge1445p9/g==}
+    dev: true
+
+  /node-calls-python/1.7.6:
+    resolution: {integrity: sha512-vC9QFywQTNrfxH9DHCG0e2E/NbijDusdPqlphCh0GOKmRWum5pV1khrqCR4Jq5CG0R6oKqaCpPqnkzeTLvTxBA==}
+    requiresBuild: true
+    dev: false
