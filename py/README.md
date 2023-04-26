@@ -8,12 +8,14 @@
 #!/usr/bin/env coffee
 
 > @w5/py
-#   @w5/uridir
-#   path > join
+  @w5/uridir
+  path > join dirname
 
-# ROOT = uridir(import.meta)
+ROOT = dirname uridir import.meta
 
-console.log await py 123
+{now} = await py join ROOT, 'test.py'
+
+console.log await now()
 ```
 
 output :

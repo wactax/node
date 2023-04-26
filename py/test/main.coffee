@@ -8,4 +8,4 @@ ROOT = dirname uridir import.meta
 
 {now} = await py join ROOT, 'test.py'
 
-console.log now
+console.log await now()
