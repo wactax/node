@@ -1,5 +1,3 @@
-> @w5/walk
-
 < (li)=>
   li.sort => Math.random() - 0.5
   gen = ->
