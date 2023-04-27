@@ -8,12 +8,12 @@
 #!/usr/bin/env coffee
 
 > @w5/randomiter
-#   @w5/uridir
-#   path > join
 
-# ROOT = uridir(import.meta)
+iter = await randomiter [1,2,3,4,5]
 
-console.log await randomiter 123
+console.log iter()
+console.log iter()
+console.log iter()
 ```
 
 output :
