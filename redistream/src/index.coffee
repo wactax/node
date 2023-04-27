@@ -62,7 +62,7 @@ HOSTNAME = hostname()
     get:(_, stream)=>
       group = 'I'
       (func, conf={})=>
-        _loop = conf.loop or 1e3
+        _loop = conf.loop or 100
         timeout = conf.timeout or 3e5
         pool_n = Math.max(
           Math.round(conf.pool or cpus().length*1.5)
