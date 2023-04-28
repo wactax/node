@@ -1,6 +1,6 @@
 {
   "name": "@w5/pg",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/pg",
   "author": "i@wac.tax",
