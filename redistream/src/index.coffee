@@ -26,17 +26,19 @@ xreadgroup = (redis, stream, group, consumer, count, timeout)=>
 
 run = (redis, stream, group, pool, xdel, func, i)=>
   pool =>
-    func(...i[1])?.finally =>
-      [id] = i
-      pipe = redis.pipeline()
-      pipe.xack stream, group, id
-      pipe.xdel stream, id
-      p = do =>
-        await pipe.exec()
-        xdel.delete p
+    func(...i[1])?
+      # TODO 添加 .catch 并记录错误次数和错误
+      .finally =>
+        [id] = i
+        pipe = redis.pipeline()
+        pipe.xack stream, group, id
+        pipe.xdel stream, id
+        p = do =>
+          await pipe.exec()
+          xdel.delete p
+          return
+        xdel.add p
         return
-      xdel.add p
-      return
 
 runLi = (redis, stream, group, pool, func, li)->
   if li.length
