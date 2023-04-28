@@ -2,8 +2,8 @@
 
 > @w5/li2bit
 
-console.log li2bit([1,0,1]).toString 2
-console.log li2bit([0,0,1]).toString 2
-console.log li2bit([1,0,0]).toString 2
-console.log li2bit([1,1,1]).toString 2
-console.log li2bit([1,1,1])
+li = [1,0,0]
+console.log li, li2bit(li).toString 2
+
+li = [0,0,1]
+console.log li, li2bit(li).toString 2
