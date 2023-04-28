@@ -19,6 +19,8 @@ sql_escape = (i)=>
     for j from i
       r.push sql_escape j
     return r.join('')
+  if 'first' of i
+    return i.first
   return JSON.stringify i
 
 _sql = (args)=>
