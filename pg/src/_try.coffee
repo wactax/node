@@ -28,9 +28,15 @@ _sql = (args)=>
   for i from args[1..]
     first = i?.first
     if first
-      if not Array.isArray first
-        first = [...Object.entries(first)]
-      li = li.concat first.map sql_escape
+      if Array.isArray first
+        li = li.concat first.map sql_escape
+      else
+        cli = []
+        vli = []
+        for [k,v] from Object.entries(first)
+          cli.push k
+          vli.push sql_escape v
+        li.push " (#{cli.join(,)}) VALUES (#{vli.join(',')}) "
     else
       li.push sql_escape i
 
