@@ -14,7 +14,8 @@
   )
   onexit =>
     await pg.end({ timeout: 9 })
-    console.log 'onexit'
-    return
+    new Promise (r)=>
+      pg.close(r)
+      return
 
   pg
