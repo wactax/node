@@ -28,6 +28,8 @@ _sql = (args)=>
   for i from args[1..]
     first = i?.first
     if first
+      if not Array.isArray first
+        first = [...Object.entries(first)]
       li = li.concat first.map sql_escape
     else
       li.push sql_escape i
