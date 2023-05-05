@@ -8,12 +8,14 @@
 #!/usr/bin/env coffee
 
 > @w5/freqlimit
-#   @w5/uridir
-#   path > join
 
-# ROOT = uridir(import.meta)
+FL = freqlimit 2, 1e3
 
-console.log await freqlimit 123
+for i from [1..6]
+  await FL()
+  console.log '>',i
+
+process.exit()
 ```
 
 output :
