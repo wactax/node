@@ -1,0 +1,21 @@
+{
+  "name": "@w5/freqlimit",
+  "version": "0.0.0",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/freqlimit",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "@w5/sleep": "^0.0.1"
+  }
+}
