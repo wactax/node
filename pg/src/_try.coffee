@@ -36,7 +36,7 @@ _sql = (args)=>
         for [k,v] from Object.entries(first)
           cli.push k
           vli.push sql_escape v
-        li.push " (#{cli.join(',')}) VALUES (#{vli.join(',')}) "
+        li.push "(#{cli.join(',')}) VALUES (#{vli.join(',')})"
     else
       li.push sql_escape i
 
