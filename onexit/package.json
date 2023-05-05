@@ -1,6 +1,6 @@
 {
   "name": "@w5/onexit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/onexit",
   "author": "i@wac.tax",
@@ -14,5 +14,6 @@
   ],
   "devDependencies": {},
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {}
 }

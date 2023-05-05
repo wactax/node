@@ -15,8 +15,8 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
+    "@w5/onexit": "^0.0.2",
     "@w5/write": "^0.0.1",
-    "postgres": "^3.3.4",
-    "prexit": "^2.2.0"
+    "postgres": "^3.3.4"
   }
 }

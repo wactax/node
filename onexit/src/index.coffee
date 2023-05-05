@@ -4,21 +4,33 @@ export ONEXIT = new Set
   ONEXIT.add(func)
   return
 
+
 run = =>
-  Promise.allSettled [...ONEXIT].map((f)=>f())
+  await Promise.allSettled [...ONEXIT].map(
+    (f)=>
+      try
+        await f()
+      catch err
+        console.trace err
+      finally
+        ONEXIT.delete f
+      return
+  )
+  return
 
 
 uncaughtException = 'uncaughtException'
 process.on uncaughtException, (e) =>
   console.error(uncaughtException)
-  console.error(e)
+  console.trace(e)
   await run()
-  process.exit(99)
+  process.exit(255)
   return
 
-# ctrl+c = SIGINT
 ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'SIGTERM'].forEach (type)=>
   process.on type, (e)=>
     await run()
     process.exit()
   return
+
+process.on 'beforeExit', run
