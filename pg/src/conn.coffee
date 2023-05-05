@@ -1,7 +1,19 @@
 #!/usr/bin/env coffee
 
 > postgres
-  prexit
+#   prexit
+#
+# CONN = new Set()
+# prexit =>
+#   li = []
+#   for pg from CONN
+#     li.push new Promise (r) =>
+#       pg.close(r)
+#       return
+#     pg.end({ timeout: 9 })
+#
+#   await Promise.allSettled li
+#   return
 
 < (uri, opt)=>
   pg = postgres(
@@ -13,8 +25,5 @@
     }
   )
 
-  prexit =>
-    await pg.end({ timeout: 9 })
-    return
-
+  # CONN.add pg
   pg
