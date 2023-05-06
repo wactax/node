@@ -8,14 +8,11 @@ CONN = new Set
 onexit =>
   await Promise.allSettled(
     [...CONN].map (pg)=>
-      await pg.end({ timeout: 9 }).finally(
+      pg.end({ timeout: 9 }).finally(
         =>
           CONN.delete pg
           return
       )
-      new Promise (r)=>
-        pg.close(r)
-        return
   )
 
 < (uri, opt)=>
