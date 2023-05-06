@@ -9,13 +9,14 @@
 
 { copySync } = fsExtra
 
-< (src, outdir)=>
+< (src, outdir, ext='js')=>
+  ext = '.'+ext
   out = (dir, filedir, fp)=>
     cfp = join(filedir,fp)
     cf = readFileSync cfp,'utf8'
     if fp.endsWith '.coffee'
       fp = fp[..-8]
-    ofp = join(dir,fp+'.js')
+    ofp = join(dir,fp+ext)
 
     console.log ofp
 
