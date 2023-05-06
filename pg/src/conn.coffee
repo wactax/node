@@ -6,14 +6,13 @@
 CONN = new Set
 
 onexit =>
-  await Promise.allSettled(
-    [...CONN].map (pg)=>
-      pg.end({ timeout: 9 }).finally(
-        =>
-          CONN.delete pg
-          return
-      )
-  )
+  [...CONN].map (pg)=>
+    pg.end({ timeout: 9 }).finally(
+      =>
+        CONN.delete pg
+        return
+    )
+  return
 
 < (uri, opt)=>
   pg = postgres(
