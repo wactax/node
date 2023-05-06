@@ -11,15 +11,17 @@ argv = yargs(hideBin(process.argv))
   .describe('compile', 'compile file or dir')
   .alias('outdir','o')
   .describe('outdir', 'outdir dir')
+  .alias('ext','e')
+  .describe('ext', 'js / mjs')
   #.alias('watch', 'w')
   #.describe('watch', 'watch change')
   .parse()
 
-{compile,outdir,watch} = argv
+{compile,outdir,watch,ext} = argv
 
 if not compile
   compile = process.cwd()
 
 compile = resolve(compile)
 
-await dir compile, outdir
+await dir compile, outdir, ext or 'js'
