@@ -7,6 +7,9 @@ NO_SPACE = new Set([
 < (to, i, src)=>
   i = decode(i) #.replace(/>\s+\)/g,'>) ')
 
+  if src.startsWith('#') and to.startsWith('*')
+    to = '#'+src[1..]
+
   # 给<br 补上空格
   if not NO_SPACE.has to
     for [split,space_pos,offset] from [
