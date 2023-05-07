@@ -1,4 +1,5 @@
 > ava
+  util
 
 export default (mod)=>
   new Proxy(
@@ -14,7 +15,7 @@ export default (mod)=>
               if r instanceof Promise
                 name = 'await '+name
               console.log '`'+name+'(', args.map(
-                (i)=>JSON.stringify i
+                (i)=>util.format i
               ).join(','), ')`', ' → `'+util.format(result)+'`\n'
               if r instanceof Promise
                 r = await r

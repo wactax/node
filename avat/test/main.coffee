@@ -2,7 +2,7 @@
 
 > @w5/avat
 
-import * as mod from './mod'
+import * as mod from '../mod.js'
 
 T = avat mod
 

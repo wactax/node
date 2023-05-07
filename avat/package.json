@@ -1,6 +1,6 @@
 {
   "name": "@w5/avat",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/avat",
   "author": "i@wac.tax",
@@ -12,7 +12,9 @@
   "files": [
     "lib/*"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "esm": "^3.2.25"
+  },
   "scripts": {},
   "type": "module",
   "dependencies": {

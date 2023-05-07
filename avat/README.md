@@ -8,12 +8,12 @@
 #!/usr/bin/env coffee
 
 > @w5/avat
-#   @w5/uridir
-#   path > join
 
-# ROOT = uridir(import.meta)
+import * as mod from '../mod.js'
 
-console.log await avat 123
+T = avat mod
+
+T.xyz(123)(246)
 ```
 
 output :
