@@ -1,8 +1,8 @@
 {
-  "name": "@w5/ossput",
-  "version": "0.0.11",
+  "name": "@w5/avat",
+  "version": "0.0.0",
   "repository": "https://github.com/wactax/node.git",
-  "homepage": "https://github.com/wactax/node/tree/main/ossput",
+  "homepage": "https://github.com/wactax/node/tree/main/avat",
   "author": "i@wac.tax",
   "license": "Apache-2.0",
   "exports": {
@@ -16,8 +16,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@aws-sdk/abort-controller": "^3.310.0",
-    "@aws-sdk/client-s3": "^3.328.0",
-    "@aws-sdk/lib-storage": "^3.328.0"
+    "ava": "^5.2.0"
   }
 }
