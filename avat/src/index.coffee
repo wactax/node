@@ -15,7 +15,10 @@ export default (mod)=>
               if r instanceof Promise
                 name = 'await '+name
               console.log '`'+name+'(', args.map(
-                (i)=>util.format i
+                (i)=>
+                  if i?.constructor === String
+                    return JSON.stringify(i)
+                  util.format i
               ).join(','), ')`', '\n  → `'+util.format(result)+'`\n'
               if r instanceof Promise
                 r = await r
