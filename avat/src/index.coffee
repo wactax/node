@@ -16,7 +16,7 @@ export default (mod)=>
                 name = 'await '+name
               console.log '`'+name+'(', args.map(
                 (i)=>util.format i
-              ).join(','), ')`', ' → `'+util.format(result)+'`\n'
+              ).join(','), ')`', '\n  → `'+util.format(result)+'`\n'
               if r instanceof Promise
                 r = await r
               t.deepEqual(
