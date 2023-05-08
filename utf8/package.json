@@ -1,18 +1,25 @@
 {
   "name": "@w5/utf8",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/utf8",
   "author": "i@wac.tax",
   "license": "Apache-2.0",
   "exports": {
-    ".": "./lib/index.js",
+    ".": {
+      "require": "./lib/autoe.cjs",
+      "import": "./lib/autoe.js"
+    },
     "./*": "./lib/*"
   },
   "files": [
     "lib/*"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5",
+    "@babel/cli": "^7.21.5"
+  },
   "scripts": {},
   "type": "module"
 }

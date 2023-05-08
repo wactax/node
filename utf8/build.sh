@@ -4,4 +4,8 @@ DIR=$(realpath ${0%/*})
 cd $DIR
 set -ex
 
-exec build
+build
+
+for file in ./lib/*.js; do
+  bunx babel --plugins @babel/plugin-transform-modules-commonjs $file >${file/.js/.cjs}
+done
