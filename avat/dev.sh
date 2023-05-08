@@ -3,4 +3,4 @@
 DIR=$(realpath ${0%/*})
 cd $DIR
 
-exec dev $@
+exec dev ./run.sh
