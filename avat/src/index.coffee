@@ -11,7 +11,7 @@ export default (mod)=>
           ava(
             name
             (t)=>
-              r = func(...args)
+              r = func.apply(mod,args)
               if r instanceof Promise
                 name = 'await '+name
               console.log '`'+name+'(', args.map(
