@@ -160,7 +160,9 @@ callback=function()
   return "VERSION"
 end,
 flags={'no-writes'}
-}function RedisLuaTestVer()
+}
+
+function RedisLuaTestVer()
   -- flags no-writes
   return "\203\216\96\237\106\224\254\211\52\192\149\93\39\22\104\243\169\145\159\207\111\227\196\3\37\100\240\112\86\201\240\149"
 end

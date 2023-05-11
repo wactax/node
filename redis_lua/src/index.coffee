@@ -83,7 +83,7 @@ NO_WRITES = '\'no-writes\''
           else
             li.push i+'\n'
 
-        lua = li.join('').trim() + """
+        lua = li.join('').trim() + """\n
 function #{ver_func}()
   -- flags no-writes
   return "#{bin2luaStr version}"
