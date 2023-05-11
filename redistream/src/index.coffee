@@ -3,7 +3,7 @@
   @w5/dot
   @w5/utf8/utf8d
 
-POOL_N = cpus()*2
+POOL_N = cpus().length*2
 POOL = Pool POOL_N
 GROUP = 'C'
 CUSTOMER = hostname()
@@ -19,18 +19,19 @@ CUSTOMER = hostname()
 
   dot (stream)=>
     (func, block=3e5)=>
-      now = +new Date() + 864e5
+      now = +new Date()
       stop = Math.max(
-        now - block*12
+        now + 864e5 - block*12
         now + 18e6
       )
-
       limit = POOL_N
       loop
-        task_li = await R.xnext(
+        console.log {limit}
+        task_li = await redis.xnext(
           GROUP
           CUSTOMER
-          Math.max(Math.round(limit,1))
+          Math.max(Math.round(limit),1)
+          block
           false # noack
           stream
         )
@@ -47,6 +48,7 @@ CUSTOMER = hostname()
         if +new Date() > stop
           return
         cost = new Date() - begin
+        console.log {block, cost}
         limit = ((block/cost) + (limit*7))/8
       return
 
