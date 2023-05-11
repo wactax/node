@@ -116,6 +116,7 @@ limit_round = (limit)=>
         console.log 'remain ', Math.round(diff/36000)/100 + 'h'
       return
 
+# TODO rmUnused
 
 # rmUnused = (redis, stream, group)=>
 #   for [_,consumer,_,pending,_,idle] from await redis.xinfo('CONSUMERS', stream, group)
