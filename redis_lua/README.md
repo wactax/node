@@ -11,6 +11,7 @@
   @w5/read
   path > join
   @w5/redis_lua
+  @w5/redis_lua/dot_bind.js
 
 ROOT = uridir(import.meta)
 LUA = read join ROOT,'redis.lua'
@@ -21,8 +22,21 @@ redis = {
   fnload:(lua)=>
     console.log lua
     return
+  fstr:(args...)=>
+    console.log 'fstr', ...args
+    return
 }
+
+
 await RedisLua(redis).RedisLuaTest LUA
+
+console.log '---'
+
+BIND = DotBind redis
+
+BIND.fstr.ipLimit
+
+await redis.ipLimit('key1','key2')('arg1','arg2')
 ```
 
 output :
@@ -31,7 +45,11 @@ output :
 #!lua name=RedisLuaTest
 
 local log = function(...)
-  redis.log(redis.LOG_NOTICE, ...)
+  local li = {}
+  for _, v in ipairs({ ... }) do
+    table.insert(li, cjson.encode(v))
+  end
+  redis.log(redis.LOG_NOTICE, unpack(li))
 end
 
 local _byZid = function(key, score)
@@ -187,8 +205,10 @@ redis.register_function{
 function_name='RedisLuaTestVer',
 callback=function()
   redis.setresp(3)
-  return "\130\214\84\208\24\99\242\190\138\208\238\10\150\59\193\226\78\205\76\99\154\87\115\145\206\29\213\176\48\52\187\255"
+  return "\188\0\180\11\100\122\172\50\199\66\224\34\38\70\84\131\139\84\230\175\183\85\160\149\120\156\137\85\99\119\50\166"
 end,
 flags={'no-writes'}
 }
+---
+fstr ipLimit [ 'key1', 'key2' ] [ 'arg1', 'arg2' ]
 ```
