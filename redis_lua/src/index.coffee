@@ -27,11 +27,12 @@ NO_WRITES = '\'no-writes\''
         lua = lua.trim()
         version = await hash lua
         try
-          ver = await R.fbinR ver_func,[],[]
+          ver = await redis.fbinR ver_func,[],[]
         catch
           ver = []
+
         if ver and u8eq version,ver
-          console.log "-- redis lua #{name} version exist"
+          console.log "redis lua #{name}@#{Buffer.from(version).toString('base64url')} exist"
           return
 
         lua += """\n
