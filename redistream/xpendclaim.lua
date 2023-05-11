@@ -24,7 +24,7 @@ end
 
 function xconsumerclean(keys, args)
   local stream, group = unpack(keys)
-  local expire = 1000 * tonumber(args[1])
+  local expire = tonumber(args[1])
   for _, v in ipairs(XINFO(stream, group)) do
     local v = v.map
     if v.idle > expire then

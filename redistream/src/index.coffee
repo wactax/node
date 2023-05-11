@@ -14,11 +14,21 @@ limit_round = (limit)=>
   Math.max(Math.round(limit),1)
 
 < (redis)=>
-  DotBind(redis).fbin.xpendclaim
+  B = DotBind(redis)
+  B.fbin.xpendclaim
+  B.fcall.xconsumerclean
+
   dot (stream)=>
     xdel = redis.xdel.bind redis, stream
+    xconsumerclean = redis.xconsumerclean.bind(
+      redis
+      stream
+      GROUP
+    )
+
     now = +new Date()
     stop = now + 83e6
+    stop = 0
 
     runed = 0
     cost = 0
@@ -112,68 +122,8 @@ limit_round = (limit)=>
         diff = stop - new Date
         if diff < 0
           await POOL.done
-          return
+          break
         console.log 'remain ', Math.round(diff/36000)/100 + 'h'
+      await xconsumerclean(864e6)
       return
 
-# TODO rmUnused
-
-# rmUnused = (redis, stream, group)=>
-#   for [_,consumer,_,pending,_,idle] from await redis.xinfo('CONSUMERS', stream, group)
-#     if pending == 0 and idle > DAY
-#       await redis.xgroup('DELCONSUMER',stream,group,consumer)
-#   return
-#
-# HOSTNAME = hostname()
-#
-# < (redis)=>
-#   new Proxy(
-#     {}
-#     get:(_, stream)=>
-#       group = 'I'
-#       (func, conf={})=>
-#         _loop = conf.loop or 100
-#         timeout = conf.timeout or 3e5
-#         pool_n = Math.max(
-#           Math.round(conf.pool or cpus().length*1.5)
-#           1
-#         )
-#         pool = Pool pool_n
-#
-#         count = pool_n
-#         while _loop--
-#           for [_, li] from await xreadgroup(
-#             redis
-#             stream
-#             group
-#             HOSTNAME
-#             count
-#             timeout
-#           )
-#             {length} = li
-#             if length
-#               begin = + new Date
-#               await runLi redis, stream, group, pool, func, li
-#               await pool.done
-#               cost = Math.max((new Date) - begin, 1)
-#               count = Math.max(
-#                 Math.round((9*count + (length*timeout/cost))/10)
-#                 pool_n
-#               )
-#               console.log 'redis → loop', _loop, 'stream', stream, 'group', group, 'consumer', HOSTNAME, 'run', length, 'items', Math.round(cost/length)/1000+'s/item next limit', count
-#           [
-#             _
-#             li
-#           ] = await redis.xautoclaim(
-#             stream
-#             group
-#             HOSTNAME
-#             timeout * 6
-#             '0-0'
-#           )
-#           await runLi redis, stream, group, pool, func, li
-#           if Math.random() < (timeout/DAY)
-#             await rmUnused(redis, stream, group)
-#         await pool.done
-#         return
-#   )
