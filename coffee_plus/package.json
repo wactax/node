@@ -16,9 +16,9 @@
     "lib/*"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/plugin-transform-modules-commonjs": "^7.21.2"
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5"
   },
   "scripts": {},
   "type": "module",
@@ -29,7 +29,7 @@
     "@w5/write": "^0.0.1",
     "fs-extra": "^11.1.1",
     "lodash-es": "^4.17.21",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "bin": {
     "cep": "./lib/cep.js"
