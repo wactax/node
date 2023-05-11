@@ -1,12 +1,14 @@
 #!/usr/bin/env coffee
 
 > @w5/redistream
+  @w5/redistream/init
   @w5/redistream/XaddLi
   @w5/redistream/Xadd
   @w5/redis
 
 do =>
   R = await redis()
+  await init R
   xadd = Xadd(R).streamTest
   xaddLi = XaddLi(R).streamTest
   await xadd(1, 'a','b','c')
