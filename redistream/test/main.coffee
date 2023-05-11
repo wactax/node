@@ -6,8 +6,8 @@
 do =>
   R = await redis()
 
-  await redistream(R).streamTest (args...)=>
-    console.log {args}
-    return
+  await redistream(R).streamTest ([id, msg])=>
+    console.log '>', id, msg
+    return true
   process.exit()
   return

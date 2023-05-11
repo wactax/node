@@ -1,6 +1,7 @@
 > os > hostname cpus
   @w5/pool > Pool
   @w5/dot
+  msgpackr > unpack
   @w5/utf8/utf8d
 
 POOL_N = cpus().length*2
@@ -9,15 +10,18 @@ GROUP = 'C'
 CUSTOMER = hostname()
 
 < (redis)=>
-  wrap = (id, func, msg)=>
-    try
-      r = await func(...msg)
-    catch err
-      console.error err, func, msg
-      return
-    return
 
   dot (stream)=>
+    wrap = (id, func, msg)=>
+      try
+        r = await func(...msg)
+      catch err
+        console.error err, func, msg
+        return
+      if r == true
+        redis.xdel stream, id
+      return
+
     (func, block=3e5)=>
       now = +new Date()
       stop = Math.max(
@@ -26,7 +30,7 @@ CUSTOMER = hostname()
       )
       limit = POOL_N
       loop
-        console.log {limit}
+        console.log 'limit', Math.round limit
         task_li = await redis.xnext(
           GROUP
           CUSTOMER
@@ -40,16 +44,18 @@ CUSTOMER = hostname()
           _ # stream_name
           li
         ] from task_li
-          for [id, msg] from li
-            msg = msg.map (k,v)=>
-              [utf8d(k),utf8d(v)]
-            await POOL wrap, id, func, msg
+          for [id, kvli] from li
+            await POOL(
+              wrap, id, func
+              kvli.map ([k,v])=>
+                [unpack(k),unpack(v)]
+            )
         await POOL.done
         if +new Date() > stop
           return
-        cost = new Date() - begin
-        console.log {block, cost}
-        limit = ((block/cost) + (limit*7))/8
+        cost = Math.max(new Date() - begin,1e3)
+        console.log {cost}
+        limit = ((block/(cost/task_li.length)) + (limit*7))/8
       return
 
 
