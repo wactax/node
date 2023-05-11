@@ -1,5 +1,9 @@
 local log = function(...)
-  redis.log(redis.LOG_NOTICE, ...)
+  local li = {}
+  for _, v in ipairs({ ... }) do
+    table.insert(li, cjson.encode(v))
+  end
+  redis.log(redis.LOG_NOTICE, unpack(li))
 end
 
 local _byZid = function(key, score)
@@ -142,4 +146,3 @@ end
 function ztouchXx(keys, args)
   _ztouch(ZADD_XX, keys, args)
 end
-
