@@ -1,12 +1,21 @@
 #!/usr/bin/env coffee
 
+> @w5/dot
+
 < (redis)=>
-  new Proxy(
-    {}
-    get:(_, stream)=>
-      (li)=>
-        p = redis.pipeline()
-        for args from li
-          p.xadd(stream, "*", ...args)
-        p.exec()
-  )
+  dot (stream)=>
+    (id,li)=>
+      redis.xadd(
+        stream
+        args.map(
+          (item)=>
+            item.map(
+              (k,v)=>
+                [
+                  k.toString()
+                  JSON.stringify v
+                ]
+            )
+        )
+      )
+

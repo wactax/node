@@ -1,9 +1,17 @@
 #!/usr/bin/env coffee
 
+> @w5/dot
+
 < (redis)=>
-  new Proxy(
-    {}
-    get:(_, stream)=>
-      (args...)=>
-        redis.xadd(stream, "*", ...args)
-  )
+  dot (stream)=>
+    (id,args...)=>
+      redis.xadd(
+        stream
+        [
+          [
+            id.toString()
+            JSON.stringify args
+          ]
+        ]
+      )
+

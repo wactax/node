@@ -18,6 +18,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
+    "@w5/dot": "^0.0.2",
     "@w5/pool": "^0.0.1"
   }
 }
