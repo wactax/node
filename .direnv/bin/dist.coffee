@@ -20,6 +20,7 @@ if existsSync src
   if existsSync lib
     rmSync lib, {recursive:true}
   await $'./build.sh'
+  await $'./run.sh'
 
   package_json_fp = fp package_json
   json = JSON.parse readFileSync(
