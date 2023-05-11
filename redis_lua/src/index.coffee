@@ -1,5 +1,5 @@
 > @w5/u8 > U8 u8eq
-  @w5/utf8/utf8e
+  @w5/utf8/utf8e.js
 
 hash = (bin)=>
   U8(await crypto.subtle.digest(
