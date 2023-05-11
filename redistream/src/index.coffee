@@ -3,38 +3,76 @@
   @w5/dot
   msgpackr > unpack
   @w5/utf8/utf8d
+  @w5/redis_lua/dot_bind
 
 POOL_N = cpus().length*2
 POOL = Pool POOL_N
 GROUP = 'C'
 CUSTOMER = hostname()
 
-< (redis)=>
+limit_round = (limit)=>
+  Math.max(Math.round(limit),1)
 
+< (redis)=>
+  DotBind(redis).fbin.xpendclaim
   dot (stream)=>
-    wrap = (id, func, msg)=>
+    xdel = redis.xdel.bind redis, stream
+    now = +new Date()
+    stop = now + 83e6
+
+    runed = 0
+    wrap = (task_id, func, id, msg)=>
+      ++ runed
       try
-        r = await func(...msg)
+        r = await func(id,msg)
       catch err
         console.error err, func, msg
         return
       if r == true
-        redis.xdel stream, id
+        POOL xdel, task_id
       return
 
-    (func, block=3e5)=>
-      now = +new Date()
-      stop = Math.max(
-        now + 864e5 - block*12
-        now + 18e6
-      )
+
+    (
+      func
+      fail = =>
+      block=3e5
+      max_retry = 6
+    )=>
+      idle = block * 3
       limit = POOL_N
+
+      xpendclaim = =>
+        li = await redis.xpendclaim(
+          stream # stream
+          GROUP # group
+          CUSTOMER
+        )(
+          idle    # idle
+          limit_round limit
+        )
+
+        if not li
+          return
+
+        for [task_id, retry, id, msg] from unpack li
+          if retry > max_retry
+            try
+              await fail(id, msg)
+            catch err
+              console.error fail, err, id, msg
+            POOL xdel, task_id
+          else
+            await POOL wrap, task_id, func, id, msg
+          console.log task_id, retry, id, msg
+        return
+
       loop
         console.log 'limit', Math.round limit
         task_li = await redis.xnext(
           GROUP
           CUSTOMER
-          Math.max(Math.round(limit),1)
+          limit_round limit
           block
           false # noack
           stream
@@ -44,70 +82,32 @@ CUSTOMER = hostname()
           _ # stream_name
           li
         ] from task_li
-          for [id, kvli] from li
+          for [task_id, [kvli]] from li
+            id = unpack(kvli[0])
+            msg = unpack(kvli[1])
             await POOL(
-              wrap, id, func
-              kvli.map ([k,v])=>
-                [unpack(k),unpack(v)]
+              wrap, task_id, func, id, msg
             )
-        await POOL.done
-        if +new Date() > stop
+
+        if task_li.length > 0 and POOL.done
+          POOL.done.then =>
+            if runed
+              cost = Math.max(new Date() - now,1e3)
+              limit = ((block/(cost/runed)) + (limit*7))/8
+
+            runed = 0
+            now = + new Date
+            return
+
+        await xpendclaim()
+        diff = stop - new Date
+        if diff < 0
+          await POOL.done
           return
-        cost = Math.max(new Date() - begin,1e3)
-        console.log {cost}
-        limit = ((block/(cost/task_li.length)) + (limit*7))/8
+        console.log 'remain ', Math.round(diff/36000)/100 + 'h'
       return
 
 
-# xreadgroup = (redis, stream, group, consumer, count, timeout)=>
-#   n = 2
-#   while n--
-#     try
-#       return (
-#         await redis.xreadgroup(
-#           'GROUP'
-#           group, consumer
-#           'COUNT', count
-#           'BLOCK', timeout
-#           'STREAMS', stream
-#           '>'
-#         )
-#       ) or []
-#     catch err
-#       {message} = err
-#       console.warn 'WARN: ', message, '→ AUTO CREATE'
-#       if message.startsWith 'NOGROUP '
-#         await redis.xgroup('CREATE', stream, group, 0, 'MKSTREAM')
-#         continue
-#       throw err
-#   return []
-#
-# run = (redis, stream, group, pool, xdel, func, i)=>
-#   pool =>
-#     func(...i[1])?
-#       # TODO 添加 .catch 并记录错误次数和错误
-#       .finally =>
-#         [id] = i
-#         pipe = redis.pipeline()
-#         pipe.xack stream, group, id
-#         pipe.xdel stream, id
-#         p = do =>
-#           await pipe.exec()
-#           xdel.delete p
-#           return
-#         xdel.add p
-#         return
-#
-# runLi = (redis, stream, group, pool, func, li)->
-#   if li.length
-#     xdel = new Set()
-#     for i from li
-#       await run(redis, stream, group, pool, xdel, func, i)
-#     await Promise.allSettled xdel
-#   return
-#
-# DAY = 864e5
-#
 # rmUnused = (redis, stream, group)=>
 #   for [_,consumer,_,pending,_,idle] from await redis.xinfo('CONSUMERS', stream, group)
 #     if pending == 0 and idle > DAY
