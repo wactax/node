@@ -33,6 +33,12 @@ NO_WRITES = '\'no-writes\''
           console.log "-- redis lua #{name} version exist"
           return
 
+        lua += """\n
+function #{ver_func}()
+  -- flags no-writes
+  return "#{bin2luaStr version}"
+end"""
+
         li = ["#!lua name=#{name}\n\n"]
 
         + function_name,body,flags
@@ -83,11 +89,7 @@ NO_WRITES = '\'no-writes\''
           else
             li.push i+'\n'
 
-        lua = li.join('').trim() + """\n
-function #{ver_func}()
-  -- flags no-writes
-  return "#{bin2luaStr version}"
-end"""
+        lua = li.join('').trim()
         await redis.fnload lua
         lua
   )
