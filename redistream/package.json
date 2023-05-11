@@ -13,7 +13,7 @@
     "lib/*"
   ],
   "devDependencies": {
-    "@w5/redis": "^0.0.2"
+    "@w5/redis": "^0.0.3"
   },
   "scripts": {},
   "type": "module",

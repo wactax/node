@@ -4,18 +4,17 @@
 
 < (redis)=>
   dot (stream)=>
-    (id,li)=>
-      redis.xadd(
+    (li)=>
+      redis.xaddLi(
         stream
-        args.map(
-          (item)=>
-            item.map(
-              (k,v)=>
-                [
-                  k.toString()
-                  JSON.stringify v
-                ]
-            )
+        li.map(
+          (t)=>
+            [
+              [
+                t[0].toString()
+                JSON.stringify(t.slice(1))
+              ]
+            ]
         )
       )
 
