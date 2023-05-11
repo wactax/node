@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 
 > @w5/dot
+  msgpackr > pack
 
 < (redis)=>
   dot (stream)=>
@@ -9,8 +10,8 @@
         stream
         [
           [
-            id.toString()
-            JSON.stringify args
+            pack id
+            pack args
           ]
         ]
       )

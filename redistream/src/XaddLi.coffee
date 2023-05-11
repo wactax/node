@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 
 > @w5/dot
+  msgpackr > pack
 
 < (redis)=>
   dot (stream)=>
@@ -11,8 +12,8 @@
           (t)=>
             [
               [
-                t[0].toString()
-                JSON.stringify(t.slice(1))
+                pack t[0]
+                pack t.slice(1)
               ]
             ]
         )
