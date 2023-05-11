@@ -24,6 +24,7 @@ NO_WRITES = '\'no-writes\''
     get:(_,name)=>
       (lua)=>
         ver_func = name+'Ver'
+        lua = lua.trim()
         version = await hash lua
         try
           ver = await R.fbinR ver_func,[],[]

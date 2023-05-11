@@ -183,13 +183,11 @@ redis.register_function('ztouchXx',function(keys, args)
   _ztouch(ZADD_XX, keys, args)
 end)
 
-
-
 redis.register_function{
 function_name='RedisLuaTestVer',
 callback=function()
   redis.setresp(3)
-  return "\200\48\23\100\144\229\101\135\216\60\242\231\223\74\135\209\50\42\180\255\162\99\37\170\141\47\105\185\84\164\30\252"
+  return "\130\214\84\208\24\99\242\190\138\208\238\10\150\59\193\226\78\205\76\99\154\87\115\145\206\29\213\176\48\52\187\255"
 end,
 flags={'no-writes'}
 }
