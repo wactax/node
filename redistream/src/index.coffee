@@ -98,7 +98,11 @@ limit_round = (limit)=>
         if task_li.length > 0
           POOL.done?.then =>
             if runed
-              limit = ((block/(cost/runed)) + (limit*7))/8
+              limit = (
+                (
+                  block / (Math.max(cost,1)/runed)
+                ) + limit*63
+              )/64
               if runed > 1e3
                 runed = Math.round runed/2
                 cost = cost/2
