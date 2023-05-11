@@ -2,5 +2,5 @@
   new Proxy(
     {}
     get:(_,name)=>
-      func.bind(func, name)
+      func(name)
   )
