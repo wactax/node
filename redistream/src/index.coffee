@@ -21,13 +21,19 @@ limit_round = (limit)=>
     stop = now + 83e6
 
     runed = 0
+    cost = 0
+
     wrap = (task_id, func, id, msg)=>
-      ++ runed
+      begin = + new Date()
       try
         r = await func(id,msg)
       catch err
         console.error err, func, msg
         return
+
+      ++ runed
+      cost += (new Date - begin)
+
       if r == true
         POOL xdel, task_id
       return
@@ -89,14 +95,13 @@ limit_round = (limit)=>
               wrap, task_id, func, id, msg
             )
 
-        if task_li.length > 0 and POOL.done
-          POOL.done.then =>
+        if task_li.length > 0
+          POOL.done?.then =>
             if runed
-              cost = Math.max(new Date() - now,1e3)
               limit = ((block/(cost/runed)) + (limit*7))/8
-
-            runed = 0
-            now = + new Date
+              if runed > 1e3
+                runed = Math.round runed/2
+                cost = cost/2
             return
 
         await xpendclaim()
