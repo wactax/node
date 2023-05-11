@@ -77,6 +77,7 @@ for [_,name,_,pending,_,idle] from await redis.xinfo('CONSUMERS', stream_name, G
 
 do =>
   R = await redis()
+  ###
   await redistream(R).streamTest(
     (id, msg)=> # run
       console.log '>', id, msg
@@ -86,6 +87,7 @@ do =>
       return
     1e4 # block time
   )
+  ###
   process.exit()
   return
 ```
@@ -93,5 +95,5 @@ do =>
 output :
 
 ```
-limit 24
+./out.txt
 ```

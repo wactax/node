@@ -5,6 +5,7 @@
 
 do =>
   R = await redis()
+  ###
   await redistream(R).streamTest(
     (id, msg)=> # run
       console.log '>', id, msg
@@ -14,5 +15,6 @@ do =>
       return
     1e4 # block time
   )
+  ###
   process.exit()
   return

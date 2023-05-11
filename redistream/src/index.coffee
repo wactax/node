@@ -28,7 +28,7 @@ limit_round = (limit)=>
 
     now = +new Date()
     stop = now + 83e6
-    stop = 0
+    # stop = 0
 
     runed = 0
     cost = 0
