@@ -9,7 +9,21 @@ DEBUG = process.env.NODE_ENV != 'production'
     f = redis[rtype].bind(redis, func)
     redis[func] = (keys...)=>
       (args...)=>
-        f(keys,args)
+        f(
+          keys
+          args.map(
+            (i)=>
+              if (
+                i.constructor == String
+              ) or (
+                i instanceof Buffer
+              ) or (
+                i instanceof Uint8Array
+              )
+                return i
+              i.toString()
+          )
+        )
 
   if DEBUG
     _proxy_get = proxy_get
