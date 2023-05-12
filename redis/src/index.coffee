@@ -12,7 +12,7 @@ hostPort = (s)=>
     port = 6379
   if ip.startsWith '['
     ip = ip.slice(1,-1)
-  [ip, 6379]
+  [ip, port]
 
 # console.log hostPort '127.0.0.1:3223'
 # console.log hostPort '[2a02:c207:2098:9386::1]:3223'
