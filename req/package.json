@@ -1,6 +1,6 @@
 {
   "name": "@w5/req",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/req",
   "author": "i@wac.tax",
@@ -16,6 +16,8 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@w5/retry": "^0.0.1"
+    "@w5/retry": "^0.0.1",
+    "https-proxy-agent": "^6.1.0",
+    "node-fetch": "^3.3.1"
   }
 }

@@ -15,5 +15,5 @@ console.log await reqTxt 'http://myip.ipip.net'
 output :
 
 ```
-当前 IP：222.249.139.87  来自于：中国 北京 北京  电信
+当前 IP：222.249.139.70  来自于：中国 北京 北京  电信
 ```
