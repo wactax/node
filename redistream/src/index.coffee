@@ -5,8 +5,6 @@
   ./on_fail.js
   ./redis.js
 
-POOL_N = Math.max(Math.round(cpus().length*1.9),1)
-POOL = Pool POOL_N
 GROUP = 'C'
 CUSTOMER = do =>
   name = hostname()
@@ -25,9 +23,13 @@ B.fcall.xconsumerclean
 export default (
   stream
   func
+  task_pre_cpu=2
   block=3e5
   max_retry=6
 )=>
+  pool_n = Math.max(Math.round(cpus().length*task_pre_cpu),1)
+  pool = Pool pool_n
+
   xdel = redis.xdel.bind redis, stream
   xconsumerclean = redis.xconsumerclean(
     stream
@@ -53,12 +55,12 @@ export default (
     cost += (new Date - begin)
 
     if r == true
-      POOL xdel, task_id
+      pool xdel, task_id
     return
 
   fail = OnFail stream
   idle = block * 3
-  limit = 2*POOL_N
+  limit = 2*pool_n
 
   xpendclaim = =>
     li = await redis.xpendclaim(
@@ -80,9 +82,9 @@ export default (
           await fail(id, pack(msg))
         catch err
           console.error fail, err, id, msg
-        POOL xdel, task_id
+        pool xdel, task_id
       else
-        await POOL wrap, task_id, func, id, msg
+        await pool wrap, task_id, func, id, msg
     return
 
   loop
@@ -104,7 +106,7 @@ export default (
       for [task_id, [kvli]] from li
         id = unpack(kvli[0])
         msg = unpack(kvli[1])
-        await POOL(
+        await pool(
           wrap, task_id, func, id, msg
         )
 
@@ -125,7 +127,7 @@ export default (
     # console.log 'xpendclaim done'
     diff = stop - new Date
     if diff < 0
-      await POOL.done
+      await pool.done
       break
     console.log 'stream will stop after', Math.round(diff/36000)/100 + 'h'
   await xconsumerclean(6048e5)
