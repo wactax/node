@@ -126,7 +126,7 @@ limit_round = (limit)=>
         if diff < 0
           await POOL.done
           break
-        console.log 'remain ', Math.round(diff/36000)/100 + 'h'
+        console.log 'remain alive', Math.round(diff/36000)/100 + 'h'
       await xconsumerclean(6048e5)
       return
 
