@@ -1,9 +1,10 @@
 #!/usr/bin/env coffee
 
 > @w5/redis_lua
+  ./redis.js
   ./fail_table.js
 
-< (redis,stream)=>
+< (stream)=>
   Promise.all [
     RedisLua(redis).xpendclaim(
       (
