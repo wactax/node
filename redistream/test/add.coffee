@@ -4,12 +4,11 @@
   @w5/redistream/init
   @w5/redistream/XaddLi
   @w5/redistream/Xadd
-  @w5/redis/MQ
   ./stream
 
 do =>
-  xadd = Xadd MQ, stream
-  xaddLi = XaddLi MQ, stream
+  xadd = Xadd stream
+  xaddLi = XaddLi stream
   await xadd(1, 'a','b','c')
   await xaddLi [
     [2, 'a2','b2','c2']

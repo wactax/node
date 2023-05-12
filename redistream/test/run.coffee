@@ -5,7 +5,7 @@
   ./stream
 
 do =>
-  await redistream(MQ)(
+  await redistream(
     stream
     (id, msg)=> # run
       console.log '>', id, msg

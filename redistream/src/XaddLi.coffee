@@ -1,8 +1,9 @@
 #!/usr/bin/env coffee
 
 > msgpackr > pack
+  ./redis.js
 
-< (redis, stream)=>
+< (stream)=>
   (li)=>
     redis.xaddLi(
       stream
