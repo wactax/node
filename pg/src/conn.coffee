@@ -22,7 +22,7 @@ onexit =>
   pg = postgres(
     'postgres://'+uri
     {
-      # idle_timeout: 60
+      idle_timeout: 30
       prepare: true
       ...opt
     }
