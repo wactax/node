@@ -1,7 +1,5 @@
 #!/usr/bin/env coffee
 
-> @w5/redis
-
-R = await redis()
+> @w5/R
 
 console.log R
