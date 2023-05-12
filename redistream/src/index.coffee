@@ -4,7 +4,7 @@
   @w5/redis_lua/dot_bind
   ./on_fail.js
 
-POOL_N = cpus().length*2
+POOL_N = Math.max(Math.round(cpus().length*1.9),1)
 POOL = Pool POOL_N
 GROUP = 'C'
 CUSTOMER = do =>
@@ -74,7 +74,7 @@ limit_round = (limit)=>
         return
 
       for [task_id, retry, id, msg] from unpack li
-        console.log {task_id, retry, id, msg}
+        # console.log {task_id, retry, id, msg}
         if retry > max_retry
           try
             await fail(id, pack(msg))
@@ -86,7 +86,7 @@ limit_round = (limit)=>
       return
 
     loop
-      console.log 'limit', Math.round limit
+      console.log 'stream limit', Math.round limit
       task_li = await redis.xnext(
         GROUP
         CUSTOMER
@@ -95,7 +95,7 @@ limit_round = (limit)=>
         false # noack
         stream
       )
-      console.log 'get task li'
+      # console.log 'get task li'
       begin = +new Date()
       for [
         _ # stream_name
@@ -121,14 +121,14 @@ limit_round = (limit)=>
               cost = cost/2
           return
 
-      console.log 'xpendclaim'
+      # console.log 'xpendclaim'
       await xpendclaim()
-      console.log 'xpendclaim done'
+      # console.log 'xpendclaim done'
       diff = stop - new Date
       if diff < 0
         await POOL.done
         break
-      console.log 'remain alive', Math.round(diff/36000)/100 + 'h'
+      console.log 'stream will stop after', Math.round(diff/36000)/100 + 'h'
     await xconsumerclean(6048e5)
     return
 
