@@ -1,7 +1,7 @@
 > os > hostname cpus
   @w5/pool > Pool
   msgpackr > unpack pack
-  @w5/redis_lua/dot_bind
+  @w5/redis_lua/dot_bind.js
   ./on_fail.js
 
 POOL_N = Math.max(Math.round(cpus().length*1.9),1)
