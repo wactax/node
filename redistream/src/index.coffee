@@ -109,17 +109,14 @@ export default (
         )
 
     if task_li.length > 0
-      POOL.done?.then =>
-        if runed
-          limit = (
-            (
-              block / (Math.max(cost,1)/runed)
-            ) + limit*63
-          )/64
-          if runed > 1e3
-            runed = Math.round runed/2
-            cost = cost/2
-        return
+      limit = (
+        (
+          block / (Math.max(cost,1)/runed)
+        ) + limit*63
+      )/64
+      if runed > limit
+        runed = Math.round runed/2
+        cost = cost/2
 
     # console.log 'xpendclaim'
     await xpendclaim()
