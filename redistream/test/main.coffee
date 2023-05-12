@@ -9,7 +9,7 @@ do =>
     stream
     (id, msg)=> # run
       console.log '>', id, msg
-      return true
+      return # true
     1e4 # block time
   )
   console.log 'process.exit'
