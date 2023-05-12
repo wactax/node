@@ -1,10 +1,9 @@
 #!/usr/bin/env coffee
 
 > @w5/redistream
-  @w5/redis
+  @w5/redis/R
 
 do =>
-  R = await redis()
   ###
   await redistream(R).streamTest(
     (id, msg)=> # run
