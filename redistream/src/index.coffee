@@ -58,7 +58,7 @@ export default (
 
   fail = OnFail stream
   idle = block * 3
-  limit = POOL_N
+  limit = 2*POOL_N
 
   xpendclaim = =>
     li = await redis.xpendclaim(
@@ -111,7 +111,9 @@ export default (
     if task_li.length > 0
       limit = (
         (
-          block / (Math.max(cost,1)/runed)
+          block / (
+            (1+Math.max(cost,1))/(1+runed)
+          )
         ) + limit*63
       )/64
       if runed > limit
