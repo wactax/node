@@ -44,7 +44,7 @@ export default (
   wrap = (task_id, func, id, msg)=>
     begin = + new Date()
     try
-      r = await func(id,msg)
+      r = await func(id,...msg)
     catch err
       console.error err, func, msg
       return
