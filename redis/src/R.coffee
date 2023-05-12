@@ -2,4 +2,6 @@
 
 > ./index.js:Redis
 
-export default await Redis()
+export default await Redis(
+  process.env
+)

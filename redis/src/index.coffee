@@ -1,15 +1,24 @@
+#!/usr/bin/env coffee
 > @w5/xedis > conn Server
   @w5/onexit
 
-host_port = (s)=>
-  s = s.split(':')
-  if s.length == 1
-    s.push 6379
+hostPort = (s)=>
+  p = s.lastIndexOf(':')
+  if not s.endsWith(']') and ~ p
+    ip = s.slice(0, p)
+    port = +s.slice(p+1)
   else
-    s[1] = +s[1]
-  s
+    ip = s
+    port = 6379
+  if ip.startsWith '['
+    ip = ip.slice(1,-1)
+  [ip, 6379]
 
-< (env=process.env)=>
+# console.log hostPort '127.0.0.1:3223'
+# console.log hostPort '[2a02:c207:2098:9386::1]:3223'
+# console.log hostPort '[2a02:c207:2098:9386::1]'
+
+< (env)=>
   {
     REDIS_HOST_PORT
     REDIS_PASSWORD
@@ -23,9 +32,9 @@ host_port = (s)=>
 
   li = REDIS_HOST_PORT.split(' ')
   if li.length == 1
-    li = host_port li[0]
+    li = hostPort li[0]
   else
-    li = li.map host_port
+    li = li.map hostPort
 
   server = if Array.isArray li[0] then Server.cluster(li) else Server.hostPort(...li)
   # new Redis('redis://'+uri)

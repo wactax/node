@@ -17,5 +17,5 @@ console.log R
 output :
 
 ```
-Xedis {}
+./out.txt
 ```
