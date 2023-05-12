@@ -30,5 +30,12 @@ process.exit()
 output :
 
 ```
-./out.txt
+0.042s select schema_name from information_schema.schemata WHERE schema_name NOT IN ('information_schema', 'pg_catalog')
+[
+  'public',    'mq_fail',
+  'bot',       'img',
+  'auth_mail', 'u',
+  'cron',      'pg_toast'
+]
+done
 ```
