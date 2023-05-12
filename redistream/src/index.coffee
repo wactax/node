@@ -8,7 +8,12 @@
 POOL_N = cpus().length*2
 POOL = Pool POOL_N
 GROUP = 'C'
-CUSTOMER = hostname()
+CUSTOMER = do =>
+  name = hostname()
+  p = name.lastIndexOf('.')
+  if ~p
+    name = name.slice(0,p)
+  name
 
 limit_round = (limit)=>
   Math.max(Math.round(limit),1)
@@ -20,8 +25,7 @@ limit_round = (limit)=>
 
   dot (stream)=>
     xdel = redis.xdel.bind redis, stream
-    xconsumerclean = redis.xconsumerclean.bind(
-      redis
+    xconsumerclean = redis.xconsumerclean(
       stream
       GROUP
     )
@@ -80,7 +84,6 @@ limit_round = (limit)=>
             POOL xdel, task_id
           else
             await POOL wrap, task_id, func, id, msg
-          console.log task_id, retry, id, msg
         return
 
       loop
@@ -124,6 +127,6 @@ limit_round = (limit)=>
           await POOL.done
           break
         console.log 'remain ', Math.round(diff/36000)/100 + 'h'
-      await xconsumerclean(864e6)
+      await xconsumerclean(6048e5)
       return
 

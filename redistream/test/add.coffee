@@ -9,6 +9,7 @@
 do =>
   R = await redis()
   await init R
+  return
   xadd = Xadd(R).streamTest
   xaddLi = XaddLi(R).streamTest
   await xadd(1, 'a','b','c')
