@@ -1,18 +1,16 @@
 #!/usr/bin/env coffee
 
-> @w5/dot
-  msgpackr > pack
+> msgpackr > pack
 
-< (redis)=>
-  dot (stream)=>
-    (id,args...)=>
-      redis.xadd(
-        stream
+< (redis, stream)=>
+  (id,args...)=>
+    redis.xadd(
+      stream
+      [
         [
-          [
-            pack id
-            pack args
-          ]
+          pack id
+          pack args
         ]
-      )
+      ]
+    )
 

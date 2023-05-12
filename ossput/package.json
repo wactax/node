@@ -17,7 +17,7 @@
   "type": "module",
   "dependencies": {
     "@aws-sdk/abort-controller": "^3.329.0",
-    "@aws-sdk/client-s3": "^3.331.0",
-    "@aws-sdk/lib-storage": "^3.331.0"
+    "@aws-sdk/client-s3": "^3.332.0",
+    "@aws-sdk/lib-storage": "^3.332.0"
   }
 }

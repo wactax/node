@@ -1,20 +1,17 @@
 #!/usr/bin/env coffee
 
 > @w5/redistream
-  @w5/redis/R
+  @w5/redis/MQ
+  ./stream
 
 do =>
-  ###
-  await redistream(R).streamTest(
+  await redistream(MQ)(
+    stream
     (id, msg)=> # run
       console.log '>', id, msg
       return true
-    (id, msg)=>
-      console.log id, msg, 'failed'
-      return
     1e4 # block time
   )
   console.log 'process.exit'
-  ###
   process.exit()
   return

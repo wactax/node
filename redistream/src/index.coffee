@@ -1,9 +1,8 @@
 > os > hostname cpus
   @w5/pool > Pool
-  @w5/dot
   msgpackr > unpack
-  @w5/utf8/utf8d
   @w5/redis_lua/dot_bind
+  ./on_fail.js
 
 POOL_N = cpus().length*2
 POOL = Pool POOL_N
@@ -23,7 +22,12 @@ limit_round = (limit)=>
   B.fbin.xpendclaim
   B.fcall.xconsumerclean
 
-  dot (stream)=>
+  (
+    stream
+    func
+    block=3e5
+    max_retry = 6
+  )=>
     xdel = redis.xdel.bind redis, stream
     xconsumerclean = redis.xconsumerclean(
       stream
@@ -52,81 +56,75 @@ limit_round = (limit)=>
         POOL xdel, task_id
       return
 
+    fail = OnFail stream
+    idle = block * 3
+    limit = POOL_N
 
-    (
-      func
-      fail = =>
-      block=3e5
-      max_retry = 6
-    )=>
-      idle = block * 3
-      limit = POOL_N
+    xpendclaim = =>
+      li = await redis.xpendclaim(
+        stream # stream
+        GROUP # group
+        CUSTOMER
+      )(
+        idle    # idle
+        limit_round limit
+      )
 
-      xpendclaim = =>
-        li = await redis.xpendclaim(
-          stream # stream
-          GROUP # group
-          CUSTOMER
-        )(
-          idle    # idle
-          limit_round limit
-        )
-
-        if not li
-          return
-
-        for [task_id, retry, id, msg] from unpack li
-          if retry > max_retry
-            try
-              await fail(id, msg)
-            catch err
-              console.error fail, err, id, msg
-            POOL xdel, task_id
-          else
-            await POOL wrap, task_id, func, id, msg
+      if not li
         return
 
-      loop
-        console.log 'limit', Math.round limit
-        task_li = await redis.xnext(
-          GROUP
-          CUSTOMER
-          limit_round limit
-          block
-          false # noack
-          stream
-        )
-        begin = +new Date()
-        for [
-          _ # stream_name
-          li
-        ] from task_li
-          for [task_id, [kvli]] from li
-            id = unpack(kvli[0])
-            msg = unpack(kvli[1])
-            await POOL(
-              wrap, task_id, func, id, msg
-            )
-
-        if task_li.length > 0
-          POOL.done?.then =>
-            if runed
-              limit = (
-                (
-                  block / (Math.max(cost,1)/runed)
-                ) + limit*63
-              )/64
-              if runed > 1e3
-                runed = Math.round runed/2
-                cost = cost/2
-            return
-
-        await xpendclaim()
-        diff = stop - new Date
-        if diff < 0
-          await POOL.done
-          break
-        console.log 'remain alive', Math.round(diff/36000)/100 + 'h'
-      await xconsumerclean(6048e5)
+      for [task_id, retry, id, msg] from unpack li
+        if retry > max_retry
+          try
+            await fail(id, msg)
+          catch err
+            console.error fail, err, id, msg
+          POOL xdel, task_id
+        else
+          await POOL wrap, task_id, func, id, msg
       return
+
+    loop
+      console.log 'limit', Math.round limit
+      task_li = await redis.xnext(
+        GROUP
+        CUSTOMER
+        limit_round limit
+        block
+        false # noack
+        stream
+      )
+      begin = +new Date()
+      for [
+        _ # stream_name
+        li
+      ] from task_li
+        for [task_id, [kvli]] from li
+          id = unpack(kvli[0])
+          msg = unpack(kvli[1])
+          await POOL(
+            wrap, task_id, func, id, msg
+          )
+
+      if task_li.length > 0
+        POOL.done?.then =>
+          if runed
+            limit = (
+              (
+                block / (Math.max(cost,1)/runed)
+              ) + limit*63
+            )/64
+            if runed > 1e3
+              runed = Math.round runed/2
+              cost = cost/2
+          return
+
+      await xpendclaim()
+      diff = stop - new Date
+      if diff < 0
+        await POOL.done
+        break
+      console.log 'remain alive', Math.round(diff/36000)/100 + 'h'
+    await xconsumerclean(6048e5)
+    return
 
