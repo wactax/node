@@ -7,7 +7,7 @@
 do =>
   await redistream(
     stream
-    (id, msg)=> # run
+    (id, msg...)=> # run
       console.log '>', id, msg
       return # true
     3e3 # block time
