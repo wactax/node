@@ -26,7 +26,7 @@ limit_round = (limit)=>
     stream
     func
     block=3e5
-    max_retry = 6
+    max_retry=6
   )=>
     xdel = redis.xdel.bind redis, stream
     xconsumerclean = redis.xconsumerclean(
