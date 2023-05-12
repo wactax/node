@@ -111,16 +111,19 @@ export default (
         )
 
     if task_li.length > 0
-      limit = (
+      limit = Math.max(
         (
-          block / (
-            (1+Math.max(cost,1))/(1+runed)
-          )
-        ) + limit*63
-      )/64
-      if runed > limit
-        runed = Math.round runed/2
-        cost = cost/2
+          (
+            block / (
+              (1+Math.max(cost,1))/(1+runed)
+            )
+          ) + limit*7
+        )/8
+        1
+      )
+      if runed > 128
+        runed /= 2
+        cost /= 2
 
     # console.log 'xpendclaim'
     await xpendclaim()
