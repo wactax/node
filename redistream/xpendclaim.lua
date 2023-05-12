@@ -1,10 +1,10 @@
-local log = function(...)
-  local li = {}
-  for _, v in ipairs({ ... }) do
-    table.insert(li, cjson.encode(v))
-  end
-  redis.log(redis.LOG_NOTICE, unpack(li))
-end
+-- local log = function(...)
+--   local li = {}
+--   for _, v in ipairs({ ... }) do
+--     table.insert(li, cjson.encode(v))
+--   end
+--   redis.log(redis.LOG_NOTICE, unpack(li))
+-- end
 
 local XPENDING = function(stream, group, idle, limit)
   return redis.call("XPENDING", stream, group, "IDLE", idle, "-", "+", limit)

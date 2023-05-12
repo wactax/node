@@ -87,6 +87,7 @@ do =>
       return
     1e4 # block time
   )
+  console.log 'process.exit'
   ###
   process.exit()
   return
