@@ -7,7 +7,7 @@
 ```coffee
 #!/usr/bin/env coffee
 
-> @w5/R
+> @w5/redis/R
 
 console.log R
 ```
@@ -15,5 +15,5 @@ console.log R
 output :
 
 ```
-./out.txt
+Xedis {}
 ```
