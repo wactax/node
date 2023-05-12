@@ -1,6 +1,6 @@
 > os > hostname cpus
   @w5/pool > Pool
-  msgpackr > unpack
+  msgpackr > unpack pack
   @w5/redis_lua/dot_bind
   ./on_fail.js
 
@@ -74,9 +74,10 @@ limit_round = (limit)=>
         return
 
       for [task_id, retry, id, msg] from unpack li
+        console.log {task_id, retry, id, msg}
         if retry > max_retry
           try
-            await fail(id, msg)
+            await fail(id, pack(msg))
           catch err
             console.error fail, err, id, msg
           POOL xdel, task_id
@@ -94,6 +95,7 @@ limit_round = (limit)=>
         false # noack
         stream
       )
+      console.log 'get task li'
       begin = +new Date()
       for [
         _ # stream_name
@@ -119,7 +121,9 @@ limit_round = (limit)=>
               cost = cost/2
           return
 
+      console.log 'xpendclaim'
       await xpendclaim()
+      console.log 'xpendclaim done'
       diff = stop - new Date
       if diff < 0
         await POOL.done

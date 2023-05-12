@@ -1,7 +1,6 @@
 #!/usr/bin/env coffee
 
 > @w5/pg/PG > EXE Q
-  @w5/sleep
 
 < (table)=>
   table = Q table

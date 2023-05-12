@@ -10,7 +10,7 @@ do =>
     (id, msg)=> # run
       console.log '>', id, msg
       return # true
-    1e4 # block time
+    3e3 # block time
   )
   console.log 'process.exit'
   process.exit()
