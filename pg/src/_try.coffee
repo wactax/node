@@ -67,7 +67,8 @@ if DEBUG
         console.trace()
         console.error redBright err.message
         console.error red _sql args
-        return []
+        throw err
+        return
       console.log gray(
         Math.round(new Date - begin)/1000+'s'
       ),greenBright _sql args
@@ -81,6 +82,7 @@ else
         console.trace()
         console.error redBright err.message
         console.error red _sql args
-      return []
+        throw err
+      return
 
 < default _try

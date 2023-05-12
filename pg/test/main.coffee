@@ -17,3 +17,4 @@ console.log await LI0"select schema_name from information_schema.schemata WHERE 
 await sleep 2000
 
 console.log 'done'
+process.exit()
