@@ -8,7 +8,7 @@
   Promise.all [
     RedisLua(redis).xpendclaim(
       (
-        await import('./xpendclaim.js')
+        await import('./lua.js')
       ).default
     )
     FailTable stream

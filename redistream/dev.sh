@@ -5,5 +5,5 @@ cd $DIR
 
 xpendclaim=$(cat xpendclaim.lua | jq -Rs '.')
 
-echo "export default $xpendclaim" >src/xpendclaim.coffee
+echo "export default $xpendclaim" >src/lua.coffee
 exec dev $@

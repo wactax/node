@@ -15,11 +15,8 @@ await RedisLua(MQ).xpendclaim(
 )
 
 
-B = DotBind(MQ)
-B.fbin.xpendclaim
-
-xpendclaim = (stream, group, customer)->
-  b = Buffer.from await MQ.xpendclaim(
+xpendclaim = (redis, stream, group, customer)->
+  b = Buffer.from await redis.xpendclaim(
     stream
     group
     customer
@@ -51,7 +48,10 @@ xpendclaim = (stream, group, customer)->
     yield [retry, t0+'-'+t1, id, msg]
   return
 
-for await i from xpendclaim(stream, 'C','test')
+B = DotBind(MQ)
+B.fbin.xpendclaim
+
+for await i from xpendclaim(MQ, stream, 'C','test')
   console.log i
 
 process.exit()
