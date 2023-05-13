@@ -19,8 +19,8 @@ B = DotBind(MQ)
 B.fbin.xpendclaim
 
 stream = 'civitai_img'
-idle = 900 * 1e3
-limit = 1
+idle = 900000
+limit = 44
 
 xpendclaim = XPENDCLAIM(
   MQ

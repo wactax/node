@@ -95,7 +95,7 @@ function xpendclaim(keys, args)
     end
     bin = cmsgpack.pack(bin)
     local r = intBin(#bin)
-    table.insert(r, #r, 1)
+    table.insert(r, 1, #r)
     return string.char(unpack(r)) .. bin .. buf
   else
     return
