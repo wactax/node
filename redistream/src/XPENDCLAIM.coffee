@@ -22,8 +22,14 @@ export default (
     b = await xpendclaim(limit)
     if not b
       return
+
     b = Buffer.from b
     b0 = b[0]
+
+    if b0 > 6
+      console.error "ERROR xpendclaim ", b
+      return
+
     len = b.readUIntLE(
       1
       b0

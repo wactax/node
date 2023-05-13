@@ -6,7 +6,7 @@
   @w5/read
   @w5/redis_lua
   @w5/uridir
-  ./stream
+  # ./stream
   path > join dirname
 
 ROOT = dirname uridir import.meta
@@ -18,12 +18,15 @@ await RedisLua(MQ).xpendclaim(
 B = DotBind(MQ)
 B.fbin.xpendclaim
 
-idle = 1e3
-limit = 2
+stream = 'civitai_img'
+idle = 900 * 1e3
+limit = 1
+
 xpendclaim = XPENDCLAIM(
   MQ
   stream
-  'C','test'
+  'C',
+  'test'
   idle
 )
 
