@@ -2,6 +2,7 @@
   @w5/pool > Pool
   msgpackr > unpack pack
   @w5/redis_lua/dot_bind.js
+  ./XPENDCLAIM.js
   ./on_fail.js
   ./redis.js
 
@@ -62,21 +63,20 @@ export default (
   idle = block * 3
   limit = 2*pool_n
 
-  xpendclaim = =>
-    li = await redis.xpendclaim(
-      stream # stream
-      GROUP # group
-      CUSTOMER
-    )(
-      idle    # idle
+  xpendclaim = XPENDCLAIM(
+    redis
+    stream
+    GROUP
+    CUSTOMER
+    idle
+  )
+
+  pendclaim = =>
+    for await [
+      retry, task_id, id, msg
+    ] from xpendclaim(
       limit_round limit
     )
-
-    if not li
-      return
-
-    for [task_id, retry, id, msg] from unpack li
-      # console.log {task_id, retry, id, msg}
       if retry > max_retry
         try
           await fail(id, pack(msg))
@@ -126,7 +126,7 @@ export default (
         cost /= 2
 
     # console.log 'xpendclaim'
-    await xpendclaim()
+    await pendclaim()
     # console.log 'xpendclaim done'
     diff = stop - new Date
     if diff < 0
