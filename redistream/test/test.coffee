@@ -18,16 +18,40 @@ await RedisLua(MQ).xpendclaim(
 B = DotBind(MQ)
 B.fbin.xpendclaim
 
-# stream = 'civitai_img'
+xpendclaim = (stream, group, customer)->
+  b = Buffer.from await MQ.xpendclaim(
+    stream
+    group
+    customer
+  )(
+    1e3 # idle
+    2 # limit
+  )
 
-li = await MQ.xpendclaim(
-  stream # stream
-  'C' # group
-  'test' # 消费者
-)(
-  1e3 # idle
-  2 # limit
-)
-console.log li
+  b0 = b[0]
+  len = b.readUIntLE(
+    1
+    b0
+  )
+  begin = 1 + b0
+  end = begin + len
+
+  n = 0
+  li = unpack b.slice(begin, end)
+  while n < li.length
+    n5 = n + 5
+    [retry, t0, t1, klen,vlen] = li.slice(n,n5)
+    n = n5
+    begin = end
+    end += klen
+    id = unpack b.slice(begin, end)
+    begin = end
+    end += vlen
+    msg = unpack b.slice(begin, end)
+    yield [retry, t0+'-'+t1, id, msg]
+  return
+
+for await i from xpendclaim(stream, 'C','test')
+  console.log i
 
 process.exit()

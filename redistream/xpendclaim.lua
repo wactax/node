@@ -6,15 +6,19 @@ local log = function(...)
   redis.log(redis.LOG_NOTICE, unpack(li))
 end
 
-local merge = function(...)
-  local result = {}
-  for i, arr in ipairs({ ... }) do
-    for j, val in ipairs(arr) do
-      table.insert(result, val)
-    end
+local concat = function(li, push)
+  for i = 1, #push do
+    table.insert(li, push[i])
   end
-  return result
 end
+
+-- local strBin = function(str)
+--   local li = {}
+--   for i = 1, #str do
+--     li[i] = string.byte(str, i)
+--   end
+--   return li
+-- end
 
 local intBin = function(n)
   local t = {}
@@ -26,22 +30,11 @@ local intBin = function(n)
   return t
 end
 
-local binPack = function(li)
-  log('>>>',li)
-  local lenli = {}
-  local packed = {}
-
-  for i = 1, #li do
-    table.insert(lenli, #li[i])
-    table.move(li[i], 1, #li[i], #packed + 1, packed)
-  end
-
-  lenli = cmsgpack.pack(lenli)
-  local lenlilen = intBin(#lenli)
-
-  local r = merge(lenlilen, lenli, packed)
-  table.insert(r, 1, #lenlilen)
-  return r
+local splitNum = function(str)
+  local pos = string.find(str, "-") -- 找到"-"的位置
+  local str1 = string.sub(str, 1, pos - 1) -- 截取前半段字符串
+  local str2 = string.sub(str, pos + 1) -- 截取后半段字符串
+  return { tonumber(str1), tonumber(str2) } -- 返回两个数字
 end
 
 local XPENDING = function(stream, group, idle, limit)
@@ -71,15 +64,6 @@ function xconsumerclean(keys, args)
   end
 end
 
-local splitNum = function(str)
-  local pos = string.find(str, "-") -- 找到"-"的位置
-  local str1 = string.sub(str, 1, pos - 1) -- 截取前半段字符串
-  local str2 = string.sub(str, pos + 1) -- 截取后半段字符串
-  local num1 = intBin(tonumber(str1)) -- 将前半段字符串转换为数字
-  local num2 = intBin(tonumber(str2)) -- 将后半段字符串转换为数字
-  return { num1, num2 } -- 返回两个数字
-end
-
 function xpendclaim(keys, args)
   if #keys ~= 3 then
     return
@@ -96,16 +80,23 @@ function xpendclaim(keys, args)
       table.insert(id_li, id)
       id_retry[id] = v[4]
     end
-    local r = {}
+    local bin = {}
+    local buf = ""
     for _, v in ipairs(XCLAIM(stream, group, customer, idle, unpack(id_li))) do
       local id, msg = unpack(v)
-      -- table.insert(r, intBin(id_retry[id]))
-      -- table.move(splitNum(id), 1, 2, #r + 1, r)
-      -- for _, v in ipairs(msg) do
-      --   table.insert(r, v)
-      -- end
+      table.insert(bin, id_retry[id])
+      id = splitNum(id)
+      concat(bin, id)
+      for _, v in ipairs(msg) do
+        table.insert(bin, #v)
+        -- log(">", strBin(v))
+        buf = buf .. v
+      end
     end
-    return binPack(r)
+    bin = cmsgpack.pack(bin)
+    local r = intBin(#bin)
+    table.insert(r, #r, 1)
+    return string.char(unpack(r)) .. bin .. buf
   else
     return
   end
