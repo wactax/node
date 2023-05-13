@@ -27,7 +27,7 @@ export default (
     b0 = b[0]
 
     if b0 > 6
-      console.error "ERROR xpendclaim ", b
+      console.error "ERROR xpendclaim ", {stream, group, customer, idle, limit },b
       return
 
     len = b.readUIntLE(
