@@ -26,17 +26,30 @@ sql_escape = (i)=>
 _sql = (args)=>
   li = []
   for i from args[1..]
-    first = i?.first
-    if first
-      if Array.isArray first
-        li = li.concat first.map sql_escape
-      else
-        cli = []
-        vli = []
-        for [k,v] from Object.entries(first)
-          cli.push k
-          vli.push sql_escape v
-        li.push "(#{cli.join(',')}) VALUES (#{vli.join(',')})"
+    if Array.isArray(i) and i[0]?.first
+      t = []
+      for {first,rest} from i
+        t.push "(" + rest.join(",") + ") VALUES "
+        tli = []
+        for k from first
+          t2 = []
+          for l from rest
+            t2.push sql_escape(k[l])
+          tli.push '('+t2.join(',')+')'
+        t.push tli.join(',')
+      li.push t.join('')
+    else
+      first = i?.first
+      if first
+        if Array.isArray first
+          li = li.concat first.map sql_escape
+        else
+          cli = []
+          vli = []
+          for [k,v] from Object.entries(first)
+            cli.push k
+            vli.push sql_escape v
+          li.push "(#{cli.join(',')}) VALUES (#{vli.join(',')})"
     else
       li.push sql_escape i
 
