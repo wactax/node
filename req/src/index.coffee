@@ -42,3 +42,5 @@ TIMEOUT = 20000
   new Uint8Array(
     await (await req(url,option)).arrayBuffer()
   )
+
+export default retry req
