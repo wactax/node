@@ -87,7 +87,6 @@ export default (
           pool xdel, task_id
         else
           await pool wrap, task_id, func, id, msg
-      console.log {_limit, n}
       if _limit >= n
         break
     return
