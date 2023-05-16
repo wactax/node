@@ -49,8 +49,23 @@ local XINFO = function(stream, group)
   return redis.call("XINFO", "CONSUMERS", stream, group)
 end
 
+local XACK = function(stream, group, id)
+  return redis.call("XACK", stream, group, id)
+end
+
+local XDEL = function(stream, id)
+  return redis.call("XDEL", stream, id)
+end
+
 local XDELCONSUMER = function(stream, group, consumer)
   return redis.call("XGROUP", "DELCONSUMER", stream, group, consumer)
+end
+
+function xackdel(keys, args)
+  local stream, group = unpack(keys)
+  local id = args[1]
+  XACK(stream, group, id)
+  XDEL(stream, id)
 end
 
 function xconsumerclean(keys, args)

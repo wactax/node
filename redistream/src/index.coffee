@@ -20,6 +20,7 @@ limit_round = (limit)=>
 B = DotBind(redis)
 B.fbin.xpendclaim
 B.fcall.xconsumerclean
+B.fcall.xackdel
 
 export default (
   stream
@@ -31,7 +32,7 @@ export default (
   pool_n = Math.max(Math.round(cpus().length*task_pre_cpu),1)
   pool = Pool pool_n
 
-  xdel = redis.xdel.bind redis, stream
+  xdel = redis.xackdel stream, GROUP
   xconsumerclean = redis.xconsumerclean(
     stream
     GROUP
