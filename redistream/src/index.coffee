@@ -72,19 +72,24 @@ export default (
   )
 
   pendclaim = =>
-    for await [
-      retry, task_id, id, msg
-    ] from xpendclaim(
-      limit_round limit
-    )
-      if retry > max_retry
-        try
-          await fail(id, pack(msg))
-        catch err
-          console.error fail, err, id, msg
-        pool xdel, task_id
-      else
-        await pool wrap, task_id, func, id, msg
+    _limit = limit_round limit
+    loop
+      n = 0
+      for await [
+        retry, task_id, id, msg
+      ] from xpendclaim _limit
+        ++n
+        if retry > max_retry
+          try
+            await fail(id, pack(msg))
+          catch err
+            console.error fail, err, id, msg
+          pool xdel, task_id
+        else
+          await pool wrap, task_id, func, id, msg
+      console.log {_limit, n}
+      if _limit >= n
+        break
     return
 
   loop
