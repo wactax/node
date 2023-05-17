@@ -16,6 +16,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "msgpackr": "^1.9.1"
+    "msgpackr": "^1.9.2"
   }
 }
