@@ -28,5 +28,4 @@ output :
 
 ```
 onexit
-exit after sleep
 ```
