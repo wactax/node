@@ -27,5 +27,6 @@ onexit =>
 output :
 
 ```
-123
+onexit
+exit after sleep
 ```

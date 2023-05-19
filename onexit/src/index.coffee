@@ -33,4 +33,4 @@ process.on uncaughtException, (e) =>
     process.exit()
   return
 
-#process.on 'beforeExit', run
+process.on 'beforeExit', run
