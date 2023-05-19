@@ -16,7 +16,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@tensorflow/tfjs": "^4.5.0",
+    "@tensorflow/tfjs": "^4.6.0",
     "nsfwjs": "^2.4.2"
   }
 }
