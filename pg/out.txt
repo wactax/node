@@ -1,8 +1,8 @@
-0.036s select schema_name from information_schema.schemata WHERE schema_name NOT IN ('information_schema', 'pg_catalog')
+0.034s select schema_name from information_schema.schemata WHERE schema_name NOT IN ('information_schema', 'pg_catalog')
 [
-  'public',    'mq_fail',
-  'bot',       'img',
-  'auth_mail', 'u',
-  'cron',      'pg_toast'
+  'public', 'auth_mail',
+  'u',      'img',
+  'bot',    'mq_fail',
+  'cron',   'pg_toast'
 ]
 done
