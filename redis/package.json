@@ -1,6 +1,6 @@
 {
   "name": "@w5/redis",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/redis",
   "author": "i@wac.tax",
@@ -16,7 +16,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@w5/onexit": "^0.0.4",
+    "@w5/onexit": "^0.0.5",
     "@w5/xedis": "^0.0.21"
   }
 }
