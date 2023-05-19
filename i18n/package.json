@@ -38,7 +38,7 @@
     "cmark-gfm": "^0.9.0",
     "get_default": "^0.0.4",
     "html-entities": "^2.3.3",
-    "http-proxy-agent": "^6.0.1",
+    "http-proxy-agent": "^6.1.0",
     "node-fetch": "^3.3.1",
     "opencc-js": "^1.0.5",
     "progress": "^2.0.3",
