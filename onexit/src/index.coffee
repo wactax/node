@@ -23,8 +23,8 @@ uncaughtException = 'uncaughtException'
 process.on uncaughtException, (e) =>
   console.error(uncaughtException)
   console.trace(e)
-  await run()
-  process.exit(255)
+  # await run()
+  # process.exit(255)
   return
 
 ['exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'SIGTERM'].forEach (type)=>
