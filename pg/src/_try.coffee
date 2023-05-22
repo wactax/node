@@ -31,10 +31,16 @@ _sql = (args)=>
       for {first,rest} from i
         t.push "(" + rest.join(",") + ") VALUES "
         tli = []
-        for k from first
+        if Array.isArray(first)
+          for k from first
+            t2 = []
+            for l from rest
+              t2.push sql_escape(k[l])
+            tli.push '('+t2.join(',')+')'
+        else
           t2 = []
-          for l from rest
-            t2.push sql_escape(k[l])
+          for k from rest
+            t2.push sql_escape first[k]
           tli.push '('+t2.join(',')+')'
         t.push tli.join(',')
       li.push t.join('')
