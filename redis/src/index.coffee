@@ -24,7 +24,7 @@ hostPort = (s)=>
     REDIS_PASSWORD
     REDIS_USER
     REDIS_DB
-    REDIS_VER
+    REDIS_RESP
   } = env
 
   if not REDIS_HOST_PORT
@@ -44,7 +44,7 @@ hostPort = (s)=>
     REDIS_USER or 'default'
     REDIS_PASSWORD or ''
     +REDIS_DB or 0
-    +REDIS_VER or 3
+    +REDIS_RESP or 3
   )
 
   onexit =>
