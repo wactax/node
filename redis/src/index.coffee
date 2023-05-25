@@ -41,7 +41,7 @@ hostPort = (s)=>
   # new Redis('redis://'+uri)
   redis = await conn(
     server
-    REDIS_USER or 'default'
+    REDIS_USER or ''
     REDIS_PASSWORD or ''
     +REDIS_DB or 0
     +REDIS_RESP or 3

@@ -17,6 +17,6 @@
   "type": "module",
   "dependencies": {
     "@w5/onexit": "^0.0.8",
-    "@w5/xedis": "^0.0.21"
+    "@w5/xedis": "^0.0.24"
   }
 }
