@@ -37,14 +37,17 @@ hostPort = (s)=>
   else
     li = li.map hostPort
 
-  server = if Array.isArray li[0] then Server.cluster(li) else Server.hostPort(...li)
+  REDIS_RESP = +REDIS_RESP or 3
+  server = if Array.isArray li[0] then Server.cluster(
+    li
+  ) else Server.hostPort(...li)
   # new Redis('redis://'+uri)
   redis = await conn(
     server
-    REDIS_USER or ''
+    REDIS_USER or undefined
     REDIS_PASSWORD or ''
-    +REDIS_DB or 0
-    +REDIS_RESP or 3
+    +REDIS_DB or undefined
+    REDIS_RESP
   )
 
   onexit =>
