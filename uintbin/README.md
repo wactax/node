@@ -7,17 +7,19 @@
 ```coffee
 #!/usr/bin/env coffee
 
-> @w5/uintbin
-#   @w5/uridir
-#   path > join
+> @w5/uintbin/uintBin
+  @w5/uintbin/binUint
 
-# ROOT = uridir(import.meta)
-
-console.log await uintbin 123
+for n from [1,2,3333,0]
+  bin = uintBin n
+  console.log n, bin, binUint bin
 ```
 
 output :
 
 ```
-123
+1 <Buffer > 0
+2 <Buffer > 0
+3333 <Buffer 05 0d> 3333
+0 <Buffer > 0
 ```
