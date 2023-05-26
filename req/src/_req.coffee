@@ -23,8 +23,10 @@ export default (url, option)=>
 
   try
     r = await fetch(url, opt)
-    if r.status != 200
-      throw r
+    switch r.status
+      when 200, 404
+        return r
+    throw r
   finally
     clearTimeout(timer)
 

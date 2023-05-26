@@ -17,7 +17,7 @@ console.log r.headers.get('content-type').split('/').pop()
 output :
 
 ```
-当前 IP：222.249.139.70  来自于：中国 北京 北京  电信
+当前 IP：222.249.139.83  来自于：中国 北京 北京  电信
 
 png
 ```

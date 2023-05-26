@@ -1,7 +1,13 @@
 #!/usr/bin/env coffee
 
 > @w5/retry
-  ./_req.js:req
+  ./req.js
 
-export default retry (url,option)=>
-  (await req(url,option)).json()
+export default (url,option)=>
+  r = await req(url,option)
+  if r.status == 200
+    try
+      return await r.json()
+    catch err
+      console.error error
+  throw r
