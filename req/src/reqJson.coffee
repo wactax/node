@@ -9,5 +9,5 @@ export default (url,option)=>
     try
       return await r.json()
     catch err
-      console.error error
+      console.error err
   throw r
