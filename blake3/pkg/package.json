@@ -1,6 +1,6 @@
 {
   "name": "@w5/blake3",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "_.js",
   "license": "Apache-2.0",
   "author": "i@wac.tax",
@@ -12,6 +12,7 @@
   },
   "files": [
     "*.wasm",
-    "*.ts"
+    "*.ts",
+    "*.mjs"
   ]
 }
