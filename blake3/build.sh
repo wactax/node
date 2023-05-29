@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR=$(cd "$(dirname "$0")"; pwd)
+DIR=$(realpath $0) && DIR=${DIR%/*}
 cd $DIR
 set -ex
 
@@ -13,4 +13,5 @@ if ! [ -x "$(command -v wasm-opt)" ]; then
 fi
 
 wasm-opt -O3 -o ./pkg/__bg.wasm ./pkg/__bg.wasm
-
+bunx cep --ext mjs -c stream.coffee -o pkg
+bunx cep --ext mjs -c file.coffee -o pkg
