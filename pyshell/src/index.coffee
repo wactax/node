@@ -21,8 +21,7 @@
 
   pyshell.on 'message',(msg)=>
     if msg.startsWith '<'
-      r = +msg.slice(1)
-      ing.pop() r
+      ing.pop() msg.slice(1)
     else
       console.log 'PY>',msg
     return
