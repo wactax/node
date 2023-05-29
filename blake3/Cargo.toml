@@ -8,7 +8,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 blake3 = "1.3.3"
-wasm-bindgen = "0.2.84"
+wasm-bindgen = "0.2.86"
 
 [profile.release]
 lto = true
