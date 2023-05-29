@@ -8,12 +8,16 @@
 #!/usr/bin/env coffee
 
 > @w5/pyshell
-#   @w5/uridir
-#   path > join
+  @w5/uridir
+  path > dirname join
 
-# ROOT = uridir(import.meta)
+ROOT = dirname uridir(import.meta)
 
-console.log await pyshell 123
+py = pyshell join(ROOT,'test.py')
+
+console.log await py 123
+
+process.exit()
 ```
 
 output :
