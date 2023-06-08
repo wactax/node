@@ -1,7 +1,7 @@
 > @w5/time > Second
 
 CACHE = new Map
-MINUTE = 61
+MINUTE = 6e4
 
 < new Proxy(
   {}
@@ -13,7 +13,7 @@ MINUTE = 61
         max = cache[1]
         if id == max
           [step,time] = cache[2..]
-          diff = Second() - time
+          diff = new Date() - time
           step = (
             step * Math.round(MINUTE/(diff+1))
           ) or 1
@@ -24,7 +24,7 @@ MINUTE = 61
         step = 1
         max = await redis.hincrby(key, name, step)
         id = max - step
-        cache = [id,max,step,Second()]
+        cache = [id,max,step,+new Date]
         CACHE.set(name, cache)
       return ++cache[0]
 )
