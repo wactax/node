@@ -73,12 +73,11 @@ export default (
   )
 
   pendclaim = =>
-    _limit = limit_round limit
     loop
       n = 0
       for await [
         retry, task_id, id, msg
-      ] from xpendclaim _limit
+      ] from xpendclaim limit
         ++n
         if retry > max_retry
           try
@@ -97,7 +96,7 @@ export default (
     task_li = await redis.xnext(
       GROUP
       CUSTOMER
-      limit_round limit
+      limit
       block
       false # noack
       stream
@@ -116,15 +115,14 @@ export default (
         )
 
     if task_li.length > 0
-      limit = Math.max(
+      limit = limit_round(
         (
           (
             block / (
               (1+Math.max(cost,1))/(1+runed)
             )
-          ) + limit*7
-        )/8
-        1
+          ) + limit*9
+        )/10
       )
       if runed > 128
         runed /= 2
