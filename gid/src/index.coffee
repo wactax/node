@@ -1,7 +1,6 @@
-CACHE = new Map
-MINUTE = 6e4
 
-< (redis, key)=>
+< (redis, key, duration=6e4)=>
+  CACHE = new Map
   new Proxy(
     {}
     get:(_, name)=>
@@ -13,7 +12,7 @@ MINUTE = 6e4
           if id == max
             [step,time] = cache[2..]
             diff = new Date() - time
-            if diff > MINUTE
+            if diff > duration
               if step > 1
                 --step
             else
