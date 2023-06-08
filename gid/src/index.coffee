@@ -1,5 +1,5 @@
 
-< (redis, key, duration=6e4)=>
+< (redis, hset, duration=6e4)=>
   new Proxy(
     {}
     get:(_, name)=>
@@ -19,12 +19,12 @@
                 duration / Math.max(diff,1e3)
               )
 
-            max = await redis.hincrby(key, name, step)
+            max = await redis.hincrby(hset, name, step)
             id = max - step
             cache = [id,max,step,now]
         else
           step = 1
-          max = await redis.hincrby(key, name, step)
+          max = await redis.hincrby(hset, name, step)
           id = max - step
           cache = [id,max,step,+new Date]
         return ++cache[0]
