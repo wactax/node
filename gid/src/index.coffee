@@ -6,7 +6,7 @@ MINUTE = 61
 
 < new Proxy(
   {}
-  get:(_, redis, redis, name)=>
+  get:(_, redis, key, name)=>
     name = camel name.toLowerCase()
     =>
       cache = CACHE.get(name)
@@ -19,12 +19,12 @@ MINUTE = 61
           step = (
             step * Math.round(MINUTE/(diff+1))
           ) or 1
-          max = await redis.hincrby(redis_ID, name, step)
+          max = await redis.hincrby(key, name, step)
           id = max - step
           CACHE.set name, [id,max,step,time]
       else
         step = 1
-        max = await redis.hincrby(redis_ID, name, step)
+        max = await redis.hincrby(key, name, step)
         id = max - step
         cache = [id,max,step,Second()]
         CACHE.set(name, cache)
