@@ -17,8 +17,8 @@
                 --step
             else
               step += Math.round(
-                  duration / Math.max(diff,1e3)
-                )
+                duration / Math.max(diff,1e3)
+              )
 
             max = await redis.hincrby(key, name, step)
             id = max - step
