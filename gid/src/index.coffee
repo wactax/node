@@ -15,9 +15,9 @@ MINUTE = 6e4
             diff = new Date() - time
             if diff > MINUTE
               if step > 1
-                -- step
+                --step
             else
-              ++ step
+              ++step
 
             max = await redis.hincrby(key, name, step)
             id = max - step
