@@ -64,6 +64,21 @@ export default (
   idle = block * 3
   limit = 2*pool_n
 
+  update_limit = =>
+    limit = limit_round(
+      (
+        (
+          block / (
+            (1+Math.max(cost,1))/(1+runed)
+          )
+        ) + limit*9
+      )/10
+    )
+    if runed > 128
+      runed /= 2
+      cost /= 2
+    return
+
   xpendclaim = XPENDCLAIM(
     redis
     stream
@@ -87,12 +102,18 @@ export default (
           pool xdel, task_id
         else
           await pool wrap, task_id, func, id, msg
-      if _limit >= n
+
+      update_limit()
+
+      if limit > n
         break
     return
 
   loop
     console.log 'stream limit', Math.round limit
+    # console.log 'xpendclaim'
+    await pendclaim()
+    # console.log 'xpendclaim done'
     task_li = await redis.xnext(
       GROUP
       CUSTOMER
@@ -115,22 +136,8 @@ export default (
         )
 
     if task_li.length > 0
-      limit = limit_round(
-        (
-          (
-            block / (
-              (1+Math.max(cost,1))/(1+runed)
-            )
-          ) + limit*9
-        )/10
-      )
-      if runed > 128
-        runed /= 2
-        cost /= 2
+      update_limit()
 
-    # console.log 'xpendclaim'
-    await pendclaim()
-    # console.log 'xpendclaim done'
     diff = stop - new Date
     if diff < 0
       await pool.done
