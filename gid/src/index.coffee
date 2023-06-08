@@ -1,11 +1,10 @@
 
 < (redis, key, duration=6e4)=>
-  CACHE = new Map
   new Proxy(
     {}
     get:(_, name)=>
+      + cache
       =>
-        cache = CACHE.get(name)
         if cache
           id = cache[0]
           max = cache[1]
@@ -29,7 +28,6 @@
           max = await redis.hincrby(key, name, step)
           id = max - step
           cache = [id,max,step,+new Date]
-          CACHE.set(name, cache)
         return ++cache[0]
   )
 
