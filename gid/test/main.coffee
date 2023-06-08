@@ -6,4 +6,4 @@
 
 # ROOT = uridir(import.meta)
 
-console.log await gid 123
+# console.log await gid 123
