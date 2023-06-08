@@ -17,7 +17,7 @@ MINUTE = 6e4
               if step > 1
                 -- step
             else
-              step += 1
+              ++ step
 
             max = await redis.hincrby(key, name, step)
             id = max - step
