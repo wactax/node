@@ -10,7 +10,8 @@
           max = cache[1]
           if id == max
             [step,time] = cache[2..]
-            diff = new Date() - time
+            now = + new Date
+            diff = now - time
             if diff > duration
               if step > 1
                 --step
@@ -22,7 +23,7 @@
 
             max = await redis.hincrby(key, name, step)
             id = max - step
-            cache = [id,max,step,time]
+            cache = [id,max,step,now]
         else
           step = 1
           max = await redis.hincrby(key, name, step)
