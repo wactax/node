@@ -1,5 +1,4 @@
 > @w5/time > Second
-  @w5/camel
 
 CACHE = new Map
 MINUTE = 61
@@ -7,7 +6,6 @@ MINUTE = 61
 < new Proxy(
   {}
   get:(_, redis, key, name)=>
-    name = camel name.toLowerCase()
     =>
       cache = CACHE.get(name)
       if cache
