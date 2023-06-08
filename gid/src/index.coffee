@@ -21,7 +21,7 @@
               )
 
             max = await redis.hincrby(key, name, step)
-            id = max - step
+            id = max - step + 1
             cache = [id,max,step,now]
         else
           step = 1
