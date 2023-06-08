@@ -6,10 +6,9 @@
       + cache
       =>
         if cache
-          id = cache[0]
-          max = cache[1]
+          [id,max] = cache
           if id == max
-            [step,time] = cache[2..]
+            [step,time] = cache.slice(2)
             now = + new Date
             diff = now - time
             if diff > duration
