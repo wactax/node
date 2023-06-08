@@ -18,7 +18,8 @@
             else
               if diff < 1e3
                 step += 60
-              ++step
+              else
+                ++step
 
             max = await redis.hincrby(key, name, step)
             id = max - step
