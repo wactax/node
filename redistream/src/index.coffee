@@ -28,14 +28,13 @@ export default new Proxy(
       block=3e5
       max_retry=6
     )=>
-      pool_n = Math.max(Math.round(cpus().length*task_pre_cpu),1)
+      pool_n = Math.max(
+        Math.round(cpus().length*task_pre_cpu),1
+      )
       pool = Pool pool_n
 
       xdel = redis.xackdel stream, GROUP
-      xconsumerclean = redis.xconsumerclean(
-        stream
-        GROUP
-      )
+      xconsumerclean = redis.xconsumerclean stream, GROUP
 
       now = +new Date()
       stop = now + 83e6
@@ -119,7 +118,6 @@ export default new Proxy(
       loop
         console.log 'stream limit', Math.round limit
         # console.log 'xpendclaim'
-        await pendclaim()
         # console.log 'xpendclaim done'
         task_li = await redis.xnext(
           GROUP
@@ -144,6 +142,8 @@ export default new Proxy(
 
         if task_li.length > 0
           update_limit()
+
+        await pendclaim()
 
         diff = stop - new Date
         if diff < 0
