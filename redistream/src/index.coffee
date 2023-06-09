@@ -69,7 +69,7 @@ export default (
       (
         (
           block / (
-            (1+Math.max(cost,1))/(1+runed)
+            (1e4+Math.max(cost,1))/(1e4+runed)
           )
         ) + limit*9
       )/10
