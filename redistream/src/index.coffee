@@ -14,9 +14,6 @@ CUSTOMER = do =>
     name = name.slice(0,p)
   name
 
-limit_round = (limit)=>
-  Math.max(Math.round(limit),1)
-
 B = DotBind(redis)
 B.fbin.xpendclaim
 B.fcall.xconsumerclean
@@ -65,15 +62,22 @@ export default (
   limit = 2*pool_n
 
   update_limit = =>
-    limit = limit_round(
-      (
-        (
-          block / (
-            (1e4+Math.max(cost,1))/(1e4+runed)
-          )
-        ) + limit*9
-      )/10
+    if runed == 0
+      return
+
+    n = block / (
+      Math.max(cost,1)/runed
     )
+    if n > limit
+      if n > 9
+        limit = Math.round(
+          (limit*8+n)/9
+        )
+      else
+        ++limit
+    else if limit > 1
+      limit = Math.round limit/2
+
     if runed > 128
       runed /= 2
       cost /= 2
@@ -103,7 +107,8 @@ export default (
         else
           await pool wrap, task_id, func, id, msg
 
-      update_limit()
+      if n != 0
+        update_limit()
 
       if limit > n
         break
