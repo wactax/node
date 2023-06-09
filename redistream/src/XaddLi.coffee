@@ -3,18 +3,20 @@
 > msgpackr > pack
   ./redis.js
 
-< (stream)=>
-  (li)=>
-    redis.xaddLi(
-      stream
-      li.map(
-        (t)=>
-          [
-            [
-              pack t[0]
-              pack t.slice(1)
-            ]
-          ]
-      )
-    )
-
+< new Proxy(
+    {}
+    get:(_, stream)=>
+      (li)=>
+        redis.xaddLi(
+          stream
+          li.map(
+            (t)=>
+              [
+                [
+                  pack t[0]
+                  pack t.slice(1)
+                ]
+              ]
+          )
+        )
+  )

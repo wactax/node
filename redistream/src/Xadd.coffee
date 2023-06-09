@@ -3,15 +3,17 @@
 > msgpackr > pack
   ./redis.js
 
-< (stream)=>
-  (id,args...)=>
-    redis.xadd(
-      stream
-      [
-        [
-          pack id
-          pack args
-        ]
-      ]
-    )
-
+< new Proxy(
+    {}
+    get:(_, stream)=>
+      (id,args...)=>
+        redis.xadd(
+          stream
+          [
+            [
+              pack id
+              pack args
+            ]
+          ]
+        )
+  )
