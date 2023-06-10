@@ -34,10 +34,10 @@ process.exit()
 output :
 
 ```
-0.853s SELECT id,hw,baidu FROM bot.adult WHERE id>0 ORDER BY id LIMIT 2
+0.856s SELECT id,hw,baidu FROM bot.adult WHERE id>0 ORDER BY id LIMIT 2
 1 [ 2, 0, 0 ]
 2 [ 5, 0, 0 ]
-0.21s SELECT id,hw,baidu FROM bot.adult WHERE id>5 ORDER BY id LIMIT 2
+0.211s SELECT id,hw,baidu FROM bot.adult WHERE id>5 ORDER BY id LIMIT 2
 3 [ 6, 0, 0 ]
 4 [ 9, 0, 0 ]
 done

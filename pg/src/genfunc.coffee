@@ -24,8 +24,8 @@
                 )
                 len = li.length
                 if len
-                  yield from li
                   id = li[len-1][0]
+                  yield from li
                 else
                   break
               return
