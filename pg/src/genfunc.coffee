@@ -10,19 +10,29 @@
   {
     UNSAFE
 
-    ITER : (table, column, limit=10000)->
-      id = 0
-      loop
-        li = await UNSAFE(
-          "SELECT id,#{column} FROM #{table} WHERE id>#{id} ORDER BY id LIMIT #{limit}"
+    ITER : new Proxy(
+      {}
+      get:(_,schema)=>
+        new Proxy(
+          {}
+          get:(_,table)=>
+            (column, limit=5000)->
+              id = 0
+              loop
+                li = await UNSAFE(
+                  "SELECT id,#{column} FROM #{schema}.#{table} WHERE id>#{id} ORDER BY id LIMIT #{limit}"
+                )
+                len = li.length
+                if len
+                  yield from li
+                  id = li[len-1][0]
+                else
+                  break
+              return
+
         )
-        len = li.length
-        if len
-          yield from li
-          id = li[len-1][0]
-        else
-          break
-      return
+    )
+
 
     RAW : _try (sql, args...)=>
       PG(sql,...args).raw()

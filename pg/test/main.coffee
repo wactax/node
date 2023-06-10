@@ -14,7 +14,7 @@ await sleep 2000
 
 # console.log await LI0"select schema_name from information_schema.schemata WHERE schema_name NOT IN ('information_schema', 'pg_catalog')"
 n = 0
-for await i from ITER('bot.adult','hw,baidu',2)
+for await i from ITER.bot.adult('hw,baidu',2)
   console.log ++n,i
 
 await sleep 2000
