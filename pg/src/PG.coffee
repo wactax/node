@@ -29,6 +29,7 @@ FUNC = genfunc Q
   ONE0
   EXE
   UPSERT
+  ITER
 } = FUNC
 
 export UNSAFE = UNSAFE
@@ -39,4 +40,4 @@ export ONE = ONE
 export ONE0 = ONE0
 export EXE = EXE
 export UPSERT = UPSERT
-
+export ITER = ITER
