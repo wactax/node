@@ -19,8 +19,8 @@
         len = li.length
         if len
           yield from li
-        else
           id = li[len-1][0]
+        else
           break
       return
 
