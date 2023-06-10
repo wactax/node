@@ -16,7 +16,8 @@ await sleep 2000
 n = 0
 for await i from ITER.bot.adult('hw,baidu',2)
   console.log ++n,i
-
+  if n > 3
+    break
 await sleep 2000
 
 console.log 'done'
