@@ -10,7 +10,7 @@
 > @w5/uintbin/uintBin
   @w5/uintbin/binUint
 
-for n from [1,2,3333,0]
+for n from [1,2,123,3333,0]
   bin = uintBin n
   console.log n, bin, binUint bin
 ```
@@ -18,8 +18,9 @@ for n from [1,2,3333,0]
 output :
 
 ```
-1 <Buffer > 0
-2 <Buffer > 0
+1 <Buffer 01> 1
+2 <Buffer 02> 2
+123 <Buffer 7b> 123
 3333 <Buffer 05 0d> 3333
-0 <Buffer > 0
+0 <Buffer 00> 0
 ```
