@@ -7,6 +7,6 @@
   while n
     if buf[--n]!=0
       break
-  if n == 0
+  if n == -1
     return Buffer.from []
   buf.slice(0,n+1)
