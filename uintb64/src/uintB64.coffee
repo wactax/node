@@ -12,8 +12,9 @@ export default (n) =>
   while len
     if buf[--len] != 0
       break
-  console.log len
-  if len == 0
+  if len < 0
     return new Uint8Array([])
-  return buf.buffer.slice(0, len + 1)
+  return new Uint8Array(
+    buf.buffer.slice(0, len + 1)
+  )
 
