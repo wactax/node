@@ -1,4 +1,4 @@
-TIMEOUT = 20000
+TIMEOUT = 30000
 
 < defaultTimeout = (ms)=>
   TIMEOUT = ms
@@ -24,7 +24,7 @@ export default (url, option)=>
   try
     r = await fetch(url, opt)
     switch r.status
-      when 200, 404
+      when 200, 301, 304, 404
         return r
     throw r
   finally
