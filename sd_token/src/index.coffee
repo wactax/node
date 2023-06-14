@@ -1,4 +1,4 @@
-SPLIT = new Set '(),>'
+SPLIT = new Set '(),> '
 
 < (prompt, gen)=>
   if not prompt

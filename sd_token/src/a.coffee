@@ -16,8 +16,12 @@
       return
 
     if s.startsWith('<')
-      auto_a lora, s.split(':')[1]
-    else if not s.includes(' ')
+      li = s.split(':')
+      if li.length > 1
+        auto_a lora, li[1]
+      else
+        auto_a embed, li[0].slice(1).replaceAll('>','').trim()
+    else
       auto_a embed, s
 
     if false == escaped
