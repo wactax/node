@@ -12,7 +12,7 @@
       url = m.get(t) or m.get(t.toLocaleLowerCase())
       if url
         escaped = true
-        s = """<a href="#{url}">#{escape t}</a>"""
+        s = """<a href="#{url}">#{escape s}</a>"""
       return
 
     if s.startsWith('<')
