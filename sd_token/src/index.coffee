@@ -1,6 +1,8 @@
 SPLIT = new Set '()<>:,'
 
 < (prompt)=>
+  if not prompt
+    return ''
 
   r = []
   t = []
