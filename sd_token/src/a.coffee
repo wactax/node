@@ -9,7 +9,7 @@
     escaped = false
 
     auto_a = (m, t)=>
-      url = m.get t.toLocaleLowerCase()
+      url = m.get(t) or m.get(t.toLocaleLowerCase())
       if url
         escaped = true
         s = """<a href="#{url}">#{escape t}</a>"""
