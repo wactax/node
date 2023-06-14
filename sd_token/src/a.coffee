@@ -16,9 +16,8 @@
       return
 
     if s.startsWith('<')
-      s = s.split(':')[1]
-      auto_a lora, s
-    else
+      auto_a lora, s.split(':')[1]
+    else if not s.includes(' ')
       auto_a embed, s
 
     if false == escaped
