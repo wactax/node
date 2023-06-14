@@ -1,4 +1,4 @@
-SPLIT = new Set '(),'
+SPLIT = new Set '(),>'
 
 < (prompt, gen)=>
   if not prompt
@@ -22,8 +22,12 @@ SPLIT = new Set '(),'
 
   for i,p in prompt
     if SPLIT.has i
+      is_lora = i == '>'
+      if is_lora
+        t.push i
       push()
-      r.push i
+      if not is_lora
+        r.push i
       if i == ','
         n = prompt[p+1]
         if n and n!=' '
