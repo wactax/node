@@ -1,4 +1,6 @@
-SPLIT = new Set '(),> '
+SPLIT = new Set '[](),> '
+
+END = ',]>)'
 
 < (prompt, gen)=>
   if not prompt
@@ -28,10 +30,16 @@ SPLIT = new Set '(),> '
       push()
       if not is_lora
         r.push i
-      if i == ','
+
+      if END.includes(i)
         n = prompt[p+1]
-        if n and n!=' '
-          r.push ' '
+        if n
+          if i==','
+            if n!=' '
+              r.push ' '
+          else if not END.includes(n)
+            r.push ' '
+
     else
       t.push i
 
