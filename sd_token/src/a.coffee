@@ -17,7 +17,6 @@
 
     if s.startsWith('<')
       s = s.split(':')[1]
-      console.log s
       auto_a lora, s
     else
       auto_a embed, s
