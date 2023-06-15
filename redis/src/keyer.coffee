@@ -13,8 +13,6 @@ bin = (s)=>
 < (prefix)=>
   prefix = bin prefix
   (args...)=>
-    k = u8merge prefix, k
-    f(
-      k
-      ...args
-    )
+    for i,p from args
+      args[p] = bin i
+    return u8merge prefix, ...args
