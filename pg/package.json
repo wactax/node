@@ -17,6 +17,6 @@
   "dependencies": {
     "@w5/onexit": "^0.0.8",
     "@w5/write": "^0.0.1",
-    "postgres": "^3.3.4"
+    "postgres": "^3.3.5"
   }
 }
