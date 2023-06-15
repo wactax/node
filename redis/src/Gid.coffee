@@ -8,5 +8,5 @@
 
 < (cid)=>
   id = await gid()
-  await KV.hset 'cid',uintBin(id), uintBin(cid)
+  await KV.hset 'cid', uintBin(id), uintBin(cid)
   id
