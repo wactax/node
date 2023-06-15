@@ -29,8 +29,10 @@ dump = (args)=>
       r = await fetch(sdkUrl+url,o)
     catch err
       return await Throw err, call, url, o
-    if not [200,304].includes(r.status)
+
+    if not [200,304].includes(r?.status)
       return await Throw r, call, url, o
+
     bin = await r.arrayBuffer()
     if bin.byteLength
       return unpack new Uint8Array(bin)
