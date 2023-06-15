@@ -7,17 +7,15 @@
 ```coffee
 #!/usr/bin/env coffee
 
-> @w5/cid
-#   @w5/uridir
-#   path > join
+import * as CID from '@w5/cid'
 
-# ROOT = uridir(import.meta)
-
-console.log await cid 123
+for [k,v] from Object.entries CID
+  console.log k,v
 ```
 
 output :
 
 ```
-123
+CID_IMG 2
+CID_USER 1
 ```
