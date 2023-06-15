@@ -1,6 +1,6 @@
 {
   "name": "@w5/sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/sdk",
   "author": "i@wac.tax",
@@ -16,6 +16,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "msgpackr": "^1.9.2"
+    "msgpackr": "^1.9.5"
   }
 }

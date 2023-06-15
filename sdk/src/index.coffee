@@ -1,4 +1,4 @@
-> msgpackr > unpack
+> msgpackr > unpack pack
 
 dump = (args)=>
   {length} = args
@@ -7,7 +7,7 @@ dump = (args)=>
       [a0] = args
       if not Array.isArray a0
         args = a0
-    return JSON.stringify args
+    return pack args
   ''
 
 < (Throw)=>

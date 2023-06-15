@@ -1,1 +1,1 @@
-123
+[ [Function (anonymous)], [Function: init], [Function: confLang] ]

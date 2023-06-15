@@ -19,5 +19,5 @@ console.log await sdk 123
 output :
 
 ```
-123
+[ [Function (anonymous)], [Function: init], [Function: confLang] ]
 ```
