@@ -7,13 +7,16 @@
 ```coffee
 #!/usr/bin/env coffee
 
-> @w5/u8 > U8
+> @w5/u8 > U8 u8merge
 
 console.log U8 [1,2,3]
+
+console.log u8merge 'ss', U8 [1,2,3]
 ```
 
 output :
 
 ```
 Uint8Array(3) [ 1, 2, 3 ]
+Uint8Array(5) [ 115, 115, 1, 2, 3 ]
 ```
