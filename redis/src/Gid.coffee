@@ -6,6 +6,8 @@
 
 {gid} = ID
 
+export gid = gid
+
 < (cid)=>
   id = await gid()
   await KV.hset 'cid', uintBin(id), uintBin(cid)
