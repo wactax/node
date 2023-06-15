@@ -1,0 +1,2 @@
+< CID_USER = 1
+< CID_IMG = 2
