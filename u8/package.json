@@ -1,6 +1,6 @@
 {
   "name": "@w5/u8",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/u8",
   "author": "i@wac.tax",
@@ -15,7 +15,5 @@
   "devDependencies": {},
   "scripts": {},
   "type": "module",
-  "dependencies": {
-    "@w5/utf8": "^0.0.3"
-  }
+  "dependencies": {}
 }

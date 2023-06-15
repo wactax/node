@@ -1,5 +1,3 @@
-> @w5/utf8/utf8e.js
-
 < u8eq = (first, second) =>
   first.length == second.length and first.every(
     (value, index) => value == second[index]
@@ -7,9 +5,7 @@
 
 < u8merge = (args...)=>
   n = 0
-  for i, p in args
-    if i.constructor == String
-      args[p] = i = utf8e i
+  for i from args
     n += i.length
   m = new Uint8Array(n)
   n = 0

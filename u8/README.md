@@ -18,5 +18,5 @@ output :
 
 ```
 Uint8Array(3) [ 1, 2, 3 ]
-Uint8Array(5) [ 115, 115, 1, 2, 3 ]
+Uint8Array(5) [ 0, 0, 1, 2, 3 ]
 ```
