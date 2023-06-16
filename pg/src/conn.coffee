@@ -6,7 +6,7 @@
 CONN = new Set
 
 onexit =>
-  await Promise.allSettled(
+  Promise.allSettled(
     [...CONN].map (pg)=>
       await pg.end({ timeout: 9 }).finally(
         =>
