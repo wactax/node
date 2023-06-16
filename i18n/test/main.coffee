@@ -4,7 +4,8 @@
   @w5/uridir
 
 do =>
-  i18n uridir(import.meta)
+  # i18n uridir(import.meta)
+  process.exit()
   return
 #console.log cookie2dict 'I=1665481017; test=1665492012'
 
