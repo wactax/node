@@ -97,6 +97,7 @@ statIsChange = (path)=>
           if u8eq to_hash, readFileSync to_hash_fp
             await _save()
             continue
+
         reset(
           md
           utf8d to_md
