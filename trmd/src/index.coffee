@@ -57,7 +57,8 @@ statIsChange = (path)=>
 < (from_file, to_fp, from_lang, to_lang_li)=>
   cache_dir = join dirname(from_file), '.i18n/cache'
 
-  no_change = save = await statIsChange from_file
+  save = await statIsChange from_file
+  no_change = not save
 
   name = basename(from_file)
   md_bin = readFileSync from_file
