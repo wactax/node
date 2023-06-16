@@ -33,7 +33,7 @@
     "@w5/xxhash3-wasm": "^0.0.4",
     "@w5/yml": "^0.0.2",
     "@w5/lang": "^0.0.5",
-    "@w5/trmd": "^0.0.19",
+    "@w5/trmd": "^0.0.20",
     "chalk": "^5.2.0",
     "cmark-gfm": "^0.9.0",
     "get_default": "^0.0.4",
@@ -46,5 +46,5 @@
     "turndown": "^7.1.2"
   },
   "overrides": {},
-  "version": "0.0.91"
+  "version": "0.0.92"
 }
