@@ -8,8 +8,8 @@ dependencies:
     specifier: ^0.0.1
     version: 0.0.1
   '@w5/blake3':
-    specifier: ^0.0.6
-    version: 0.0.6
+    specifier: ^0.0.10
+    version: 0.0.10
   '@w5/htm2md':
     specifier: ^0.0.1
     version: 0.0.1
@@ -26,8 +26,8 @@ dependencies:
     specifier: ^0.0.1
     version: 0.0.1
   '@w5/u8':
-    specifier: ^0.0.1
-    version: 0.0.1
+    specifier: ^0.0.3
+    version: 0.0.3
   '@w5/utf8':
     specifier: ^0.0.3
     version: 0.0.3
@@ -114,8 +114,8 @@ packages:
     resolution: {integrity: sha512-Y8ixhdDqCfyhGkmYtdq6waOroMrBJHEX7or77oCtF9dmXOfjAr/hERj5XcQ1olcNYzaZw5vKnzfymtfZy00j7g==}
     dev: false
 
-  /@w5/blake3@0.0.6:
-    resolution: {integrity: sha512-pi1yFRSEaP1PVHqF9hp7rZ1stlW2qi23OhtkKScx6KXxnvbMD9vcs8ggCDd5RzxiZMGE5QEP/1u8kP14GGLM6g==}
+  /@w5/blake3@0.0.10:
+    resolution: {integrity: sha512-0x7r7zI4v/ibD0rcn8CLOZ6wMldE1MqqE4Bes/EZ63t55B0OZo6H9Vcy3Z3/7IzJp3K3bnnISOHV0PpJnGsJ/g==}
     dev: false
 
   /@w5/caller_line@0.0.1:
@@ -170,8 +170,8 @@ packages:
       - supports-color
     dev: false
 
-  /@w5/u8@0.0.1:
-    resolution: {integrity: sha512-1IJecPZlVeTYViGTZF+ZAd+v3S6MGB9LGGC0GHH96tdp36s5EkpZi3d02VzUt7l3okCFyH93QM5U9+GI5ToQhA==}
+  /@w5/u8@0.0.3:
+    resolution: {integrity: sha512-2AGCc0Doaa6iYhcXCaTtOJkKSN/FDuolqj/5eo5/pI9hUYBgFW+juci7v9qc5J2Rm9abOYIa2uND9oaJXhsnBw==}
     dev: false
 
   /@w5/uridir@0.0.1:
