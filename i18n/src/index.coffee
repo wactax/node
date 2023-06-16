@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> @w5/lang
+> @w5/lang:LANG
   ./yml.js > translateYmlDir
   @w5/walk
   @w5/yml/Yml.js
@@ -42,6 +42,15 @@
     now = dir
 
   default_lang = to_from.get()
+  if default_lang
+    lang = LANG
+  else
+    lang = []
+    for [k,v] from from_to.entries()
+      if lang.length == 0
+        default_lang = k
+      lang.push v
+
   to_from.delete()
 
   li = from_to.get 'zh'
