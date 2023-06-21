@@ -3,15 +3,15 @@
 > ./index.js:Redis
 
 {
-  REDIS_MQ_DB          : REDIS_DB
-  REDIS_MQ_USER        : REDIS_USER
-  REDIS_MQ_PASSWORD    : REDIS_PASSWORD
-  REDIS_MQ_HOST_PORT   : REDIS_HOST_PORT
+  MQ_DB
+  MQ_HOST_PORT
+  MQ_PASSWORD
+  MQ_USER
 } = process.env
 
 export default await Redis({
-  REDIS_USER
-  REDIS_HOST_PORT
-  REDIS_PASSWORD
-  REDIS_DB
+  REDIS_DB          : MQ_DB
+  REDIS_HOST_PORT   : MQ_HOST_PORT
+  REDIS_PASSWORD    : MQ_PASSWORD
+  REDIS_USER        : MQ_USER
 })
