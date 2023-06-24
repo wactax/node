@@ -1,4 +1,4 @@
-> msgpackr > pack unpack
+> msgpackr > unpack
 
 dump = (args)=>
   {length} = args
@@ -7,7 +7,8 @@ dump = (args)=>
       [a0] = args
       if not Array.isArray a0
         args = a0
-    return pack args
+    # 不用二进制的 messagepack 的原因是，post 二进制数据需要 form 头，反而更大了
+    return JSON.stringify args
   ''
 
 < (Throw)=>
