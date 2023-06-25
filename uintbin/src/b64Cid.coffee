@@ -1,12 +1,7 @@
 #!/usr/bin/env coffee
 
-> ./binUint.js
+> @w5/vbyte/vbyteD.js
   ./base64url.js
 
 < (s)=>
-  b = Buffer.from(s, base64url)
-  [
-    b[0]
-    binUint b.slice(1)
-  ]
-
+  vbyteD Buffer.from(s, base64url)
