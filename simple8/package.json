@@ -1,8 +1,8 @@
 {
-  "name": "@w5/uintb64",
-  "version": "0.0.4",
+  "name": "@w5/simple8",
+  "version": "0.0.0",
   "repository": "https://github.com/wactax/node.git",
-  "homepage": "https://github.com/wactax/node/tree/main/uintb64",
+  "homepage": "https://github.com/wactax/node/tree/main/simple8",
   "author": "i@wac.tax",
   "license": "Apache-2.0",
   "exports": {
@@ -14,9 +14,5 @@
   ],
   "devDependencies": {},
   "scripts": {},
-  "type": "module",
-  "dependencies": {
-    "@w5/u8": "^0.0.3",
-    "@w5/urlb64": "^0.0.2"
-  }
+  "type": "module"
 }
