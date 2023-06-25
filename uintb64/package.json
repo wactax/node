@@ -16,6 +16,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@w5/urlb64": "^0.0.1"
+    "@w5/urlb64": "^0.0.2"
   }
 }
