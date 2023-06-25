@@ -1,6 +1,12 @@
-1 AQ
-2 Ag
-3333 BQ0
-255 _w
-256 AAE
-0 AA
+Uint8Array(1) [ 1 ]
+1 AQ Uint8Array(1) [ 1 ]
+Uint8Array(1) [ 2 ]
+2 Ag Uint8Array(1) [ 2 ]
+Uint8Array(2) [ 5, 13 ]
+3333 BQ0 Uint8Array(2) [ 5, 13 ]
+Uint8Array(1) [ 255 ]
+255 _w Uint8Array(1) [ 255 ]
+Uint8Array(2) [ 0, 1 ]
+256 AAE Uint8Array(2) [ 0, 1 ]
+Uint8Array(1) [ 0 ]
+0 AA Uint8Array(1) [ 0 ]
