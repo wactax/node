@@ -10,4 +10,4 @@ export default (n) =>
     n = n >> 8n
     if n == 0n
       break
-  return new Uint8Array buf.buffer.slice(0,i)
+  return buf.slice(0,i)
