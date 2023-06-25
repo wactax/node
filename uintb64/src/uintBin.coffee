@@ -1,20 +1,13 @@
 #!/usr/bin/env coffee
 
 export default (n) =>
-  buf = new Uint8Array(6)
+  buf = new Uint8Array(8)
   # Write as little endian
+  n = BigInt(n)
   i = 0
   while i < buf.length
-    buf[i] = n & 0xFF
-    n = n >> 8
-    i++
-  len = buf.length
-  while len
-    if buf[--len] != 0
+    buf[i++] = Number(n & 255n)
+    n = n >> 8n
+    if n == 0n
       break
-  if len < 0
-    return new Uint8Array([])
-  return new Uint8Array(
-    buf.buffer.slice(0, len + 1)
-  )
-
+  return new Uint8Array buf.buffer.slice(0,i)
