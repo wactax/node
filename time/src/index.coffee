@@ -1,7 +1,9 @@
+> ./ms.js
+
 + NOW
 
 _now = =>
-  NOW = parseInt new Date/1e3
+  NOW = ms()
   return
 
 _now()
