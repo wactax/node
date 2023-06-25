@@ -29,6 +29,6 @@ export default (base64string) =>
     bytes[p++] = (encoded2 & 15) << 4 | encoded3 >> 2
     bytes[p++] = (encoded3 & 3) << 6 | encoded4 & 63
     i += 4
-  bytes.buffer
+  bytes
 
 
