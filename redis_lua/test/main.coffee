@@ -27,6 +27,6 @@ console.log '---'
 
 BIND = DotBind redis
 
-BIND.fstr.ipLimit
+BIND.fstr.ipLimit()
 
 await redis.ipLimit('key1','key2')('arg1','arg2')
