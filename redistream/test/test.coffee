@@ -16,7 +16,7 @@ await RedisLua(MQ).xpendclaim(
 
 
 B = DotBind(MQ)
-B.fbin.xpendclaim
+B.fbin.xpendclaim()
 
 stream = 'civitai_img'
 idle = 900000

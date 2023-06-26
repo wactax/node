@@ -15,9 +15,9 @@ CUSTOMER = do =>
   name
 
 B = DotBind(redis)
-B.fbin.xpendclaim
-B.fcall.xconsumerclean
-B.fcall.xackdel
+B.fbin.xpendclaim()
+B.fcall.xconsumerclean()
+B.fcall.xackdel()
 
 export default new Proxy(
   {}
