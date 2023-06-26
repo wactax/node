@@ -8,7 +8,7 @@ DEBUG = process.env.NODE_ENV != 'production'
   proxy_get = (rtype, func)=>
     f = redis[rtype].bind(redis, func)
     redis[func] = (keys...)=>
-      redis[func] = (args...)=>
+      (args...)=>
         f(
           keys
           args.map(
