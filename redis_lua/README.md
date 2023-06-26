@@ -210,4 +210,5 @@ end,
 flags={'no-writes'}
 }
 ---
+fstr ipLimit [ 'key1', 'key2' ] [ 'arg1', 'arg2' ]
 ```

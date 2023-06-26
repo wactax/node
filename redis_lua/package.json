@@ -1,6 +1,6 @@
 {
   "name": "@w5/redis_lua",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/redis_lua",
   "author": "i@wac.tax",
