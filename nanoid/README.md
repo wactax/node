@@ -19,5 +19,5 @@ console.log await nanoid 123
 output :
 
 ```
-123
+t4Fl__GuIuM8V0rYknNiw
 ```
