@@ -1,12 +1,13 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 devDependencies:
   '@w5/loader':
     specifier: ^0.0.3
     version: 0.0.3
-  coffeescript:
-    specifier: ^2.7.0
-    version: 2.7.0
   source-map-support:
     specifier: ^0.5.21
     version: 0.5.21
