@@ -1,6 +1,26 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {Uint8Array} bin
+* @returns {string}
+*/
+export function b64E(bin: Uint8Array): string;
+/**
+* @param {string} bin
+* @returns {Uint8Array}
+*/
+export function b64D(bin: string): Uint8Array;
+/**
+* @param {number} n
+* @returns {Uint8Array}
+*/
+export function u64Bin(n: number): Uint8Array;
+/**
+* @param {number} n
+* @returns {string}
+*/
+export function u64B64(n: number): string;
+/**
 * @param {Float64Array} vs
 * @returns {Uint8Array}
 */
@@ -21,93 +41,28 @@ export function b64VbyteE(vs: Float64Array): string;
 */
 export function b64VbyteD(vs: string): Float64Array;
 /**
-* @param {number} n
-* @returns {Uint8Array}
 */
-export function u64Bin(n: number): Uint8Array;
-/**
-* @param {number} n
-* @returns {string}
-*/
-export function u64B64(n: number): string;
-/**
-* @param {Uint8Array} bin
-* @returns {string}
-*/
-export function b64E(bin: Uint8Array): string;
-/**
-* @param {string} bin
-* @returns {Uint8Array}
-*/
-export function b64D(bin: string): Uint8Array;
-/**
-*/
-export class BinSet {
+export class BinMap {
   free(): void;
 /**
 */
   constructor();
 /**
-* @param {Uint8Array} val
+* @param {Uint8Array} key
 * @returns {boolean}
 */
-  add(val: Uint8Array): boolean;
+  delete(key: Uint8Array): boolean;
 /**
-* @param {Uint8Array} val
-* @returns {boolean}
+* @param {Uint8Array} key
+* @param {any} val
 */
-  has(val: Uint8Array): boolean;
+  set(key: Uint8Array, val: any): void;
 /**
-* @param {Uint8Array} val
-* @returns {boolean}
+* @param {Uint8Array} key
+* @returns {any}
 */
-  delete(val: Uint8Array): boolean;
+  get(key: Uint8Array): any;
 /**
 */
   readonly size: number;
 }
-
-export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
-
-export interface InitOutput {
-  readonly memory: WebAssembly.Memory;
-  readonly __wbg_binset_free: (a: number) => void;
-  readonly binset_new: () => number;
-  readonly binset_add: (a: number, b: number, c: number) => number;
-  readonly binset_has: (a: number, b: number, c: number) => number;
-  readonly binset_delete: (a: number, b: number, c: number) => number;
-  readonly binset_size: (a: number) => number;
-  readonly vbyteE: (a: number, b: number, c: number) => void;
-  readonly vbyteD: (a: number, b: number, c: number) => void;
-  readonly b64VbyteE: (a: number, b: number, c: number) => void;
-  readonly b64VbyteD: (a: number, b: number, c: number) => void;
-  readonly u64Bin: (a: number, b: number) => void;
-  readonly u64B64: (a: number, b: number) => void;
-  readonly b64E: (a: number, b: number, c: number) => void;
-  readonly b64D: (a: number, b: number, c: number) => void;
-  readonly __wbindgen_malloc: (a: number, b: number) => number;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
-  readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
-}
-
-export type SyncInitInput = BufferSource | WebAssembly.Module;
-/**
-* Instantiates the given `module`, which can either be bytes or
-* a precompiled `WebAssembly.Module`.
-*
-* @param {SyncInitInput} module
-*
-* @returns {InitOutput}
-*/
-export function initSync(module: SyncInitInput): InitOutput;
-
-/**
-* If `module_or_path` is {RequestInfo} or {URL}, makes a request and
-* for everything else, calls `WebAssembly.instantiate` directly.
-*
-* @param {InitInput | Promise<InitInput>} module_or_path
-*
-* @returns {Promise<InitOutput>}
-*/
-export default function __wbg_init (module_or_path?: InitInput | Promise<InitInput>): Promise<InitOutput>;
