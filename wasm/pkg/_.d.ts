@@ -1,6 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {Float64Array} vs
+* @returns {Uint8Array}
+*/
+export function vbyteE(vs: Float64Array): Uint8Array;
+/**
 */
 export class BinSet {
   free(): void;

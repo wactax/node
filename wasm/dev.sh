@@ -11,7 +11,8 @@ else
 fi
 
 exec watchexec --shell=none \
-  -w ./src \
+  --project-origin . \
+  -w ./src/ \
   -w ./test.coffee \
   --exts coffee,rs,wasm \
   -r \
