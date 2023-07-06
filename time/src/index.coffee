@@ -3,7 +3,7 @@
 + NOW
 
 _now = =>
-  NOW = ms()
+  NOW = Math.floor ms()/1000
   return
 
 _now()
