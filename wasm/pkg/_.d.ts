@@ -21,6 +21,16 @@ export function b64VbyteE(vs: Float64Array): string;
 */
 export function b64VbyteD(vs: string): Float64Array;
 /**
+* @param {number} n
+* @returns {Uint8Array}
+*/
+export function u64Bin(n: number): Uint8Array;
+/**
+* @param {number} n
+* @returns {string}
+*/
+export function u64B64(n: number): string;
+/**
 * @param {Uint8Array} bin
 * @returns {string}
 */

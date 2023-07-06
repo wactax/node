@@ -1,6 +1,8 @@
 #!/usr/bin/env coffee
 
-> ./pkg/_ > BinSet b64VbyteD b64VbyteE
+> ./pkg/_ > BinSet b64VbyteD b64VbyteE u64B64
+
+console.log u64B64 12345
 
 testVbyte = =>
   b = b64VbyteE [999, 2, 321]
@@ -8,7 +10,7 @@ testVbyte = =>
   console.log b64VbyteD b
   return
 
-testVbyte()
+# testVbyte()
 
 testBinSet = =>
   set = new BinSet
