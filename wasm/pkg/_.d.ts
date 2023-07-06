@@ -53,16 +53,6 @@ export class BinSet {
 */
   delete(val: Uint8Array): boolean;
 /**
-* @returns {Uint8Array}
-*/
-  dump(): Uint8Array;
-/**
-* @param {Uint8Array} li
-* @param {number} n
-* @returns {BinSet}
-*/
-  static load(li: Uint8Array, n: number): BinSet;
-/**
 */
   readonly size: number;
 }

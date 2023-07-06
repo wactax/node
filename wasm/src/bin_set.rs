@@ -34,31 +34,31 @@ impl BinSet {
     self.set.len()
   }
 
-  pub fn dump(&self) -> Vec<u8> {
-    let mut li = Vec::new();
-    for i in &self.set {
-      li.extend(&i[..]);
-    }
-    li
-  }
-
-  pub fn load(li: Box<[u8]>, n: usize) -> Self {
-    let mut set = HashSet::new();
-    let len = li.len();
-    if len > 0 {
-      let mut pos = 0;
-      let mut next = pos + n;
-      while next < len {
-        set.insert(Box::from(&li[pos..next]));
-        pos = next;
-        next += n;
-      }
-      if pos != len {
-        set.insert(Box::from(&li[pos..]));
-      }
-    }
-    Self { set }
-  }
+  // pub fn dump(&self) -> Vec<u8> {
+  //   let mut li = Vec::new();
+  //   for i in &self.set {
+  //     li.extend(&i[..]);
+  //   }
+  //   li
+  // }
+  //
+  // pub fn load(li: &[u8], n: usize) -> Self {
+  //   let mut set = HashSet::new();
+  //   let len = li.len();
+  //   if len > 0 {
+  //     let mut pos = 0;
+  //     let mut next = pos + n;
+  //     while next < len {
+  //       set.insert(Box::from(&li[pos..next]));
+  //       pos = next;
+  //       next += n;
+  //     }
+  //     if pos != len {
+  //       set.insert(Box::from(&li[pos..]));
+  //     }
+  //   }
+  //   Self { set }
+  // }
 }
 /*
 #[wasm_bindgen]
