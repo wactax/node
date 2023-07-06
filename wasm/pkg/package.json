@@ -1,0 +1,17 @@
+{
+  "name": "@w5/wasm",
+  "version": "0.0.2",
+  "main": "_.js",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/wasm",
+  "license": "Apache-2.0",
+  "author": "i@wac.tax",
+  "exports": {
+    ".": "./_.js",
+    "./*": "./*"
+  },
+  "files": [
+    "*.wasm",
+    "*.ts"
+  ]
+}
