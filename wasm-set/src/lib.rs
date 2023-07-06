@@ -1,10 +1,15 @@
-use std::collections::BTreeSet;
+use std::collections::HashSet;
+extern crate wee_alloc;
+
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 pub struct BinSet {
-  set: BTreeSet<Box<[u8]>>,
+  set: HashSet<Box<[u8]>>,
 }
 
 #[wasm_bindgen]
@@ -12,7 +17,7 @@ impl BinSet {
   #[wasm_bindgen(constructor)]
   pub fn new() -> Self {
     Self {
-      set: BTreeSet::new(),
+      set: HashSet::new(),
     }
   }
 
@@ -42,7 +47,7 @@ impl BinSet {
   }
 
   pub fn load(li: Box<[u8]>, n: usize) -> Self {
-    let mut set = BTreeSet::new();
+    let mut set = HashSet::new();
     let len = li.len();
     if len > 0 {
       let mut pos = 0;
