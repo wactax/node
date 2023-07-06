@@ -9,6 +9,7 @@ git pull
 
 ./build.sh
 sed -i '/function initSync(module)/,$d' pkg/_.js
+sed -i '/__wbg_init\./d' pkg/_.js
 cat ./_patch.js >>pkg/_.js
 
 cd $_DIR/pkg

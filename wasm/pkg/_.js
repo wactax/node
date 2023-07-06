@@ -441,7 +441,6 @@ function __wbg_init_memory(imports, maybe_memory) {
 
 function __wbg_finalize_init(instance, module) {
     wasm = instance.exports;
-    __wbg_init.__wbindgen_wasm_module = module;
     cachedFloat64Memory0 = null;
     cachedInt32Memory0 = null;
     cachedUint8Memory0 = null;
