@@ -486,4 +486,4 @@ async function __wbg_init(input) {
 }
 
 export { initSync }
-export default __wbg_init;
+await __wbg_init();
