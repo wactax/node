@@ -12,7 +12,19 @@ testVbyte = =>
 
 # testVbyte()
 
-testBinSet = =>
+testBinMap = =>
+  map = new BinMap
+  r = =>
+    12345
+
+  key = new Uint8Array([1,2])
+  map.set key, r
+  console.log map.size
+  r = map.get(key)
+  console.log r()
+
+testBinMap()
+
   # set = new BinSet
   #
   # txt = """set.add(Buffer.from [1])
