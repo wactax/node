@@ -1,6 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {Uint8Array} bin
+* @returns {string}
+*/
+export function b64E(bin: Uint8Array): string;
+/**
+* @param {string} bin
+* @returns {Uint8Array}
+*/
+export function b64D(bin: string): Uint8Array;
+/**
 * @param {Float64Array} vs
 * @returns {Uint8Array}
 */
@@ -11,15 +21,15 @@ export function vbyteE(vs: Float64Array): Uint8Array;
 */
 export function vbyteD(vs: Uint8Array): Float64Array;
 /**
-* @param {Uint8Array} bin
+* @param {Float64Array} vs
 * @returns {string}
 */
-export function b64E(bin: Uint8Array): string;
+export function b64VbyteE(vs: Float64Array): string;
 /**
-* @param {string} bin
-* @returns {Uint8Array}
+* @param {Uint8Array} vs
+* @returns {Float64Array}
 */
-export function b64D(bin: string): Uint8Array;
+export function b64VbyteD(vs: Uint8Array): Float64Array;
 /**
 */
 export class BinSet {
