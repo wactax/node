@@ -17,13 +17,14 @@ function getUint8Memory0() {
 }
 
 function getStringFromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
 let WASM_VECTOR_LEN = 0;
 
 function passArray8ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 1);
+    const ptr = malloc(arg.length * 1, 1) >>> 0;
     getUint8Memory0().set(arg, ptr / 1);
     WASM_VECTOR_LEN = arg.length;
     return ptr;
@@ -39,24 +40,26 @@ function getInt32Memory0() {
 }
 
 function getArrayU8FromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
     return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
 }
 
-const BinSetFinalization = new FinalizationRegistry(ptr => wasm.__wbg_binset_free(ptr));
+const BinSetFinalization = new FinalizationRegistry(ptr => wasm.__wbg_binset_free(ptr >>> 0));
 /**
 */
 class BinSet {
 
     static __wrap(ptr) {
+        ptr = ptr >>> 0;
         const obj = Object.create(BinSet.prototype);
-        obj.ptr = ptr;
-        BinSetFinalization.register(obj, obj.ptr, obj);
+        obj.__wbg_ptr = ptr;
+        BinSetFinalization.register(obj, obj.__wbg_ptr, obj);
         return obj;
     }
 
     __destroy_into_raw() {
-        const ptr = this.ptr;
-        this.ptr = 0;
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
         BinSetFinalization.unregister(this);
         return ptr;
     }
@@ -78,7 +81,7 @@ class BinSet {
     add(val) {
         const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.binset_add(this.ptr, ptr0, len0);
+        const ret = wasm.binset_add(this.__wbg_ptr, ptr0, len0);
         return ret !== 0;
     }
     /**
@@ -88,7 +91,7 @@ class BinSet {
     has(val) {
         const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.binset_has(this.ptr, ptr0, len0);
+        const ret = wasm.binset_has(this.__wbg_ptr, ptr0, len0);
         return ret !== 0;
     }
     /**
@@ -98,14 +101,14 @@ class BinSet {
     delete(val) {
         const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.binset_delete(this.ptr, ptr0, len0);
+        const ret = wasm.binset_delete(this.__wbg_ptr, ptr0, len0);
         return ret !== 0;
     }
     /**
     * @returns {number}
     */
     get size() {
-        const ret = wasm.binset_size(this.ptr);
+        const ret = wasm.binset_size(this.__wbg_ptr);
         return ret >>> 0;
     }
     /**
@@ -114,12 +117,12 @@ class BinSet {
     dump() {
         try {
             const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-            wasm.binset_dump(retptr, this.ptr);
+            wasm.binset_dump(retptr, this.__wbg_ptr);
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
-            var v0 = getArrayU8FromWasm0(r0, r1).slice();
+            var v1 = getArrayU8FromWasm0(r0, r1).slice();
             wasm.__wbindgen_free(r0, r1 * 1);
-            return v0;
+            return v1;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
         }
