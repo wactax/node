@@ -6,6 +6,21 @@
 */
 export function vbyteE(vs: Float64Array): Uint8Array;
 /**
+* @param {Uint8Array} vs
+* @returns {Float64Array}
+*/
+export function vbyteD(vs: Uint8Array): Float64Array;
+/**
+* @param {Uint8Array} bin
+* @returns {string}
+*/
+export function b64E(bin: Uint8Array): string;
+/**
+* @param {string} bin
+* @returns {Uint8Array}
+*/
+export function b64D(bin: string): Uint8Array;
+/**
 */
 export class BinSet {
   free(): void;
