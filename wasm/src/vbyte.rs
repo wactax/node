@@ -22,6 +22,6 @@ pub fn b64VbyteE(vs: &[f64]) -> String {
 }
 
 #[wasm_bindgen]
-pub fn b64VbyteD(vs: &[u8]) -> Result<Vec<f64>> {
+pub fn b64VbyteD(vs: &str) -> Result<Vec<f64>> {
   Ok(vbyteD(&URL_SAFE_NO_PAD.decode(vs)?)?)
 }

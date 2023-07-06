@@ -1,9 +1,11 @@
 #!/usr/bin/env coffee
 
-> ./pkg/_ > BinSet vbyteE
+> ./pkg/_ > BinSet b64VbyteD b64VbyteE
 
 testVbyte = =>
-  console.log vbyteE [999, 2, 321]
+  b = b64VbyteE [999, 2, 321]
+  console.log b
+  console.log b64VbyteD b
   return
 
 testVbyte()
