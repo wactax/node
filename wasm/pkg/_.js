@@ -1,11 +1,8 @@
-let imports = {};
-imports['__wbindgen_placeholder__'] = module.exports;
 let wasm;
-const { TextDecoder, TextEncoder } = require(`util`);
 
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+const cachedTextDecoder = (typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-8', { ignoreBOM: true, fatal: true }) : { decode: () => { throw Error('TextDecoder not available') } } );
 
-cachedTextDecoder.decode();
+if (typeof TextDecoder !== 'undefined') { cachedTextDecoder.decode(); };
 
 let cachedUint8Memory0 = null;
 
@@ -78,7 +75,7 @@ function getArrayU8FromWasm0(ptr, len) {
 * @param {Float64Array} vs
 * @returns {Uint8Array}
 */
-module.exports.vbyteE = function(vs) {
+export function vbyteE(vs) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passArrayF64ToWasm0(vs, wasm.__wbindgen_malloc);
@@ -92,7 +89,7 @@ module.exports.vbyteE = function(vs) {
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
     }
-};
+}
 
 function getObject(idx) { return heap[idx]; }
 
@@ -116,7 +113,7 @@ function getArrayF64FromWasm0(ptr, len) {
 * @param {Uint8Array} vs
 * @returns {Float64Array}
 */
-module.exports.vbyteD = function(vs) {
+export function vbyteD(vs) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passArray8ToWasm0(vs, wasm.__wbindgen_malloc);
@@ -135,13 +132,13 @@ module.exports.vbyteD = function(vs) {
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
     }
-};
+}
 
 /**
 * @param {Float64Array} vs
 * @returns {string}
 */
-module.exports.b64VbyteE = function(vs) {
+export function b64VbyteE(vs) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -158,9 +155,9 @@ module.exports.b64VbyteE = function(vs) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
-};
+}
 
-let cachedTextEncoder = new TextEncoder('utf-8');
+const cachedTextEncoder = (typeof TextEncoder !== 'undefined' ? new TextEncoder('utf-8') : { encode: () => { throw Error('TextEncoder not available') } } );
 
 const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
     ? function (arg, view) {
@@ -216,7 +213,7 @@ function passStringToWasm0(arg, malloc, realloc) {
 * @param {string} vs
 * @returns {Float64Array}
 */
-module.exports.b64VbyteD = function(vs) {
+export function b64VbyteD(vs) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(vs, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
@@ -235,13 +232,13 @@ module.exports.b64VbyteD = function(vs) {
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
     }
-};
+}
 
 /**
 * @param {number} n
 * @returns {Uint8Array}
 */
-module.exports.u64Bin = function(n) {
+export function u64Bin(n) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         wasm.u64Bin(retptr, n);
@@ -253,13 +250,13 @@ module.exports.u64Bin = function(n) {
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
     }
-};
+}
 
 /**
 * @param {number} n
 * @returns {string}
 */
-module.exports.u64B64 = function(n) {
+export function u64B64(n) {
     let deferred1_0;
     let deferred1_1;
     try {
@@ -274,13 +271,13 @@ module.exports.u64B64 = function(n) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
     }
-};
+}
 
 /**
 * @param {Uint8Array} bin
 * @returns {string}
 */
-module.exports.b64E = function(bin) {
+export function b64E(bin) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -297,13 +294,13 @@ module.exports.b64E = function(bin) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
-};
+}
 
 /**
 * @param {string} bin
 * @returns {Uint8Array}
 */
-module.exports.b64D = function(bin) {
+export function b64D(bin) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         const ptr0 = passStringToWasm0(bin, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
@@ -322,12 +319,12 @@ module.exports.b64D = function(bin) {
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
     }
-};
+}
 
 const BinSetFinalization = new FinalizationRegistry(ptr => wasm.__wbg_binset_free(ptr >>> 0));
 /**
 */
-class BinSet {
+export class BinSet {
 
     static __wrap(ptr) {
         ptr = ptr >>> 0;
@@ -392,22 +389,101 @@ class BinSet {
         return ret >>> 0;
     }
 }
-module.exports.BinSet = BinSet;
 
-module.exports.__wbindgen_error_new = function(arg0, arg1) {
-    const ret = new Error(getStringFromWasm0(arg0, arg1));
-    return addHeapObject(ret);
-};
+async function __wbg_load(module, imports) {
+    if (typeof Response === 'function' && module instanceof Response) {
+        if (typeof WebAssembly.instantiateStreaming === 'function') {
+            try {
+                return await WebAssembly.instantiateStreaming(module, imports);
 
-module.exports.__wbindgen_throw = function(arg0, arg1) {
-    throw new Error(getStringFromWasm0(arg0, arg1));
-};
+            } catch (e) {
+                if (module.headers.get('Content-Type') != 'application/wasm') {
+                    console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
 
-const path = require('path').join(__dirname, '__bg.wasm');
-const bytes = require('fs').readFileSync(path);
+                } else {
+                    throw e;
+                }
+            }
+        }
 
-const wasmModule = new WebAssembly.Module(bytes);
-const wasmInstance = new WebAssembly.Instance(wasmModule, imports);
-wasm = wasmInstance.exports;
-module.exports.__wasm = wasm;
+        const bytes = await module.arrayBuffer();
+        return await WebAssembly.instantiate(bytes, imports);
 
+    } else {
+        const instance = await WebAssembly.instantiate(module, imports);
+
+        if (instance instanceof WebAssembly.Instance) {
+            return { instance, module };
+
+        } else {
+            return instance;
+        }
+    }
+}
+
+function __wbg_get_imports() {
+    const imports = {};
+    imports.wbg = {};
+    imports.wbg.__wbindgen_error_new = function(arg0, arg1) {
+        const ret = new Error(getStringFromWasm0(arg0, arg1));
+        return addHeapObject(ret);
+    };
+    imports.wbg.__wbindgen_throw = function(arg0, arg1) {
+        throw new Error(getStringFromWasm0(arg0, arg1));
+    };
+
+    return imports;
+}
+
+function __wbg_init_memory(imports, maybe_memory) {
+
+}
+
+function __wbg_finalize_init(instance, module) {
+    wasm = instance.exports;
+    __wbg_init.__wbindgen_wasm_module = module;
+    cachedFloat64Memory0 = null;
+    cachedInt32Memory0 = null;
+    cachedUint8Memory0 = null;
+
+
+    return wasm;
+}
+
+function initSync(module) {
+    if (wasm !== undefined) return wasm;
+
+    const imports = __wbg_get_imports();
+
+    __wbg_init_memory(imports);
+
+    if (!(module instanceof WebAssembly.Module)) {
+        module = new WebAssembly.Module(module);
+    }
+
+    const instance = new WebAssembly.Instance(module, imports);
+
+    return __wbg_finalize_init(instance, module);
+}
+
+async function __wbg_init(input) {
+    if (wasm !== undefined) return wasm;
+
+    if (typeof input === 'undefined') {
+        input = new URL('__bg.wasm', import.meta.url);
+    }
+    const imports = __wbg_get_imports();
+
+    if (typeof input === 'string' || (typeof Request === 'function' && input instanceof Request) || (typeof URL === 'function' && input instanceof URL)) {
+        input = fetch(input);
+    }
+
+    __wbg_init_memory(imports);
+
+    const { instance, module } = await __wbg_load(await input, imports);
+
+    return __wbg_finalize_init(instance, module);
+}
+
+export { initSync }
+export default __wbg_init;
