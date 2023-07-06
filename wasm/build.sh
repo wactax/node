@@ -16,4 +16,3 @@ if ! [ -x "$(command -v wasm-opt)" ]; then
 fi
 
 wasm-opt -O3 -o ./pkg/__bg.wasm ./pkg/__bg.wasm
-sd -s "export default __wbg_init" "await __wbg_init()" pkg/_.js
