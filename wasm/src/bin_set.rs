@@ -9,6 +9,7 @@ pub struct BinSet {
 
 #[wasm_bindgen]
 impl BinSet {
+  #[allow(clippy::new_without_default)]
   #[wasm_bindgen(constructor)]
   pub fn new() -> Self {
     Self {
