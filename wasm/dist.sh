@@ -11,6 +11,7 @@ git pull
 sed -i '/function initSync(module)/,$d' pkg/_.js
 sed -i '/__wbg_init\./d' pkg/_.js
 cat ./_patch.js >>pkg/_.js
+./patch.coffee
 
 cd $_DIR/pkg
 version=$(cat package.json | jq -r '.version')
