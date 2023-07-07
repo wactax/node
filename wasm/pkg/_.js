@@ -538,4 +538,4 @@ const { instance, module } = await __wbg_load(
 );
 __wbg_finalize_init(instance, module);
 })();
-export const binMap = (...args)=>new BinMap(...args);export const binSet = (...args)=>new BinSet(...args);
+const newCls = (cls)=>(...args)=>new cls(...args);export const binMap = newCls(BinMap);export const binSet = newCls(BinSet);

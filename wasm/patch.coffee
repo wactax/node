@@ -14,10 +14,11 @@ for line from js.split '\n'
   if line.startsWith 'export class'
     class_li.push(line.slice(13,-1).trim())
 
+js += "const newCls = (cls)=>(...args)=>new cls(...args);"
 for i from class_li
   f = i.charAt(0).toLowerCase() + i.slice(1)
   js += """
-export const #{f} = (...args)=>new #{i}(...args);
+export const #{f} = newCls(#{i});
 """
 
 write(
