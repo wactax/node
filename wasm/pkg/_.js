@@ -47,11 +47,20 @@ function takeObject(idx) {
     return ret;
 }
 
+let cachedFloat64Memory0 = null;
+
+function getFloat64Memory0() {
+    if (cachedFloat64Memory0 === null || cachedFloat64Memory0.byteLength === 0) {
+        cachedFloat64Memory0 = new Float64Array(wasm.memory.buffer);
+    }
+    return cachedFloat64Memory0;
+}
+
 let WASM_VECTOR_LEN = 0;
 
-function passArray8ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 1, 1) >>> 0;
-    getUint8Memory0().set(arg, ptr / 1);
+function passArrayF64ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 8, 8) >>> 0;
+    getFloat64Memory0().set(arg, ptr / 8);
     WASM_VECTOR_LEN = arg.length;
     return ptr;
 }
@@ -64,18 +73,79 @@ function getInt32Memory0() {
     }
     return cachedInt32Memory0;
 }
+
+function getArrayU8FromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
+}
 /**
-* @param {Uint8Array} bin
+* @param {Float64Array} vs
+* @returns {Uint8Array}
+*/
+export function vbyteE(vs) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passArrayF64ToWasm0(vs, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.vbyteE(retptr, ptr0, len0);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        var v2 = getArrayU8FromWasm0(r0, r1).slice();
+        wasm.__wbindgen_free(r0, r1 * 1);
+        return v2;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+function passArray8ToWasm0(arg, malloc) {
+    const ptr = malloc(arg.length * 1, 1) >>> 0;
+    getUint8Memory0().set(arg, ptr / 1);
+    WASM_VECTOR_LEN = arg.length;
+    return ptr;
+}
+
+function getArrayF64FromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    return getFloat64Memory0().subarray(ptr / 8, ptr / 8 + len);
+}
+/**
+* @param {Uint8Array} vs
+* @returns {Float64Array}
+*/
+export function vbyteD(vs) {
+    try {
+        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+        const ptr0 = passArray8ToWasm0(vs, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        wasm.vbyteD(retptr, ptr0, len0);
+        var r0 = getInt32Memory0()[retptr / 4 + 0];
+        var r1 = getInt32Memory0()[retptr / 4 + 1];
+        var r2 = getInt32Memory0()[retptr / 4 + 2];
+        var r3 = getInt32Memory0()[retptr / 4 + 3];
+        if (r3) {
+            throw takeObject(r2);
+        }
+        var v2 = getArrayF64FromWasm0(r0, r1).slice();
+        wasm.__wbindgen_free(r0, r1 * 8);
+        return v2;
+    } finally {
+        wasm.__wbindgen_add_to_stack_pointer(16);
+    }
+}
+
+/**
+* @param {Float64Array} vs
 * @returns {string}
 */
-export function b64E(bin) {
+export function b64VbyteE(vs) {
     let deferred2_0;
     let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passArray8ToWasm0(bin, wasm.__wbindgen_malloc);
+        const ptr0 = passArrayF64ToWasm0(vs, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.b64E(retptr, ptr0, len0);
+        wasm.b64VbyteE(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         deferred2_0 = r0;
@@ -139,21 +209,16 @@ function passStringToWasm0(arg, malloc, realloc) {
     WASM_VECTOR_LEN = offset;
     return ptr;
 }
-
-function getArrayU8FromWasm0(ptr, len) {
-    ptr = ptr >>> 0;
-    return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
-}
 /**
-* @param {string} bin
-* @returns {Uint8Array}
+* @param {string} vs
+* @returns {Float64Array}
 */
-export function b64D(bin) {
+export function b64VbyteD(vs) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passStringToWasm0(bin, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const ptr0 = passStringToWasm0(vs, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.b64D(retptr, ptr0, len0);
+        wasm.b64VbyteD(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];
@@ -161,8 +226,8 @@ export function b64D(bin) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = getArrayU8FromWasm0(r0, r1).slice();
-        wasm.__wbindgen_free(r0, r1 * 1);
+        var v2 = getArrayF64FromWasm0(r0, r1).slice();
+        wasm.__wbindgen_free(r0, r1 * 8);
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -208,82 +273,18 @@ export function u64B64(n) {
     }
 }
 
-let cachedFloat64Memory0 = null;
-
-function getFloat64Memory0() {
-    if (cachedFloat64Memory0 === null || cachedFloat64Memory0.byteLength === 0) {
-        cachedFloat64Memory0 = new Float64Array(wasm.memory.buffer);
-    }
-    return cachedFloat64Memory0;
-}
-
-function passArrayF64ToWasm0(arg, malloc) {
-    const ptr = malloc(arg.length * 8, 8) >>> 0;
-    getFloat64Memory0().set(arg, ptr / 8);
-    WASM_VECTOR_LEN = arg.length;
-    return ptr;
-}
 /**
-* @param {Float64Array} vs
-* @returns {Uint8Array}
-*/
-export function vbyteE(vs) {
-    try {
-        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passArrayF64ToWasm0(vs, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        wasm.vbyteE(retptr, ptr0, len0);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var v2 = getArrayU8FromWasm0(r0, r1).slice();
-        wasm.__wbindgen_free(r0, r1 * 1);
-        return v2;
-    } finally {
-        wasm.__wbindgen_add_to_stack_pointer(16);
-    }
-}
-
-function getArrayF64FromWasm0(ptr, len) {
-    ptr = ptr >>> 0;
-    return getFloat64Memory0().subarray(ptr / 8, ptr / 8 + len);
-}
-/**
-* @param {Uint8Array} vs
-* @returns {Float64Array}
-*/
-export function vbyteD(vs) {
-    try {
-        const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passArray8ToWasm0(vs, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        wasm.vbyteD(retptr, ptr0, len0);
-        var r0 = getInt32Memory0()[retptr / 4 + 0];
-        var r1 = getInt32Memory0()[retptr / 4 + 1];
-        var r2 = getInt32Memory0()[retptr / 4 + 2];
-        var r3 = getInt32Memory0()[retptr / 4 + 3];
-        if (r3) {
-            throw takeObject(r2);
-        }
-        var v2 = getArrayF64FromWasm0(r0, r1).slice();
-        wasm.__wbindgen_free(r0, r1 * 8);
-        return v2;
-    } finally {
-        wasm.__wbindgen_add_to_stack_pointer(16);
-    }
-}
-
-/**
-* @param {Float64Array} vs
+* @param {Uint8Array} bin
 * @returns {string}
 */
-export function b64VbyteE(vs) {
+export function b64E(bin) {
     let deferred2_0;
     let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passArrayF64ToWasm0(vs, wasm.__wbindgen_malloc);
+        const ptr0 = passArray8ToWasm0(bin, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.b64VbyteE(retptr, ptr0, len0);
+        wasm.b64E(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         deferred2_0 = r0;
@@ -296,15 +297,15 @@ export function b64VbyteE(vs) {
 }
 
 /**
-* @param {string} vs
-* @returns {Float64Array}
+* @param {string} bin
+* @returns {Uint8Array}
 */
-export function b64VbyteD(vs) {
+export function b64D(bin) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        const ptr0 = passStringToWasm0(vs, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const ptr0 = passStringToWasm0(bin, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        wasm.b64VbyteD(retptr, ptr0, len0);
+        wasm.b64D(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];
@@ -312,8 +313,8 @@ export function b64VbyteD(vs) {
         if (r3) {
             throw takeObject(r2);
         }
-        var v2 = getArrayF64FromWasm0(r0, r1).slice();
-        wasm.__wbindgen_free(r0, r1 * 8);
+        var v2 = getArrayU8FromWasm0(r0, r1).slice();
+        wasm.__wbindgen_free(r0, r1 * 1);
         return v2;
     } finally {
         wasm.__wbindgen_add_to_stack_pointer(16);
@@ -385,6 +386,75 @@ export class BinMap {
         const len0 = WASM_VECTOR_LEN;
         const ret = wasm.binmap_get(this.__wbg_ptr, ptr0, len0);
         return takeObject(ret);
+    }
+}
+
+const BinSetFinalization = new FinalizationRegistry(ptr => wasm.__wbg_binset_free(ptr >>> 0));
+/**
+*/
+export class BinSet {
+
+    static __wrap(ptr) {
+        ptr = ptr >>> 0;
+        const obj = Object.create(BinSet.prototype);
+        obj.__wbg_ptr = ptr;
+        BinSetFinalization.register(obj, obj.__wbg_ptr, obj);
+        return obj;
+    }
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+        BinSetFinalization.unregister(this);
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_binset_free(ptr);
+    }
+    /**
+    */
+    constructor() {
+        const ret = wasm.binset_new();
+        return BinSet.__wrap(ret);
+    }
+    /**
+    * @param {Uint8Array} val
+    * @returns {boolean}
+    */
+    add(val) {
+        const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.binset_add(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+    * @param {Uint8Array} val
+    * @returns {boolean}
+    */
+    has(val) {
+        const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.binset_has(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+    * @param {Uint8Array} val
+    * @returns {boolean}
+    */
+    delete(val) {
+        const ptr0 = passArray8ToWasm0(val, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.binset_delete(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+    * @returns {number}
+    */
+    get size() {
+        const ret = wasm.binset_size(this.__wbg_ptr);
+        return ret >>> 0;
     }
 }
 

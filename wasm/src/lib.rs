@@ -2,6 +2,7 @@
 
 pub mod b64;
 pub mod bin_map;
+pub mod bin_set;
 pub mod u64bin;
 pub mod vbyte;
 
