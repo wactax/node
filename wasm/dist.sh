@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 set -ex
-_DIR=$(
+DIR=$(
   cd "$(dirname "$0")"
   pwd
 )
 git add -A
 git pull
 
-cd $_DIR/pkg
+cd $DIR/pkg
 jq '.name="@w5/wasm"' package.json | sponge package.json
 version=$(cat package.json | jq -r '.version')
 npm version patch
 
-cd $_DIR
+cd $DIR
 ./build.sh nodejs
 git add -u
 git commit -m "$version"
 
-cd $_DIR/pkg
+cd $DIR/pkg
 npm publish --access=public
 
 cd $DIR
