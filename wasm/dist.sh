@@ -8,7 +8,7 @@ git add -A
 git pull
 
 cd $_DIR/pkg
-jq '.name="@w5/wasm"' pkg/package.json | sponge pkg/package.json
+jq '.name="@w5/wasm"' package.json | sponge package.json
 version=$(cat package.json | jq -r '.version')
 npm version patch
 
@@ -19,7 +19,7 @@ git commit -m "$version"
 npm publish --access=public
 
 cd $_DIR/pkg
-jq '.name="@w5/wasm-vite"' pkg/package.json | sponge pkg/package.json
+jq '.name="@w5/wasm-vite"' package.json | sponge package.json
 sed -i '/function initSync(module)/,$d' pkg/_.js
 sed -i '/__wbg_init\./d' pkg/_.js
 cat ./_patch.js >>pkg/_.js
