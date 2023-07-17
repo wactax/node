@@ -1,5 +1,6 @@
 {
   "name": "@w5/wasm",
+  "type": "module",
   "version": "0.0.10",
   "main": "_.js",
   "repository": "https://github.com/wactax/node.git",

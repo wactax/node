@@ -1,6 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
+* @param {number} n
+* @returns {Uint8Array}
+*/
+export function u64Bin(n: number): Uint8Array;
+/**
+* @param {number} n
+* @returns {string}
+*/
+export function u64B64(n: number): string;
+/**
 * @param {Float64Array} vs
 * @returns {Uint8Array}
 */
@@ -20,16 +30,6 @@ export function b64VbyteE(vs: Float64Array): string;
 * @returns {Float64Array}
 */
 export function b64VbyteD(vs: string): Float64Array;
-/**
-* @param {number} n
-* @returns {Uint8Array}
-*/
-export function u64Bin(n: number): Uint8Array;
-/**
-* @param {number} n
-* @returns {string}
-*/
-export function u64B64(n: number): string;
 /**
 * @param {Uint8Array} bin
 * @returns {string}
@@ -97,6 +97,12 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
+  readonly __wbg_binset_free: (a: number) => void;
+  readonly binset_add: (a: number, b: number, c: number) => number;
+  readonly binset_has: (a: number, b: number, c: number) => number;
+  readonly binset_delete: (a: number, b: number, c: number) => number;
+  readonly u64Bin: (a: number, b: number) => void;
+  readonly u64B64: (a: number, b: number) => void;
   readonly vbyteE: (a: number, b: number, c: number) => void;
   readonly vbyteD: (a: number, b: number, c: number) => void;
   readonly b64VbyteE: (a: number, b: number, c: number) => void;
@@ -107,18 +113,12 @@ export interface InitOutput {
   readonly binmap_delete: (a: number, b: number, c: number) => number;
   readonly binmap_set: (a: number, b: number, c: number, d: number) => void;
   readonly binmap_get: (a: number, b: number, c: number) => number;
-  readonly u64Bin: (a: number, b: number) => void;
-  readonly u64B64: (a: number, b: number) => void;
   readonly b64E: (a: number, b: number, c: number) => void;
   readonly b64D: (a: number, b: number, c: number) => void;
-  readonly __wbg_binset_free: (a: number) => void;
-  readonly binset_new: () => number;
-  readonly binset_add: (a: number, b: number, c: number) => number;
-  readonly binset_has: (a: number, b: number, c: number) => number;
-  readonly binset_delete: (a: number, b: number, c: number) => number;
   readonly binset_size: (a: number) => number;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly binset_new: () => number;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
+  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
 }
