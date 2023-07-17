@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -ex
 _DIR=$(
   cd "$(dirname "$0")"
   pwd
