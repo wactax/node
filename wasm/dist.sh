@@ -21,7 +21,7 @@ cd $DIR/pkg
 npm publish --access=public
 
 cd $DIR
-./build.sh nodejs
+./build.sh
 
 cd $DIR/pkg
 jq '.name="@w5/vite"' package.json | sponge package.json
