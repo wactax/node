@@ -13,12 +13,17 @@ version=$(cat package.json | jq -r '.version')
 npm version patch
 
 cd $_DIR
-./build.sh
+./build.sh nodejs
 git add -u
 git commit -m "$version"
 
 cd $_DIR/pkg
 npm publish --access=public
+
+cd $DIR
+./build.sh nodejs
+
+cd $DIR/pkg
 jq '.name="@w5/vite"' package.json | sponge package.json
 sed -i '/function initSync(module)/,$d' _.js
 sed -i '/__wbg_init\./d' _.js

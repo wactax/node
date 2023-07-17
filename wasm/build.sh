@@ -9,7 +9,7 @@ set -ex
 
 cargo build --target wasm32-unknown-unknown --release
 rust_wasm=./target/wasm32-unknown-unknown/release/_.wasm
-wasm-bindgen $rust_wasm --out-dir pkg --target web --weak-refs
+wasm-bindgen $rust_wasm --out-dir pkg --target ${1-"web"} --weak-refs
 
 if ! [ -x "$(command -v wasm-opt)" ]; then
   cargo install wasm-opt
