@@ -1,7 +1,6 @@
 {
   "name": "@w5/wasm",
-  "type": "module",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "_.js",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/wasm",
