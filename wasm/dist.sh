@@ -20,10 +20,10 @@ npm publish --access=public
 
 cd $_DIR/pkg
 jq '.name="@w5/wasm-vite"' package.json | sponge package.json
-sed -i '/function initSync(module)/,$d' pkg/_.js
-sed -i '/__wbg_init\./d' pkg/_.js
-cat ./_patch.js >>pkg/_.js
-./patch.coffee
+sed -i '/function initSync(module)/,$d' _.js
+sed -i '/__wbg_init\./d' _.js
+cat ../_patch.js >>_.js
+../patch.coffee
 
 git add -u
 git commit -m "$version vite"
