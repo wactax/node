@@ -1,5 +1,5 @@
 < (li...)=>
   =>
     for i from li
-      i()
+      i?()
     return
