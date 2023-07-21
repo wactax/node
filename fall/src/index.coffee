@@ -1,5 +1,6 @@
 < (li...)=>
   =>
-    for i from li
-      i?()
+    li.map (func)=>
+      func()
+      return
     return
