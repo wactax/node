@@ -1,6 +1,6 @@
 {
-  "name": "@w5/vite",
-  "version": "0.0.28",
+  "name": "@w5/wasm",
+  "version": "0.0.29",
   "main": "_.js",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/wasm",
