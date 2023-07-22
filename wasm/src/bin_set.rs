@@ -1,5 +1,6 @@
 use std::collections::HashSet;
 
+use js_sys::Uint8Array;
 use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
@@ -14,6 +15,12 @@ impl BinSet {
     Self {
       set: HashSet::new(),
     }
+  }
+
+  pub fn clear(&mut self) -> Vec<Uint8Array> {
+    let r = self.set.iter().map(|i| i.as_ref().into()).collect();
+    self.set.clear();
+    r
   }
 
   pub fn add(&mut self, val: Box<[u8]>) -> bool {
