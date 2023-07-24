@@ -10,7 +10,7 @@ ROOT = uridir(import.meta)
 js_fp = join ROOT,'pkg/_.js'
 js = read(js_fp)
 
-js = js.replace('export function vbyteE','function _vbyteE')
+js = js.replace('export function vbyteE','export function _vbyteE')
 
 class_li = []
 for line from js.split '\n'

@@ -4,7 +4,7 @@ import wasm_mod from "./__bg.wasm?url";
 export const wrapArgsLi = (func)=>(...args)=>{
   var li = [];
   for(const i of args){
-    if Array.isArray(i) {
+    if(Array.isArray(i)) {
       li = li.concat(i);
     }else{
       li.push(i);
