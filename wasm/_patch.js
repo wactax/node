@@ -1,15 +1,19 @@
 import wasm_mod from "./__bg.wasm?url";
 
 
-export const vbyteE = (args...)=>{
-  if args.length == 1 {
-    args = args[0]
-    if(!Array.isArray(args)){
-      args = [args]
+export const wrapArgsLi = (func)=>(...args)=>{
+  var li = [];
+  for(const i of args){
+    if Array.isArray(i) {
+      li = li.concat(i);
+    }else{
+      li.push(i);
     }
   }
-  return _vbyteE(args)
-}
+  return func(li)
+};
+
+export const vbyteE = wrapArgsLi(_vbyteE);
 
 await (async () => {
 const imports = __wbg_get_imports();
