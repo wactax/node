@@ -25,3 +25,13 @@ pub fn b64VbyteE(vs: &[f64]) -> String {
 pub fn b64VbyteD(vs: &str) -> Result<Vec<f64>> {
   vbyteD(&URL_SAFE_NO_PAD.decode(vs)?)
 }
+
+#[wasm_bindgen]
+pub fn z85VbyteE(vs: &[f64]) -> String {
+  z85::encode(vbyteE(vs))
+}
+
+#[wasm_bindgen]
+pub fn z85VbyteD(vs: &str) -> Result<Vec<f64>> {
+  vbyteD(&z85::decode(vs)?)
+}
