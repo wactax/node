@@ -1,5 +1,9 @@
 > ./_try.js:_try
 
+ITER_CONF = {
+  limit:1e4
+}
+
 < (PG)=>
   Q = _try (sql,args)=>
     return await PG(sql,...args).values()
@@ -16,11 +20,24 @@
         new Proxy(
           {}
           get:(_,table)=>
-            (column, limit=5000)->
+            (column, conf={})->
+              {
+                where
+                limit
+              } = {
+                ...ITER_CONF
+                ...conf
+              }
+
               id = 0
+
+              suffix = "ORDER BY id LIMIT #{limit}"
+              if where
+                suffix = "AND #{where} " + suffix
+
               loop
                 li = await UNSAFE(
-                  "SELECT id,#{column} FROM #{schema}.#{table} WHERE id>#{id} ORDER BY id LIMIT #{limit}"
+                  "SELECT id,#{column} FROM #{schema}.#{table} WHERE id>#{id} #{suffix}"
                 )
                 len = li.length
                 if len
