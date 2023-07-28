@@ -35,9 +35,14 @@ ITER_CONF = {
               if where
                 suffix = "AND #{where} " + suffix
 
+              if column
+                column = 'id,'+column
+              else
+                column = 'id'
+
               loop
                 li = await UNSAFE(
-                  "SELECT id,#{column} FROM #{schema}.#{table} WHERE id>#{id} #{suffix}"
+                  "SELECT #{column} FROM #{schema}.#{table} WHERE id>#{id} #{suffix}"
                 )
                 len = li.length
                 if len
