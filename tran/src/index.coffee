@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> @w5/req > reqJson
+> @w5/req/reqJson
 
 
 {http_proxy} = process.env
