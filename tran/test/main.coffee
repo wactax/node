@@ -12,4 +12,4 @@ for to_lang from LI
     to_lang
     'en'
   )
-    console.log JSON.stringify(i)+', # '+to_lang
+    console.log JSON.stringify(i)+', // '+to_lang
