@@ -2,7 +2,7 @@
 
 < (val)=>
   val = val.trim()
-  same = val == hashval
+  same = val == hashval()
   if not same
     location.hash = val
   same
