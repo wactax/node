@@ -128,7 +128,6 @@ export default new Proxy(
           stream
         )
         # console.log 'get task li'
-        begin = +new Date()
         for [
           _ # stream_name
           li
