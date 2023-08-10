@@ -47,12 +47,12 @@ export default new Proxy(
         begin = + new Date()
         try
           r = await func(id,...msg)
+          ++ runed
+          cost += (new Date - begin)
         catch err
           console.error err, func, msg
           return
 
-        ++ runed
-        cost += (new Date - begin)
 
         if r == true
           pool xdel, task_id
