@@ -7,7 +7,7 @@
   ./stream
 
 do =>
-  {iaa:xadd} = Xadd
+  {test:xadd} = Xadd
   await xadd 1
   # xaddLi = XaddLi stream
   # await xadd(1, 'a','b','c')
