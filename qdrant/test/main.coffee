@@ -5,7 +5,12 @@
 
 console.log await Q.GET.collections()
 
-console.log await Q.POST.collections.clip.points {
+{points} = Q.POST.collections.clip
+console.log await points {
+  ids:[2,5]
+  with_payload: true
+}
+console.log await points {
   ids:[2,5]
   with_payload: true
 }
