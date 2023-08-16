@@ -29,8 +29,7 @@ func_proxy = (li, method)=>
       throw new Error(text)
       return
     get:(_,suffix)=>
-      li.push suffix
-      func_proxy(li, method)
+      func_proxy([...li, suffix], method)
   )
 
 export default new Proxy(

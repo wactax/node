@@ -30,7 +30,7 @@ output :
   },
   {
     id: 5,
-    payload: { day: 19489, h: 950, nsfw: false, w: 475 },
+    payload: { day: 19489, h: 4096, nsfw: false, w: 2048 },
     vector: null
   }
 ]
