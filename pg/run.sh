@@ -6,10 +6,6 @@ set -ex
 
 ./build.sh
 
-set -o allexport
-source .env
-set +o allexport
-
 if [ ! -n "$1" ]; then
   exec ./test/main.coffee | tee out.txt
 else
