@@ -25,7 +25,5 @@ process.exit()
 output :
 
 ```
-Xedis {}
-1
-done
+./out.txt
 ```
