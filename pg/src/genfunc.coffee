@@ -24,12 +24,13 @@ ITER_CONF = {
               {
                 where
                 limit
+                id
               } = {
                 ...ITER_CONF
                 ...conf
               }
 
-              id = 0
+              id = id or 0
 
               suffix = "ORDER BY id LIMIT #{limit}"
               if where
