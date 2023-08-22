@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> @w5/pg/PG.js > EXE Q
+> @w5/pg/APG.js > EXE Q
 
 {PostgresError} = Q
 
