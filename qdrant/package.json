@@ -14,5 +14,8 @@
   ],
   "devDependencies": {},
   "scripts": {},
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@w5/retry": "^0.0.1"
+  }
 }

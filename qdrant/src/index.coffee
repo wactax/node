@@ -1,5 +1,6 @@
 #!/usr/bin/env coffee
 
+> @w5/retry
 
 URL = process.env.QDRANT_HTTP + '/'
 
@@ -9,7 +10,7 @@ HEADERS.append("api-key", process.env.QDRANT__SERVICE__API_KEY)
 
 func_proxy = (li, method)=>
   new Proxy(
-    (body)=>
+    retry (body)=>
       url = URL + li.join('/')
       data = {
         method
