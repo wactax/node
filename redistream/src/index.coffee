@@ -41,14 +41,12 @@ export default new Proxy(
       # stop = 0
 
       runed = 0
-      cost = 0
 
       wrap = (task_id, func, id, msg)=>
         begin = + new Date()
         try
           r = await func(id,...msg)
           ++ runed
-          cost += (new Date - begin)
         catch err
           console.error err, func, msg
           return
@@ -66,18 +64,10 @@ export default new Proxy(
         if runed == 0
           return
 
-        n = block / (
+        cost = new Date - now
+        limit = block / (
           Math.max(cost,1)/runed
         )
-        if n > limit
-          if n > 9
-            limit = Math.round(
-              (limit*8+n)/9
-            )
-          else
-            ++limit
-        else if limit > 1
-          limit = Math.round limit/2
 
         if runed > 128
           runed /= 2
