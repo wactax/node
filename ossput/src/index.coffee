@@ -43,7 +43,7 @@ bind = ([url, Bucket, conf, seller])=>
         if --n
           continue
         else
-          console.error conf.endpoint, params.Key
+          console.error "@w5/ossput ERROR",conf, params.Key
           throw err
     console.log url+'/'+params.Key
     return
