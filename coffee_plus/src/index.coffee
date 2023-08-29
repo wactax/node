@@ -80,7 +80,7 @@ label = (code)=>
   li = []
   code = code.split('\n')
   if code[0] == '//!/usr/bin/env coffee'
-    li.push '#!/usr/bin/env -S node --loader=@w5/jsext --trace-uncaught --expose-gc --unhandled-rejections=strict --experimental-import-meta-resolve'
+    li.push '#!/usr/bin/env -S node --loader=@w5/jsext --trace-uncaught --expose-gc --unhandled-rejections=strict'
     code = code[1..]
   for line in code
     s = line.trimStart()
