@@ -30,9 +30,11 @@
             await args[0](...args[1..])
           catch err
             console.error(err)
-          resolve()
+          finally
+            resolve()
         if 0 == --n
           _done()
+        return
       return
     p
 
