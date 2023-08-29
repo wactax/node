@@ -16,9 +16,9 @@
     "lib/*"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.22.5",
-    "@babel/core": "^7.22.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.22.5"
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.11",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.11"
   },
   "scripts": {},
   "type": "module",
