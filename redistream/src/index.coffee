@@ -145,10 +145,11 @@ export default new Proxy(
         await pendclaim()
 
         diff = stop - new Date
+        console.log 'stream will stop after', Math.round(diff/36000)/100 + 'h'
         if diff < 0
+          console.log 'stream stop'
           await pool.done
           break
-        console.log 'stream will stop after', Math.round(diff/36000)/100 + 'h'
       await xconsumerclean(6048e5)
       return
   )

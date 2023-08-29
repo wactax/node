@@ -1,52 +1,46 @@
 > os > cpus
 
 < Pool = (max=cpus().length*2)=>
-  n = 0
+  ing = new Set
   todo = []
 
-  all = _done = undefined
-  _init_all = =>
-    all = new Promise (resolve)=>
-      _done = =>
-        all = undefined
-        resolve()
-        return
-
+  + done, all_done
+  _init_done = =>
+    done = new Promise (resolve)=>
+      all_done = resolve
+      return
+    return
 
   f = ->
-    args = [...arguments]
-    func = args[0]
-    p = new Promise (resolve)=>
-      todo.push [resolve,args]
+    todo.push [...arguments]
 
-    if n < max
-      if n == 0
-        _init_all()
-      ++n
-      setImmediate =>
+    if ing.size < max
+      if ing.size == 0
+        _init_done()
+
+      p = new Promise (resolve)=>
         while todo.length
-          [resolve,args] = todo.shift()
+          [func,args...] = todo.shift()
           try
-            await args[0](...args[1..])
+            await func(...args)
           catch err
-            console.error(err)
-          finally
-            resolve()
-        if 0 == --n
-          _done()
-        return
-      return
-    p
+            console.error func, args, err
 
+        ing.delete(p)
+        if ing.size == 0
+          all_done()
+
+        return
+
+      ing.add p
+    return
   Object.defineProperty(
     f
     'done'
     writeable:false
     get:=>
-      if n == 0
+      if ing.size == 0
         return
-      if not all
-        return
-      all
+      done
   )
   f

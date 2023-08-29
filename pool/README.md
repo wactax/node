@@ -35,13 +35,13 @@ output :
 done	 1
 6
 done	 2
+7
 done	 3
+8
 done	 4
+9
 done	 5
 done	 6
-7
-8
-9
 done	 7
 done	 8
 done	 9
