@@ -80,7 +80,8 @@ export default async (bucket) => {
 	}
 
 	for (var [k, v] of Object.entries(conf)) {
-		r.push((await OSS[k](bucket, v)).concat(k));
+    var li = await OSS[k](bucket, v);
+		li[0] && r.push(li.concat(k));
 	}
 	return r;
 };
