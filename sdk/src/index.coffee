@@ -12,22 +12,22 @@ dump = (args)=>
   ''
 
 
-HEADERS = {
-  'Content-Type':''
-}
 
 < (Throw)=>
   + sdkUrl
 
+  default_headers = {
+    'Content-Type':''
+  }
 
   call = (url, o)=>
     {headers} = o
     if headers
-      for [k,v] from Object.entries HEADERS
+      for [k,v] from Object.entries default_headers
         if k not of headers
           headers[k]=v
     else
-      o.headers = HEADERS
+      o.headers = default_headers
     try
       r = await fetch(sdkUrl+url,o)
     catch err
@@ -48,7 +48,7 @@ HEADERS = {
     return
 
   confLang = (lang)=>
-    HEADERS['Accept-Language'] = lang or ''
+    default_headers['Accept-Language'] = lang or ''
     return
 
   + opt
