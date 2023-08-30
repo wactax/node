@@ -30,12 +30,13 @@
           finally
             resolve()
 
-        ing.delete(p)
+        return
+      ing.add p
+      p.finally =>
+        ing.delete p
         if ing.size == 0
           all_done()
         return
-
-      ing.add p
       return
 
     return r

@@ -3,7 +3,7 @@
 > @w5/pool > Pool
   @w5/sleep:sleep
 
-pool = Pool 2
+pool = Pool 5
 
 job = (n)=>
   console.log n
