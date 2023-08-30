@@ -7,7 +7,7 @@
 
 export default proxy = {}
 if https_proxy
-  console.log "use https_proxy",https_proxy
+  console.log "@w5/req use https_proxy",https_proxy
   Agent = agent.HttpsProxyAgent
   global.fetch = fetch
   proxy.agent = new Agent(https_proxy)

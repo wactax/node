@@ -2,12 +2,24 @@
 
 > @aws-sdk/client-s3 > S3Client
   @aws-sdk/lib-storage > Upload
+  @aws-sdk/node-http-handler > NodeHttpHandler
+  https-proxy-agent:agent
   util > promisify
   ./conf.js
   assert > strict:assert
 
+{https_proxy} = process.env
+if https_proxy
+  console.log "@w5/ossput use https_proxy",https_proxy
+  requestHandler = new NodeHttpHandler({
+    httpsAgent: new agent.HttpsProxyAgent(https_proxy)
+  })
+
 bind = ([url, Bucket, conf, seller])=>
   conf.region = conf.region or 'us-east-1'
+  if requestHandler
+    conf.requestHandler = requestHandler
+
   client = new S3Client conf
 
   (params, body)=>
