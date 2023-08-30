@@ -29,10 +29,11 @@ export default new Proxy(
       max_retry=6
     )=>
 
-      pool = Pool Math.max(
+      pool_size = Math.max(
         Math.round(cpus().length*task_pre_cpu),1
       )
-      limit = 1
+      pool = Pool pool_size
+      limit = pool_size + 1
 
       xdel = redis.xackdel stream, GROUP
       xconsumerclean = redis.xconsumerclean stream, GROUP
