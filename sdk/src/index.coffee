@@ -49,7 +49,7 @@ dump = (args)=>
     HEADERS['Accept-Language'] = lang or ''
     return
 
-  + _headers
+  + opt
 
   proxy = (prefix)=>
     new Proxy(
@@ -61,19 +61,19 @@ dump = (args)=>
         proxy p+key
 
       set: (_, key, val)=>
-        if not _headers
-          _headers = {}
-        _headers[key] = val
+        if not opt
+          opt = {}
+        opt[key] = val
         true
 
       apply:(_,self,args)=>
-        if _headers
-          h = _headers
-          _headers = undefined
+        if opt
+          h = opt
+          opt = undefined
         o = {
           credentials: 'include'
-          headers: h
           method: 'POST'
+          ...opt
         }
         if args.length
           o.body = dump args
