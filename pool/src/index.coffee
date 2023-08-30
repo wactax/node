@@ -1,7 +1,7 @@
 > os > cpus
 
 < Pool = (max=cpus().length*2)=>
-  ing = new Set
+  ing = 0
   todo = []
 
   + done, all_done
@@ -16,9 +16,10 @@
       todo.push [resolve,...arguments]
       return
 
-    if ing.size < max # 不到 max 不阻塞
-      if ing.size == 0
+    if ing < max # 不到 max 不阻塞
+      if ing == 0
         _init_done()
+      ++ing
 
       p = do =>
         while todo.length
@@ -31,10 +32,9 @@
             resolve()
 
         return
-      ing.add p
       p.finally =>
-        ing.delete p
-        if ing.size == 0
+        --ing
+        if ing == 0
           all_done()
         return
       return
@@ -43,10 +43,21 @@
 
   Object.defineProperty(
     f
+    'size'
+    writeable:false
+    get:=>
+      max
+    set:(val)=>
+      max = Math.max(1, val)
+      return
+  )
+
+  Object.defineProperty(
+    f
     'done'
     writeable:false
     get:=>
-      if ing.size == 0
+      if ing == 0
         return
       done
   )
