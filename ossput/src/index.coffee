@@ -2,7 +2,7 @@
 
 > @aws-sdk/client-s3 > S3Client
   @aws-sdk/lib-storage > Upload
-  @aws-sdk/node-http-handler > NodeHttpHandler
+  @smithy/node-http-handler > NodeHttpHandler
   https-proxy-agent:agent
   util > promisify
   ./conf.js
