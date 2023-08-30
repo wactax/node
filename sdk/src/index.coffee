@@ -11,12 +11,14 @@ dump = (args)=>
     return JSON.stringify args
   ''
 
+
+HEADERS = {
+  'Content-Type':''
+}
+
 < (Throw)=>
   + sdkUrl
 
-  HEADERS = {
-    'Content-Type':''
-  }
 
   call = (url, o)=>
     {headers} = o
@@ -67,14 +69,13 @@ dump = (args)=>
         true
 
       apply:(_,self,args)=>
-        if opt
-          h = opt
-          opt = undefined
         o = {
           credentials: 'include'
           method: 'POST'
-          ...opt
         }
+        if opt
+          Object.assign o, opt
+          opt = undefined
         if args.length
           o.body = dump args
         call prefix, o
