@@ -28,12 +28,11 @@ export default new Proxy(
       block=3e5
       max_retry=6
     )=>
-      pool_max = Math.max(
+
+      pool = Pool Math.max(
         Math.round(cpus().length*task_pre_cpu),1
       )
       limit = 1
-      pool_size = 1
-      pool = Pool pool_size
 
       xdel = redis.xackdel stream, GROUP
       xconsumerclean = redis.xconsumerclean stream, GROUP
@@ -64,10 +63,6 @@ export default new Proxy(
         if runed == 0
           return
 
-        if pool_size < pool_max
-          if limit > pool_size
-            await pool.done
-
         now = new Date
         cost = now - pre_time
         pre_time = now
@@ -83,10 +78,6 @@ export default new Proxy(
             1
           )
         )
-
-        if (pool_size < pool_max) and (limit > pool_size)
-          await pool.done
-          pool = Pool Math.min pool_max, limit
 
         runed = 0
         return
