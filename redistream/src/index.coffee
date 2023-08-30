@@ -66,7 +66,6 @@ export default new Proxy(
 
         now = new Date
         cost = now - pre_time
-        pre_time = now
 
         limit = Math.min(
           limit + 9
@@ -80,7 +79,9 @@ export default new Proxy(
           )
         )
 
-        runed = 0
+        if runed > pool_size
+          pre_time = now - cost/2
+          runed = runed/2
         return
 
       xpendclaim = XPENDCLAIM(
