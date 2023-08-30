@@ -10,7 +10,7 @@
 > @w5/pool > Pool
   @w5/sleep:sleep
 
-pool = Pool 2
+pool = Pool 5
 
 job = (n)=>
   console.log n
@@ -29,20 +29,20 @@ output :
 ```
 1
 2
-done	 1
 3
-done	 2
-done	 3
 4
 5
-done	 4
+done	 1
 6
+done	 2
+done	 3
+done	 4
 done	 5
 done	 6
 7
 8
-done	 7
 9
+done	 7
 done	 8
 done	 9
 ```

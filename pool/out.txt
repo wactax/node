@@ -13,3 +13,6 @@ done	 6
 7
 8
 9
+done	 7
+done	 8
+done	 9
