@@ -3,11 +3,11 @@
 > @w5/pool > Pool
   @w5/sleep:sleep
 
-pool = Pool 5
+pool = Pool 2
 
 job = (n)=>
   console.log n
-  await sleep 100*n
+  await sleep 1000*n
   console.log 'done\t',n
 
 n = 0

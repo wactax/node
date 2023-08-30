@@ -12,28 +12,34 @@
     return
 
   f = ->
-    todo.push [...arguments]
+    r = new Promise (resolve)=>
+      todo.push [resolve,...arguments]
+      return
 
-    if ing.size < max
+    if ing.size < max # 不到 max 不阻塞
       if ing.size == 0
         _init_done()
 
-      p = new Promise (resolve)=>
+      p = do =>
         while todo.length
-          [func,args...] = todo.shift()
+          [resolve,func,args...] = todo.shift()
           try
             await func(...args)
           catch err
             console.error func, args, err
+          finally
+            resolve()
 
         ing.delete(p)
         if ing.size == 0
           all_done()
-
         return
 
       ing.add p
-    return
+      return
+
+    return r
+
   Object.defineProperty(
     f
     'done'
