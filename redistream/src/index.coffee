@@ -33,7 +33,7 @@ export default new Proxy(
         Math.round(cpus().length*task_pre_cpu),1
       )
       pool = Pool 1 # 第一个任务尺寸为1，避免大模型onnx编译并发消耗太多内存
-      limit = 1
+      limit = 2
 
       xdel = redis.xackdel stream, GROUP
       xconsumerclean = redis.xconsumerclean stream, GROUP
