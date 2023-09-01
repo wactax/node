@@ -23,6 +23,10 @@ impl BinMap {
     self.0.len()
   }
 
+  pub fn has(&mut self, key: &[u8]) -> bool {
+    self.0.contains_key(key)
+  }
+
   pub fn delete(&mut self, key: &[u8]) -> bool {
     self.0.remove(key).is_some()
   }
