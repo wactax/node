@@ -14,6 +14,10 @@ impl BinMap {
     Self(HashMap::new())
   }
 
+  pub fn clear(&mut self) {
+    self.0.clear()
+  }
+
   #[wasm_bindgen(getter)]
   pub fn size(&self) -> usize {
     self.0.len()
