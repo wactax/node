@@ -20,3 +20,11 @@ pub fn u64Bin(n: f64) -> Box<[u8]> {
 pub fn u64B64(n: f64) -> String {
   URL_SAFE_NO_PAD.encode(&u64Bin(n))
 }
+
+#[wasm_bindgen]
+pub fn binU64(bin: &[u8]) -> f64 {
+  let bin = bin.as_ref();
+  let mut b = [0u8; 8];
+  b[..bin.len()].copy_from_slice(bin);
+  u64::from_le_bytes(b) as _
+}

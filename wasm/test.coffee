@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> ./pkg/_ > BinMap b64VbyteD b64VbyteE u64B64 BinSet
+> ./pkg/_ > BinMap b64VbyteD b64VbyteE u64B64 BinSet binU64 u64Bin
 
 console.log u64B64 12345
 
@@ -11,6 +11,13 @@ testVbyte = =>
   return
 
 # testVbyte()
+
+testBinU64 = =>
+  bin = u64Bin 9876543210
+  console.log binU64 bin
+  return
+
+testBinU64()
 
 testBinMap = =>
   map = new BinMap
@@ -32,7 +39,7 @@ testBinSet = =>
   console.log set.size
   return
 
-testBinSet()
+# testBinSet()
 
   # set = new BinSet
   #
