@@ -42,8 +42,8 @@ dump = (args)=>
     return
 
   init = (url,lang)=>
-    confLang lang
     sdkUrl = url
+    confLang lang
     return
 
   confLang = (lang)=>
