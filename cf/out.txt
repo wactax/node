@@ -18,3 +18,8 @@ settings ssl strict
 user0.cf
 settings ssl strict
 user0.gq
+settings ssl strict
+xxai.art
+settings ssl strict
+xxai.eu.org
+settings ssl strict
