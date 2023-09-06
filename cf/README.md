@@ -18,6 +18,7 @@ for i from await cf.GET()
     settings
   } = Zone(id)
   await settings.ssl 'strict'
+  break
 ```
 
 output :
@@ -25,27 +26,5 @@ output :
 ```
 use https_proxy http://127.0.0.1:7890
 5ok.pw
-settings ssl strict
-i-01.eu.org
-settings ssl strict
-law0.cf
-settings ssl strict
-law0.gq
-settings ssl strict
-ok0.pw
-settings ssl strict
-rmw0.tk
-settings ssl strict
-rmw.link
-settings ssl strict
-u-01.eu.org
-settings ssl strict
-user0.cf
-settings ssl strict
-user0.gq
-settings ssl strict
-xxai.art
-settings ssl strict
-xxai.eu.org
 settings ssl strict
 ```

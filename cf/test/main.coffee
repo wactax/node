@@ -11,3 +11,4 @@ for i from await cf.GET()
     settings
   } = Zone(id)
   await settings.ssl 'strict'
+  break

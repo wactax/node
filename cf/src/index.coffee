@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
-> @w5/req/proxy
-  @w5/req/reqTxt
+> @w5/req/proxy.js
+  @w5/req/reqTxt.js
 
 {CLOUDFLARE_KEY,CLOUDFLARE_EMAIL} = process.env
 
