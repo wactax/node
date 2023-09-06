@@ -7,8 +7,8 @@
   util > promisify
   ./conf.js
   assert > strict:assert
-
-{https_proxy} = process.env
+{env} = process
+{https_proxy} = env
 if https_proxy
   console.log "@w5/ossput use https_proxy",https_proxy
   requestHandler = new NodeHttpHandler({
@@ -61,7 +61,7 @@ bind = ([url, Bucket, conf, seller])=>
     return
 
 put = (args...)=>
-  bucket = process.env.OSSPUT_BUCKET
+  bucket = env.OSSPUT_BUCKET
   assert (!!bucket),'NO ENV OSSPUT_BUCKET'
   # 从环境变量加载配置
   li = (await conf(bucket)).map bind
