@@ -1,6 +1,6 @@
 {
   "name": "@w5/redistream",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/redistream",
   "author": "i@wac.tax",
@@ -23,6 +23,6 @@
     "@w5/pg": "^0.0.46",
     "@w5/pool": "^0.0.6",
     "@w5/redis_lua": "^0.0.14",
-    "msgpackr": "^1.9.7"
+    "msgpackr": "^1.9.8"
   }
 }
