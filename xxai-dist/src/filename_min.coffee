@@ -34,6 +34,8 @@ PUBLIC = join(
 export default =>
   IGNORE = new Set()
   await mJs(DIST)
+  if not env.OSSPUT_BUCKET
+    return
 
   css_js = new Map()
   to_replace = []
@@ -119,25 +121,24 @@ export default =>
     await unlink fp
     return
 
-  if env.OSSPUT_BUCKET
 
-    NOT_UPLOAD = new Set(
-      (await DB(table).where({uploaded:false}).select('id')).map(
-        ({id})=>id
-      )
+  NOT_UPLOAD = new Set(
+    (await DB(table).where({uploaded:false}).select('id')).map(
+      ({id})=>id
     )
+  )
 
-    pool = Pool 64
-    for i,p in to_replace
-      fp = join DIST, i
-      id = ID[p]
-      table = tableByExt i
+  pool = Pool 64
+  for i,p in to_replace
+    fp = join DIST, i
+    id = ID[p]
+    table = tableByExt i
 
-      if NOT_UPLOAD.has id
-        await pool upload, table, id, fp
-      else
-        await unlink fp
-    await pool.done
+    if NOT_UPLOAD.has id
+      await pool upload, table, id, fp
+    else
+      await unlink fp
+  await pool.done
   return
 #process.exit()
 
