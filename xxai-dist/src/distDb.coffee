@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-> ./env > PWD
+> ./env.js > ROOT
   path > join
   knex
   @w5/u8 > u8eq
@@ -9,9 +9,10 @@ DB = knex {
   client:  'better-sqlite3'
   useNullAsDefault: true
   connection: {
-    filename: join PWD, 'dist.public.db'
+    filename: join ROOT, '.dist.public.db'
   }
 }
+
 TABLE = 'fp_hash'
 
 if not await DB.schema.hasTable TABLE
