@@ -1,2 +1,2 @@
-> ./filename_min
+> ./filename_min.js
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env coffee
-> ./env > ROOT
+> ./env.js > ROOT
   knex
   path > join
 

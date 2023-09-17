@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
-> ./mJs
-  ./uploadDb > DB tableByExt
+> ./mJs.js
+  ./uploadDb.js > DB tableByExt
   @w5/blake3/stream.mjs
   @w5/mime
   @w5/ossput:put
@@ -13,7 +13,7 @@
   fs > createReadStream
   fs/promises > writeFile opendir unlink
   path > join dirname
-  ./env > ROOT
+  ./env.js > ROOT
 
 BFILE = BaseX '!$-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
 encode = (n)=>
