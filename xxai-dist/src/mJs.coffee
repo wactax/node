@@ -42,13 +42,17 @@
     if pos < 0
       continue
     ext = i.slice(pos+1)
-    if ['htm','js'].includes(ext)
-      js_fp = join DIST,i
-      js = read js_fp
-      js_new = js.replaceAll('"./'+m_js_name+'"','"./'+out_name+'"')
-      if js!=js_new
-        write(
-          js_fp
-          js_new
-        )
+    switch ext
+      when 'js','htm'
+        js_fp = join DIST,i
+        js = read js_fp
+        if ext == 'js'
+          js_new = js.replaceAll('"./'+m_js_name+'"','"./'+out_name+'"')
+        else
+          js_new = js.replaceAll('/'+m_js_name+'>','/'+out_name+'>')
+        if js!=js_new
+          write(
+            js_fp
+            js_new
+          )
   return
