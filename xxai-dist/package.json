@@ -1,6 +1,6 @@
 {
   "name": "@w5/xxai-dist",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/xxai-dist",
   "author": "i@wac.tax",
@@ -26,6 +26,7 @@
     "@w5/read": "^0.0.1",
     "@w5/uridir": "^0.0.1",
     "@w5/write": "^0.0.1",
+    "better-sqlite3": "^8.6.0",
     "knex": "^2.5.1"
   }
 }
