@@ -1,9 +1,8 @@
 > ./filename_min.js:filename_min
-  ./uploadDb.js
+  ./indexPug.js
 
 await filename_min()
-
-await uploadDb()
+await indexPug()
 
 process.exit()
 
