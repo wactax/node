@@ -30,6 +30,8 @@ hack coffeescript
 } = process.env
 
 export default =>
+  if not OSSPUT_BUCKET
+    return
   js = coffeescript.compile(
     read(
       join SH,'index.coffee'
