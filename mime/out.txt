@@ -1,0 +1,3 @@
+text/javascript
+text/css
+text/html
