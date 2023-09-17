@@ -15,7 +15,6 @@
   path > join dirname
   ./env > ROOT
 
-ROOT = process.cwd()
 BFILE = BaseX '!$-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
 encode = (n)=>
   bin = Buffer.allocUnsafe 6
