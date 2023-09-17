@@ -13,7 +13,7 @@
   fs > createReadStream
   fs/promises > writeFile opendir unlink
   path > join dirname
-  ./env.js > ROOT
+  ./env.js > ROOT DIST
 
 {env} = process
 
@@ -25,8 +25,6 @@ encode = (n)=>
     if i!=0
       break
   BFILE.encode bin[pos..]
-
-DIST = join ROOT, 'dist'
 
 PUBLIC = join(
   ROOT
