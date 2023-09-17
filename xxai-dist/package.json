@@ -1,8 +1,8 @@
 {
-  "name": "@w5/vite-dist",
-  "version": "0.0.2",
+  "name": "@w5/xxai-dist",
+  "version": "0.0.1",
   "repository": "https://github.com/wactax/node.git",
-  "homepage": "https://github.com/wactax/node/tree/main/vite-dist",
+  "homepage": "https://github.com/wactax/node/tree/main/xxai-dist",
   "author": "i@wac.tax",
   "license": "Apache-2.0",
   "bin": {
