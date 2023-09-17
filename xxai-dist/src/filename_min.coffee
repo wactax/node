@@ -15,6 +15,8 @@
   path > join dirname
   ./env.js > ROOT
 
+{env} = process
+
 BFILE = BaseX '!$-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
 encode = (n)=>
   bin = Buffer.allocUnsafe 6
