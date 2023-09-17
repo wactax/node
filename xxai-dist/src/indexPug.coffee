@@ -25,7 +25,7 @@ hack coffeescript
 {
   CDN
   CLOUDFLARE_KEY
-  CLOUDFLARE_CACHE_ORIGIN
+  SITE
   OSSPUT_BUCKET
 } = process.env
 
@@ -92,8 +92,8 @@ export default =>
         url = cdn+fp
         n = 0
         headers = {}
-        if CLOUDFLARE_CACHE_ORIGIN
-          headers.Origin = "https://"+CLOUDFLARE_CACHE_ORIGIN
+        if SITE
+          headers.Origin = "https://"+SITE
         loop
           console.log "清理cloudflare缓存 ， 第 #{++n} 次"
           # Why after purge_cache , the data keep old when with origin https://community.cloudflare.com/t/why-after-purge-cache-the-data-keep-old-when-with-origin/553911/4

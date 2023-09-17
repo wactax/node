@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 
 > ./distDb.js > dbExist
+  ./env.js > DIST
   @w5/ossput:put
   @w5/cf
   @w5/pool > Pool
@@ -9,7 +10,6 @@
   path > join
   fs > createReadStream
   @w5/mime
-  ./env.js > DIST
 
 {env} = process
 for i from 'OSSPUT_BUCKET BACKBLAZE_url'.split(' ')
