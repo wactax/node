@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
-> ./env.coffee > ROOT DIST
-  ./distDb.coffee > dbExist
+> ./env.js > ROOT DIST
+  ./distDb.js > dbExist
   @w5/blake3 > blake3Hash
   @w5/cf
   @w5/coffee_plus:hack
