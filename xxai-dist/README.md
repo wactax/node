@@ -7,7 +7,7 @@
 ```coffee
 #!/usr/bin/env coffee
 
-> @w5/xxai-dist
+# > @w5/xxai-dist:
 #   @w5/uridir
 #   path > join
 
