@@ -1,4 +1,2 @@
-> @w5/walk
+> ./filename_min
 
-< (dir)=>
-  dir
