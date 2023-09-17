@@ -66,7 +66,7 @@ export default async (bucket, prefix) => {
 		r = [];
 
 	for (var [k, v] of Object.entries(env)) {
-    if !k.startsWith(prefix) {
+    if(!k.startsWith(prefix)){
       continue
     }
     k = k.slice(prefix.length)
