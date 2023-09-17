@@ -12,15 +12,15 @@
   @w5/mime
 
 export default =>
-  {env} = process
-  for i from 'OSSPUT_BUCKET BACKBLAZE_url'.split(' ')
-    env[i] = env['SITE_'+i]
-
-  ossputReload()
   {
     SITE
     CLOUDFLARE_KEY
-  } = env
+    SITE_OSSPUT_BUCKET
+  } = process.env
+  if not SITE_OSSPUT_BUCKET
+    return
+
+  ossputReload('SITE_')
 
   SITE_URL = 'https://'+SITE+'/'
 

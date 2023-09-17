@@ -62,11 +62,13 @@ bind = ([url, Bucket, conf, seller])=>
     console.log url+'/'+params.Key
     return
 
+PREFIX = ''
+
 put = _put = (args...)=>
-  bucket = env.OSSPUT_BUCKET
+  bucket = env[PREFIX+'OSSPUT_BUCKET']
   assert (!!bucket),'NO ENV OSSPUT_BUCKET'
   # 从环境变量加载配置
-  li = (await conf(bucket)).map bind
+  li = (await conf(bucket, PREFIX)).map bind
 
   put = (Key, body, contentType)=>
     o = {
@@ -83,7 +85,8 @@ put = _put = (args...)=>
 
   put(...args)
 
-< reload = =>
+< reload = (prefix)=>
+  PREFIX = prefix
   put = _put
   return
 

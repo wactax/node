@@ -60,12 +60,16 @@ const OSS = {
 	},
 };
 
-export default async (bucket) => {
+export default async (bucket, prefix) => {
 	const { env } = process,
 		conf = {},
 		r = [];
 
 	for (var [k, v] of Object.entries(env)) {
+    if !k.startsWith(prefix) {
+      continue
+    }
+    k = k.slice(prefix.length)
 		var pos = k.indexOf("_");
 		if (~pos) {
 			var key = k.slice(0, pos);
