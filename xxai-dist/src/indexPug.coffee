@@ -7,7 +7,7 @@
   @w5/coffee_plus:hack
   @w5/ossput:put
   @w5/read
-  @w5/req/reqTxt
+  @w5/req/reqTxt.js
   @w5/sleep
   @w5/utf8/utf8e.js
   @w5/write
