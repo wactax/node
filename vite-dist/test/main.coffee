@@ -6,4 +6,4 @@
 
 # ROOT = uridir(import.meta)
 
-console.log await vite-dist 123
+# console.log await vite-dist 123
