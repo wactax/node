@@ -2,7 +2,7 @@
 
 > ./distDb.js > dbExist
   ./env.js > DIST
-  @w5/ossput:put
+  @w5/ossput:put > reload:ossputReload
   @w5/cf
   @w5/pool > Pool
   @w5/walk > walkRel
@@ -16,6 +16,7 @@ export default =>
   for i from 'OSSPUT_BUCKET BACKBLAZE_url'.split(' ')
     env[i] = env['SITE_'+i]
 
+  ossputReload()
   {
     SITE
     CLOUDFLARE_KEY
