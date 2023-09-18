@@ -1,6 +1,6 @@
 #!/usr/bin/env coffee
 
-import {tranText} from '@w5/tran'
+import {tranTxt} from '@w5/tran'
 
 LI = "JA TH KO HI UK AR TR VI PL NL PT IT ES DE FR RU".split(' ')
 
