@@ -9,10 +9,10 @@
 
 import {tranTxt} from '@w5/tran'
 
-LI = "JA TH KO HI UK AR TR VI PL NL PT IT ES DE FR RU".split(' ')
+LI = "ja th ko hi uk ar tr vi pl nl pt it es de fr ru".split(' ')
 
 for to_lang from LI
-  for await i from tranText(
+  for await i from tranTxt(
     [
       'a image of #'
     ]
