@@ -1,1 +1,1 @@
-{"name":"@w5/binmap","version":"0.0.1","main":"_.js","license":"Apache-2.0","repository":"https://github.com/wactax/node.git","homepage":"https://github.com/wactax/node/tree/main/binmap","author":"i@wac.tax","exports":{".":"./_.js","./*":"./*"},"files":["*.wasm","*.ts"]}
+{"name":"@w5/binmap","version":"0.0.2","main":"_.js","license":"Apache-2.0","repository":"https://github.com/wactax/node.git","homepage":"https://github.com/wactax/node/tree/main/binmap","author":"i@wac.tax","exports":{".":"./_.js","./*":"./*"},"files":["*.wasm","*.ts"]}
