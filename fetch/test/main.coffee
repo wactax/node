@@ -6,4 +6,3 @@
 
 # ROOT = uridir(import.meta)
 
-console.log await fetch 123
