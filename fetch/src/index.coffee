@@ -1,6 +1,5 @@
 #!/usr/bin/env coffee
 
-
 < (args...)=>
   r = await fetch ...args
   switch r.status
