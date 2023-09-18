@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
 > ./src/zh
-  @w5/tran > tranText
+  @w5/tran > tranTxt
   @w5/write
 
 cap = (s)=>
