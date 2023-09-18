@@ -23,12 +23,13 @@ _tran = (url, q_li, to_lang, from_lang)=>
     },
   )
 
-LIMIT = 2000
+LIMIT = 2000 # 字符长度限制
 
 tran = (url, q_li, to_lang, from_lang)->
   if not q_li.length
     return []
 
+  # 字符串长度列表
   li = []
   for i from q_li
     li.push i.length
