@@ -1,15 +1,11 @@
 #!/usr/bin/env coffee
 
-> @w5/req/reqJson
+> @w5/req/proxy
+  @w5/req/reqJson
 
-
-{http_proxy} = process.env
-
-OPTION = {}
-if http_proxy
-  Agent = (await import('http-proxy-agent')).default
-  global.fetch = (await import('node-fetch')).default
-  OPTION.agent = Agent(http_proxy)
+OPTION = {
+  ...proxy
+}
 
 _tran = (url, q_li, to_lang, from_lang)=>
   url += "&tl=#{to_lang}"
@@ -60,8 +56,8 @@ tran = (url, q_li, to_lang, from_lang)->
 
 API = "https://translate.google.com/translate_a/t?client=gtx&sr=1&v=1.0"
 
-export tranHtml = tran.bind tran,API + '&format=html'
+export tranHtm = tran.bind tran,API + '&format=html'
 
-export tranText = tran.bind tran,API
+export tranTxt = tran.bind tran,API
 
 
