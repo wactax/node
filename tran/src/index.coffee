@@ -1,7 +1,7 @@
 #!/usr/bin/env coffee
 
-> @w5/req/proxy
-  @w5/req/reqJson
+> @w5/req/proxy.js
+  @w5/req/reqJson.js
 
 OPTION = {
   ...proxy
