@@ -1,0 +1,19 @@
+use https_proxy http://127.0.0.1:7890
+"測試 #", // zh-TW
+"test #", // en
+"テスト ＃", // ja
+"ทดสอบ #", // th
+"시험 #", // ko
+"परीक्षा #", // hi
+"тест #", // uk
+"امتحان #", // ar
+"Ölçek #", // tr
+"Bài kiểm tra #", // vi
+"test #", // pl
+"test #", // nl
+"teste #", // pt
+"test #", // it
+"prueba #", // es
+"prüfen #", // de
+"test #", // fr
+"тест #", // ru

@@ -1,64 +1,15 @@
 #!/usr/bin/env coffee
 
-> @w5/req/proxy.js
-  @w5/req/reqJson.js
+> ./google.js > tranHtm:_tranHtm tranTxt:_tranTxt
+  @w5/j2f
 
-OPTION = {
-  ...proxy
-}
-
-_tran = (url, q_li, to_lang, from_lang)=>
-  url += "&tl=#{to_lang}"
-  if from_lang
-      url+="&sl=#{from_lang}"
-  reqJson(
-    url
-    {
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-      body: q_li.map((i) => "q=" + encodeURIComponent(i)).join("&"),
-      method: "POST",
-      ...OPTION
-    },
-  )
-
-LIMIT = 2000 # 字符长度限制
-
-tran = (url, q_li, to_lang, from_lang)->
-  if not q_li.length
-    return []
-
-  # 字符串长度列表
-  li = []
-  for i from q_li
-    li.push i.length
-  li.push LIMIT
-
-  pre = 0
-  c = li[0]
-
-  t = []
-
-  t_tran = =>
-    _tran(url, t, to_lang, from_lang)
-
-  for i,pos in q_li
-    t.push i
-    next = li[pos+1]
-    c += next
-    if c > LIMIT
-      c = next
-      yield from await t_tran()
-      t = []
-
-  return
+wrap = (func)=>
+  (q_li, to_lang, from_lang)=>
+    if from_lang == 'zh' and to_lang == 'zh-TW'
+      return q_li.map (i)=>j2f(i)
+    return func(q_li, to_lang, from_lang)
 
 
-API = "https://translate.google.com/translate_a/t?client=gtx&sr=1&v=1.0"
+export tranHtm = wrap _tranHtm
 
-export tranHtm = tran.bind tran,API + '&format=html'
-
-export tranTxt = tran.bind tran,API
-
-
+export tranTxt = wrap _tranTxt
