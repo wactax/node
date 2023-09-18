@@ -3,7 +3,7 @@
 > ./j2f.js
   @w5/lang
   ./defrag.js
-  @w5/tran > tranHtml
+  @w5/tran > tranHtm
   @w5/u8 > u8merge
   @w5/utf8/utf8e.js
   @w5/sleep
