@@ -18,7 +18,7 @@ https://chat.openai.com/chat/9ba1710a-0ecd-4af2-991a-2fa9edf7f359
 ###
 
 # 定义 merge 函数，用于合并代码块和注释块
-merge = (txt) =>
+export default merge = (txt) =>
   li = txt.split('\n')
   # 初始化变量
   + is_code_block, is_comment_block
@@ -66,8 +66,6 @@ merge = (txt) =>
   # 返回合并后的数组及未合并行的行号数组
   return [merged, unmerged_line_numbers]
 
-< default merge
-
 if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
   test_input = [
     'Line 1',
@@ -84,7 +82,7 @@ if process.argv[1] == decodeURI (new URL(import.meta.url)).pathname
     'Line 3'
   ]
 
-  result = merge(test_input)
+  result = merge(test_input.join('\n'))
 
   console.log('合并后的数组：')
   console.log(result[0])
