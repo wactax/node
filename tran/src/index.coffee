@@ -9,7 +9,6 @@ wrap = (func)=>
       return q_li.map (i)=>j2f(i)
     return func(q_li, to_lang, from_lang)
 
-
 export tranHtm = wrap _tranHtm
 
 export tranTxt = wrap _tranTxt
