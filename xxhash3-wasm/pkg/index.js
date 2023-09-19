@@ -4,7 +4,7 @@ const encoder = new TextEncoder(),
   encode = encoder.encode.bind(encoder),
   wrap = (func)=>{
     return (txt)=>{
-      if (typeof txt  === 'string' || txt instanceof String){
+      if (txt.constructor === String){
         txt = encode(txt);
       }
       return func(txt)
