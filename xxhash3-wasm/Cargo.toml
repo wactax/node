@@ -7,8 +7,8 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-wasm-bindgen = "0.2.84"
-xxhash-rust = {version="0.8.6",features=["xxh3"]}
+wasm-bindgen = "0.2.87"
+xxhash-rust = {version="0.8.7",features=["xxh3"]}
 
 [profile.release]
 lto = true
