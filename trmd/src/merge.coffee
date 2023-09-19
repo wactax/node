@@ -2,6 +2,8 @@
 
 ###
 
+因为代码和html注释无需翻译，把代码和html注释合并为一行
+
 # 使用 chatgpt gpt4 编码
 https://chat.openai.com/chat/9ba1710a-0ecd-4af2-991a-2fa9edf7f359
 

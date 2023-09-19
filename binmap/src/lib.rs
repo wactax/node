@@ -19,6 +19,10 @@ impl BinMap {
     self.0.insert(Box::from(key), Box::from(val));
   }
 
+  pub fn has(&self, key: &[u8]) -> bool {
+    self.0.contains_key(key)
+  }
+
   pub fn get(&self, key: &[u8]) -> Option<Box<[u8]>> {
     match self.0.get(key) {
       Some(r) => Some(r.clone()),

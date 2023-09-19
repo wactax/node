@@ -14,6 +14,11 @@ export class BinMap {
   set(key: Uint8Array, val: Uint8Array): void;
 /**
 * @param {Uint8Array} key
+* @returns {boolean}
+*/
+  has(key: Uint8Array): boolean;
+/**
+* @param {Uint8Array} key
 * @returns {Uint8Array | undefined}
 */
   get(key: Uint8Array): Uint8Array | undefined;

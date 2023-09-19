@@ -87,6 +87,16 @@ class BinMap {
     }
     /**
     * @param {Uint8Array} key
+    * @returns {boolean}
+    */
+    has(key) {
+        const ptr0 = passArray8ToWasm0(key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.binmap_has(this.__wbg_ptr, ptr0, len0);
+        return ret !== 0;
+    }
+    /**
+    * @param {Uint8Array} key
     * @returns {Uint8Array | undefined}
     */
     get(key) {
