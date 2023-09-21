@@ -19,5 +19,5 @@ console.log await idb 123
 output :
 
 ```
-123
+./out.txt
 ```
