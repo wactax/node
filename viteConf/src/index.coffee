@@ -79,6 +79,8 @@ viteConf = (ROOT)=>
     ]
     clearScreen: false
     server:{
+      fs:
+        strict: false
       host
       port
       strictPort: true
