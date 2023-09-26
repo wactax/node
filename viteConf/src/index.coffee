@@ -4,8 +4,7 @@ import coffeescript from 'coffeescript'
 import { merge } from 'lodash-es'
 import vitePluginStylusAlias from './plugin/vite-plugin-stylus-alias.mjs'
 import pug from 'pug'
-
-import sveltePreprocess from '@w5/svelte-preprocess'
+import sveltePreprocess from './sveltePreprocess.js'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 IGNORE_WARN = new Set(
   'a11y-click-events-have-key-events a11y-missing-content'.split(' ')
@@ -62,17 +61,7 @@ viteConf = (ROOT)=>
           if code == 'a11y-missing-attribute'
             return !message.includes('<a>')
           !IGNORE_WARN.has code
-        preprocess: [
-          sveltePreprocess(
-            coffeescript: {
-              label:true
-              sourceMap: true
-            }
-            #customElement:true
-            stylus: true
-            pug: true
-          )
-        ]
+        preprocess: sveltePreprocess
       )
       vitePluginStylusAlias()
       import_pug()
