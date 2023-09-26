@@ -2,5 +2,5 @@
 > ./index.js:f
 
 < (args...)=>
-  (await f ...args).arrayBuffer()
+  new Uint8Array await (await f ...args).arrayBuffer()
 
