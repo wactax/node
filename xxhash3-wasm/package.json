@@ -1,1 +1,18 @@
-{"name":"@w5/xxhash3-wasm","version":"0.0.0","repository":"https://github.com/wactax/node.git","homepage":"https://github.com/wactax/node/tree/main/xxhash3-wasm","author":"i@wac.tax","license":"Apache-2.0","exports":{".":"./lib/index.js","./*":"./lib/*"},"files":["lib/*"],"devDependencies":{"@w5/uridir":"^0.0.1"},"scripts":{},"type":"module"}
+{
+  "name": "@w5/xxhash3-wasm",
+  "version": "0.0.0",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/xxhash3-wasm",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": ["lib/*"],
+  "devDependencies": {
+    "@w5/uridir": "^0.0.1"
+  },
+  "scripts": {},
+  "type": "module"
+}

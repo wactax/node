@@ -1,6 +1,6 @@
 {
   "name": "@w5/redis",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/redis",
   "author": "i@wac.tax",
@@ -21,6 +21,6 @@
     "@w5/u8": "^0.0.3",
     "@w5/uintbin": "^0.0.8",
     "@w5/utf8": "^0.0.3",
-    "@w5/xedis": "^0.0.49"
+    "@w5/xedis": "^0.0.51"
   }
 }
