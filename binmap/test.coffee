@@ -19,4 +19,4 @@ console.log(
     new Uint8Array(1)
   )
 )
-
+console.log m.size

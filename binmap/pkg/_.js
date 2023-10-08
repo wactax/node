@@ -136,8 +136,8 @@ class BinMap {
     /**
     * @returns {number}
     */
-    len() {
-        const ret = wasm.binmap_len(this.__wbg_ptr);
+    get size() {
+        const ret = wasm.binmap_size(this.__wbg_ptr);
         return ret >>> 0;
     }
     /**

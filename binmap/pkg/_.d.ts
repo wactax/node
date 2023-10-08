@@ -27,12 +27,11 @@ export class BinMap {
 */
   dump(): Uint8Array;
 /**
-* @returns {number}
-*/
-  len(): number;
-/**
 * @param {Uint8Array} bin
 * @returns {BinMap}
 */
   static load(bin: Uint8Array): BinMap;
+/**
+*/
+  readonly size: number;
 }

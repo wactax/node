@@ -34,7 +34,8 @@ impl BinMap {
     self.write_to_vec().unwrap()
   }
 
-  pub fn len(&self) -> usize {
+  #[wasm_bindgen(getter)]
+  pub fn size(&self) -> usize {
     self.0.len()
   }
 
