@@ -1,6 +1,6 @@
 {
   "name": "@w5/vite-conf",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/viteConf",
   "author": "i@wac.tax",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.6",
     "@w5/coffee_plus": "^0.0.17",
-    "@w5/svelte-preprocess": "^5.0.20",
+    "@w5/svelte-preprocess": "^5.0.21",
     "coffeescript": "^2.7.0",
     "lightningcss": "^1.22.0",
     "lodash-es": "^4.17.21",
