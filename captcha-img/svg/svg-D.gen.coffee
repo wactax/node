@@ -12,7 +12,9 @@ ROOT = uridir(import.meta)
 li = []
 for await f from await opendir ROOT
   if f.isFile() and f.name.endsWith('.svg')
-    xml = read join ROOT,f.name
+    fp = join ROOT,f.name
+    console.log fp
+    xml = read fp
     t = [...extractLi xml,'d="','"']
     t.sort (a,b)=>b.length-a.length
     li.push t[0]
