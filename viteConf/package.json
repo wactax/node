@@ -1,6 +1,6 @@
 {
   "name": "@w5/vite-conf",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/viteConf",
   "author": "i@wac.tax",
@@ -23,6 +23,6 @@
     "lightningcss": "^1.22.0",
     "lodash-es": "^4.17.21",
     "svelte": "^4.2.1",
-    "vite": "^4.4.11"
+    "vite": "^4.5.0"
   }
 }
