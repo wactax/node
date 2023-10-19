@@ -1,1 +1,1 @@
-{"type":"module","dependencies":{"@w5/jsext": "^0.0.2","@w5/loader": "^0.0.5","@w5/mdt": "^0.0.16","@w5/coffee_plus": "^0.0.18","zx": "^7.2.3"}}
+{"type":"module","dependencies":{"@w5/jsext": "^0.0.2","@w5/loader": "^0.0.5","@w5/mdt": "^0.0.16","@w5/coffee_plus": "^0.0.19","zx": "^7.2.3"}}
