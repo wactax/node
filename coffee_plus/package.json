@@ -1,6 +1,6 @@
 {
   "name": "@w5/coffee_plus",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/coffee_plus",
   "author": "i@wac.tax",
@@ -16,9 +16,9 @@
     "lib/*"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.15",
-    "@babel/plugin-transform-modules-commonjs": "^7.22.15"
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.23.0"
   },
   "scripts": {},
   "type": "module",
