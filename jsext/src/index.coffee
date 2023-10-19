@@ -1,13 +1,6 @@
-> ./jsext.js
+#!/usr/bin/env coffee
 
-< resolve = jsext
+import { register } from "node:module"
+import { pathToFileURL } from "node:url"
 
-COMMONJS = {
-  format: "commonjs",
-  shortCircuit: true,
-}
-
-< load = (url, context, defaultLoad) =>
-  if (url.endsWith(".node"))
-    return COMMONJS
-  return defaultLoad(url, context)
+register("@w5/jsext/loader.js", pathToFileURL("./"))
