@@ -1,6 +1,6 @@
 {
   "name": "@w5/vite-base",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": "https://github.com/wactax/node.git",
   "homepage": "https://github.com/wactax/node/tree/main/vite-base",
   "author": "i@wac.tax",
@@ -16,7 +16,6 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
-    "@8n/deps": "^0.0.5",
     "@sveltejs/vite-plugin-svelte": "^2.4.6",
     "@w5/coffee_plus": "^0.0.19",
     "@w5/svelte-preprocess": "^5.0.23",

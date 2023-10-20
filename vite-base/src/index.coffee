@@ -9,7 +9,6 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 IGNORE_WARN = new Set(
   'a11y-click-events-have-key-events a11y-missing-content'.split(' ')
 )
-import deps from '@8n/deps'
 import thisdir from '@w5/uridir'
 import { writeFileSync,renameSync } from 'fs'
 import import_pug from './plugin/pug.js'
@@ -36,10 +35,6 @@ viteConf = (ROOT)=>
     ":": join(ROOT, "file")
     '~': SRC
   }
-
-  for i from deps(ROOT)
-    if not ( i of alias )
-      alias[i] = join ROOT, 'node_modules', i
 
   PRODUCTION = env.NODE_ENV == 'production'
   TARGET = ["esnext"]
