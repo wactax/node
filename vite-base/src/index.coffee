@@ -38,7 +38,7 @@ viteConf = (ROOT)=>
   }
 
   for i from deps(ROOT)
-    if not i of alias
+    if not ( i of alias )
       alias[i] = join ROOT, 'node_modules', i
 
   PRODUCTION = env.NODE_ENV == 'production'
