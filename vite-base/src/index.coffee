@@ -104,7 +104,6 @@ viteConf = (ROOT)=>
       assetsDir: '/'
       emptyOutDir: true
     optimizeDeps:
-      include: ['*']
       # exclude:[
       #   "@w5/vite"
       # ]
