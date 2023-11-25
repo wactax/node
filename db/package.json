@@ -1,0 +1,21 @@
+{
+  "name": "@w5/db",
+  "version": "0.0.0",
+  "repository": "https://github.com/wactax/node.git",
+  "homepage": "https://github.com/wactax/node/tree/main/db",
+  "author": "i@wac.tax",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./*": "./lib/*"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "devDependencies": {},
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "mariadb": "^3.2.2"
+  }
+}
