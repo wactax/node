@@ -136,7 +136,7 @@ viteConf = (ROOT)=>
             output:
               chunkFileNames: JSNAME
               assetFileNames: FILENAME
-              entryFileNames: "m.js"
+              entryFileNames: "m.#{(new Date()-0).toString(36)}.js"
           }
         }
       }

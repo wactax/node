@@ -1,19 +1,4 @@
-use https_proxy http://127.0.0.1:7890
-"測試 #", // zh-TW
-"test #", // en
-"テスト ＃", // ja
-"ทดสอบ #", // th
-"시험 #", // ko
-"परीक्षा #", // hi
-"тест #", // uk
-"امتحان #", // ar
-"Ölçek #", // tr
-"Bài kiểm tra #", // vi
-"test #", // pl
-"test #", // nl
-"teste #", // pt
-"test #", // it
-"prueba #", // es
-"prüfen #", // de
-"test #", // fr
-"тест #", // ru
+[ '这是正文 **测试**', '[1]: https://www.baidu.com' ]
+https://translate.google.com/translate_a/t?client=gtx&format=html&tl=en&sl=zh {} q=%E8%BF%99%E6%98%AF%E6%AD%A3%E6%96%87%20**%E6%B5%8B%E8%AF%95**&q=%5B1%5D%3A%20https%3A%2F%2Fwww.baidu.com
+"This is the text **test**"
+"[1]: https://www.baidu.com"

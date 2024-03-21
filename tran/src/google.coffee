@@ -11,13 +11,17 @@ _tran = (url, q_li, to_lang, from_lang)=>
   url += "&tl=#{to_lang}"
   if from_lang
       url+="&sl=#{from_lang}"
+
+  console.log q_li
+  body = q_li.map((i) => "q=" + encodeURIComponent(i)).join("&")
+  console.log url, OPTION, body
   reqJson(
     url
     {
       headers: {
         "content-type": "application/x-www-form-urlencoded",
       },
-      body: q_li.map((i) => "q=" + encodeURIComponent(i)).join("&"),
+      body,
       method: "POST",
       ...OPTION
     },
@@ -55,7 +59,7 @@ tran = (url, q_li, to_lang, from_lang)->
   return
 
 
-API = "https://translate.google.com/translate_a/t?client=gtx&sr=1&v=1.0"
+API = "https://translate.google.com/translate_a/t?client=gtx"
 
 export tranHtm = tran.bind tran,API + '&format=html'
 
